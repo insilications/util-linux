@@ -1,0 +1,7 @@
+/usr/share/bash-completion/completions/fsck.minix
+/usr/bin/zramctl
+/usr/bin/mkfs.cramfs
+/usr/bin/mkfs.bfs
+/usr/bin/linux32
+/usr/bin/i386
+/usr/bin/fdformat

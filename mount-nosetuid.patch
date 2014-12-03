@@ -1,0 +1,27 @@
+Index: util-linux-2.26/sys-utils/Makemodule.am
+===================================================================
+--- util-linux-2.26.orig/sys-utils/Makemodule.am	2015-02-24 11:09:48.914583305 +0000
++++ util-linux-2.26/sys-utils/Makemodule.am	2015-02-24 11:09:48.914583305 +0000
+@@ -244,13 +244,6 @@
+ umount_static_LDADD = $(umount_LDADD)
+ endif
+ 
+-if MAKEINSTALL_DO_SETUID
+-install-exec-hook-mount:
+-	chmod 4755 $(DESTDIR)$(bindir)/mount
+-	chmod 4755 $(DESTDIR)$(bindir)/umount
+-
+-INSTALL_EXEC_HOOKS += install-exec-hook-mount
+-endif
+ endif # BUILD_MOUNT
+ 
+ 
+Index: util-linux-2.26/Makefile.am
+===================================================================
+--- util-linux-2.26.orig/Makefile.am	2015-02-10 09:49:46.340584289 +0000
++++ util-linux-2.26/Makefile.am	2015-02-24 11:10:04.630583707 +0000
+@@ -1,3 +1,4 @@
++#trigger autospec to reconfigure, by having diff in Makefile.am
+ AM_CPPFLAGS = \
+ 	-include config.h \
+ 	-I$(top_srcdir)/include \
