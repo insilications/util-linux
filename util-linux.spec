@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.26.2
-Release  : 44
+Release  : 45
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.26/util-linux-2.26.2.tar.gz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.26/util-linux-2.26.2.tar.gz
 Summary  : Block device id library
