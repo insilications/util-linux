@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.28
-Release  : 50
+Release  : 51
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.tar.xz
 Summary  : fdisk library
