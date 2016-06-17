@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.28
-Release  : 53
+Release  : 54
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.tar.xz
 Summary  : fdisk library
@@ -40,6 +40,7 @@ BuildRequires : zlib-dev
 Patch1: mount-nosetuid.patch
 Patch2: agetty.patch
 Patch3: default-issue.patch
+Patch4: topology.patch
 
 %description
 util-linux
@@ -131,6 +132,7 @@ python components for the util-linux package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 export CFLAGS="$CFLAGS -Os -ffunction-sections "
@@ -148,6 +150,7 @@ export CXXFLAGS="$CXXFLAGS -Os -ffunction-sections "
 make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost
