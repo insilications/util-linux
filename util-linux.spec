@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.28
-Release  : 55
+Release  : 56
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.tar.xz
 Summary  : fdisk library
@@ -135,6 +135,7 @@ python components for the util-linux package.
 %patch4 -p1
 
 %build
+export LANG=C
 export CFLAGS="$CFLAGS -Os -ffunction-sections "
 export FCFLAGS="$CFLAGS -Os -ffunction-sections "
 export FFLAGS="$CFLAGS -Os -ffunction-sections "

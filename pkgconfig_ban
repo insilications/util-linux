@@ -6,5 +6,6 @@
 libselinux
 libuser
 libselinux
+# Note: $PYTHON_VERSION is a shell variable, so autospec cannot tell what its
+# value is.
 python-$PYTHON_VERSION
-)
