@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.28.2
-Release  : 64
+Release  : 65
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.2.tar.xz
 Summary  : fdisk library
@@ -13,6 +13,7 @@ License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 LGPL-2.1
 Requires: util-linux-bin
 Requires: util-linux-python
 Requires: util-linux-config
+Requires: util-linux-autostart
 Requires: util-linux-lib
 Requires: util-linux-data
 Requires: util-linux-doc
@@ -46,6 +47,14 @@ Patch4: topology.patch
 util-linux
 util-linux is a random collection of Linux utilities
 Note that in years 2006-2010 this project used the name "util-linux-ng".
+
+%package autostart
+Summary: autostart components for the util-linux package.
+Group: Default
+
+%description autostart
+autostart components for the util-linux package.
+
 
 %package bin
 Summary: bin components for the util-linux package.
@@ -169,6 +178,10 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 %files
 %defattr(-,root,root,-)
 
+%files autostart
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/sockets.target.wants/uuidd.socket
+
 %files bin
 %defattr(-,root,root,-)
 %exclude /usr/bin/fdformat
@@ -278,9 +291,9 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 
 %files config
 %defattr(-,root,root,-)
+%exclude /usr/lib/systemd/system/sockets.target.wants/uuidd.socket
 /usr/lib/systemd/system/fstrim.service
 /usr/lib/systemd/system/fstrim.timer
-/usr/lib/systemd/system/sockets.target.wants/uuidd.socket
 /usr/lib/systemd/system/uuidd.service
 /usr/lib/systemd/system/uuidd.socket
 
@@ -387,12 +400,20 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/include/libmount/libmount.h
 /usr/include/libsmartcols/libsmartcols.h
 /usr/include/uuid/uuid.h
-/usr/lib64/*.so
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libblkid.so
+/usr/lib64/libfdisk.so
+/usr/lib64/libmount.so
+/usr/lib64/libsmartcols.so
+/usr/lib64/libuuid.so
+/usr/lib64/pkgconfig/blkid.pc
+/usr/lib64/pkgconfig/fdisk.pc
+/usr/lib64/pkgconfig/mount.pc
+/usr/lib64/pkgconfig/smartcols.pc
+/usr/lib64/pkgconfig/uuid.pc
 
 %files doc
 %defattr(-,root,root,-)
-%doc /usr/share/doc/util-linux/*
+%doc /usr/share/doc/util\-linux/*
 %doc /usr/share/man/man1/*
 %doc /usr/share/man/man3/*
 %doc /usr/share/man/man5/*
@@ -412,7 +433,16 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libblkid.so.1
+/usr/lib64/libblkid.so.1.1.0
+/usr/lib64/libfdisk.so.1
+/usr/lib64/libfdisk.so.1.1.0
+/usr/lib64/libmount.so.1
+/usr/lib64/libmount.so.1.1.0
+/usr/lib64/libsmartcols.so.1
+/usr/lib64/libsmartcols.so.1.1.0
+/usr/lib64/libuuid.so.1
+/usr/lib64/libuuid.so.1.3.0
 
 %files python
 %defattr(-,root,root,-)
