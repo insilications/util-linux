@@ -8,3 +8,6 @@ libcap-ng-dev
 zlib-dev
 e2fsprogs
 procps-ng
+Linux-PAM-dev32
+zlib-dev32
+libcap-ng-dev32

@@ -1,0 +1,4 @@
+--without-ncurses
+--without-systemd
+--without-python
+--without-tinfo

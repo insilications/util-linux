@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.28.2
-Release  : 65
+Release  : 66
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.2.tar.xz
 Summary  : fdisk library
@@ -19,14 +19,21 @@ Requires: util-linux-data
 Requires: util-linux-doc
 Requires: util-linux-locales
 BuildRequires : Linux-PAM-dev
+BuildRequires : Linux-PAM-dev32
 BuildRequires : automake
 BuildRequires : automake-dev
 BuildRequires : docbook-xml
 BuildRequires : e2fsprogs
+BuildRequires : gcc-dev32
+BuildRequires : gcc-libgcc32
+BuildRequires : gcc-libstdc++32
 BuildRequires : gettext-bin
+BuildRequires : glibc-dev32
+BuildRequires : glibc-libc32
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
 BuildRequires : libcap-ng-dev
+BuildRequires : libcap-ng-dev32
 BuildRequires : libtool
 BuildRequires : libtool-dev
 BuildRequires : m4
@@ -37,7 +44,9 @@ BuildRequires : pkgconfig(tinfo)
 BuildRequires : procps-ng
 BuildRequires : python-dev
 BuildRequires : readline-dev
+BuildRequires : systemd-dev
 BuildRequires : zlib-dev
+BuildRequires : zlib-dev32
 Patch1: mount-nosetuid.patch
 Patch2: agetty.patch
 Patch3: default-issue.patch
@@ -94,6 +103,17 @@ Provides: util-linux-devel
 dev components for the util-linux package.
 
 
+%package dev32
+Summary: dev32 components for the util-linux package.
+Group: Default
+Requires: util-linux-lib32
+Requires: util-linux-bin
+Requires: util-linux-data
+
+%description dev32
+dev32 components for the util-linux package.
+
+
 %package doc
 Summary: doc components for the util-linux package.
 Group: Documentation
@@ -120,6 +140,16 @@ Requires: util-linux-config
 lib components for the util-linux package.
 
 
+%package lib32
+Summary: lib32 components for the util-linux package.
+Group: Default
+Requires: util-linux-data
+Requires: util-linux-config
+
+%description lib32
+lib32 components for the util-linux package.
+
+
 %package locales
 Summary: locales components for the util-linux package.
 Group: Default
@@ -142,6 +172,9 @@ python components for the util-linux package.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+pushd ..
+cp -a util-linux-2.28.2 build32
+popd
 
 %build
 export LANG=C
@@ -158,6 +191,23 @@ export CXXFLAGS="$CXXFLAGS -Os -ffunction-sections "
 --disable-nologin \
 --enable-libmount-force-mountinfo
 make V=1  %{?_smp_mflags}
+pushd ../build32/
+export CFLAGS="$CFLAGS -m32"
+export CXXFLAGS="$CXXFLAGS -m32"
+export LDFLAGS="$LDFLAGS -m32"
+%reconfigure --disable-static --disable-use-tty-group \
+--enable-makeinstall-chown \
+--enable-makeinstall-setuid \
+--enable-socket-activation \
+--disable-kill \
+--disable-chfn-chsh \
+--disable-nologin \
+--enable-libmount-force-mountinfo --without-ncurses \
+--without-systemd \
+--without-python \
+--without-tinfo --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+make V=1  %{?_smp_mflags}
+popd
 
 %check
 export LANG=C
@@ -168,6 +218,15 @@ make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
 rm -rf %{buildroot}
+pushd ../build32/
+%make_install32
+if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
+then
+pushd %{buildroot}/usr/lib32/pkgconfig
+for i in *.pc ; do mv $i 32$i ; done
+popd
+fi
+popd
 %make_install
 %find_lang util-linux
 ## make_install_append content
@@ -411,6 +470,19 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/lib64/pkgconfig/smartcols.pc
 /usr/lib64/pkgconfig/uuid.pc
 
+%files dev32
+%defattr(-,root,root,-)
+/usr/lib32/libblkid.so
+/usr/lib32/libfdisk.so
+/usr/lib32/libmount.so
+/usr/lib32/libsmartcols.so
+/usr/lib32/libuuid.so
+/usr/lib32/pkgconfig/32blkid.pc
+/usr/lib32/pkgconfig/32fdisk.pc
+/usr/lib32/pkgconfig/32mount.pc
+/usr/lib32/pkgconfig/32smartcols.pc
+/usr/lib32/pkgconfig/32uuid.pc
+
 %files doc
 %defattr(-,root,root,-)
 %doc /usr/share/doc/util\-linux/*
@@ -443,6 +515,19 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/lib64/libsmartcols.so.1.1.0
 /usr/lib64/libuuid.so.1
 /usr/lib64/libuuid.so.1.3.0
+
+%files lib32
+%defattr(-,root,root,-)
+/usr/lib32/libblkid.so.1
+/usr/lib32/libblkid.so.1.1.0
+/usr/lib32/libfdisk.so.1
+/usr/lib32/libfdisk.so.1.1.0
+/usr/lib32/libmount.so.1
+/usr/lib32/libmount.so.1.1.0
+/usr/lib32/libsmartcols.so.1
+/usr/lib32/libsmartcols.so.1.1.0
+/usr/lib32/libuuid.so.1
+/usr/lib32/libuuid.so.1.3.0
 
 %files python
 %defattr(-,root,root,-)

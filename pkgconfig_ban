@@ -9,3 +9,10 @@ libselinux
 # Note: $PYTHON_VERSION is a shell variable, so autospec cannot tell what its
 # value is.
 python-$PYTHON_VERSION
+32libselinux
+32libuser
+32libselinux
+32python-$PYTHON_VERSION
+32libsystemd
+32ncursesw
+32tinfo
