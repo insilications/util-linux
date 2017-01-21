@@ -6,3 +6,4 @@
 --disable-chfn-chsh
 --disable-nologin
 --enable-libmount-force-mountinfo
+--disable-plymouth_support
