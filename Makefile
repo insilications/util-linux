@@ -1,5 +1,5 @@
 PKG_NAME := util-linux
-URL := https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.1.tar.xz
+URL := https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 
 
 include ../common/Makefile.common
