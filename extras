@@ -5,3 +5,5 @@
 /usr/bin/linux32
 /usr/bin/i386
 /usr/bin/fdformat
+/usr/bin/fsck.minix
+/usr/bin/mkfs.minix

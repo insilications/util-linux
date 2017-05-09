@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.29.2
-Release  : 71
+Release  : 72
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 Summary  : fdisk library
@@ -179,15 +179,18 @@ cp -a util-linux-2.29.2 build32
 popd
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1492278685
+export SOURCE_DATE_EPOCH=1494296091
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Os -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -Os -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -Os -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -Os -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
 %reconfigure --disable-static --disable-use-tty-group \
 --enable-makeinstall-chown \
 --enable-makeinstall-setuid \
@@ -223,11 +226,11 @@ popd
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1492278685
+export SOURCE_DATE_EPOCH=1494296091
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -255,11 +258,13 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 %files bin
 %defattr(-,root,root,-)
 %exclude /usr/bin/fdformat
+%exclude /usr/bin/fsck.minix
 %exclude /usr/bin/i386
 %exclude /usr/bin/linux32
 %exclude /usr/bin/login
 %exclude /usr/bin/mkfs.bfs
 %exclude /usr/bin/mkfs.cramfs
+%exclude /usr/bin/mkfs.minix
 %exclude /usr/bin/zramctl
 /usr/bin/addpart
 /usr/bin/agetty
@@ -285,7 +290,6 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/bin/flock
 /usr/bin/fsck
 /usr/bin/fsck.cramfs
-/usr/bin/fsck.minix
 /usr/bin/fsfreeze
 /usr/bin/fstrim
 /usr/bin/getopt
@@ -312,7 +316,6 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/bin/mcookie
 /usr/bin/mesg
 /usr/bin/mkfs
-/usr/bin/mkfs.minix
 /usr/bin/mkswap
 /usr/bin/more
 /usr/bin/mount
@@ -510,10 +513,12 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 %files extras
 %defattr(-,root,root,-)
 /usr/bin/fdformat
+/usr/bin/fsck.minix
 /usr/bin/i386
 /usr/bin/linux32
 /usr/bin/mkfs.bfs
 /usr/bin/mkfs.cramfs
+/usr/bin/mkfs.minix
 /usr/bin/zramctl
 /usr/share/bash-completion/completions/fsck.minix
 
