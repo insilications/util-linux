@@ -3,3 +3,4 @@ agetty.patch
 default-issue.patch
 topology.patch
 sodeps.patch
+tinfo.patch

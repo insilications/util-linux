@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.29.2
-Release  : 75
+Release  : 76
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 Summary  : fdisk library
@@ -51,6 +51,7 @@ Patch2: agetty.patch
 Patch3: default-issue.patch
 Patch4: topology.patch
 Patch5: sodeps.patch
+Patch6: tinfo.patch
 
 %description
 util-linux
@@ -174,6 +175,7 @@ python components for the util-linux package.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 pushd ..
 cp -a util-linux-2.29.2 build32
 popd
@@ -183,7 +185,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494296091
+export SOURCE_DATE_EPOCH=1496510146
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -230,7 +232,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1494296091
+export SOURCE_DATE_EPOCH=1496510146
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
