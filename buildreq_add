@@ -11,3 +11,5 @@ procps-ng
 Linux-PAM-dev32
 zlib-dev32
 libcap-ng-dev32
+ncurses-dev32
+ncurses-dev

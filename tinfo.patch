@@ -115,3 +115,49 @@
    else
      as_fn_error $? "pkg-config description of tinfo, needed for static build, is not available" "$LINENO" 5
    fi
+--- util-linux-2.29/configure.ac~	2016-11-08 10:35:33.000000000 +0000
++++ util-linux-2.29/configure.ac	2017-06-03 17:24:51.699319087 +0000
+@@ -850,7 +850,7 @@
+ ])
+ 
+ 
+-AC_ARG_WITH([tinfo], AS_HELP_STRING([--without-tinfo], [compile without libtinfo]),
++AC_ARG_WITH([tinfow], AS_HELP_STRING([--without-tinfo], [compile without libtinfo]),
+   [], [with_tinfo=auto]
+ )
+ have_tinfo=no
+@@ -859,13 +859,13 @@
+   PKG_CHECK_MODULES(TINFO, [tinfo], [
+     dnl pkg-config success
+     have_tinfo=yes
+-    UL_PKG_STATIC([TINFO_LIBS_STATIC], [tinfo])], [
++    UL_PKG_STATIC([TINFO_LIBS_STATIC], [tinfow])], [
+ 
+     dnl If pkg-config failed, fall back to classic searching.
+     AC_CHECK_LIB([tinfo], [tgetent], [
+        have_tinfo=yes
+-       TINFO_LIBS="-ltinfo"
+-       TINFO_LIBS_STATIC="-ltinfo"
++       TINFO_LIBS="-ltinfow"
++       TINFO_LIBS_STATIC="-ltinfow"
+        TINFO_CFLAGS=""])
+   ])
+ ])
+--- util-linux-2.29/configure.ac~	2017-06-03 17:24:51.000000000 +0000
++++ util-linux-2.29/configure.ac	2017-06-03 17:27:58.631825301 +0000
+@@ -856,13 +856,13 @@
+ have_tinfo=no
+ AS_IF([test "x$with_tinfo" != xno], [
+   dnl Try pkg-config for libtinfo
+-  PKG_CHECK_MODULES(TINFO, [tinfo], [
++  PKG_CHECK_MODULES(TINFO, [tinfow], [
+     dnl pkg-config success
+     have_tinfo=yes
+     UL_PKG_STATIC([TINFO_LIBS_STATIC], [tinfow])], [
+ 
+     dnl If pkg-config failed, fall back to classic searching.
+-    AC_CHECK_LIB([tinfo], [tgetent], [
++    AC_CHECK_LIB([tinfow], [tgetent], [
+        have_tinfo=yes
+        TINFO_LIBS="-ltinfow"
+        TINFO_LIBS_STATIC="-ltinfow"

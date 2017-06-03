@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.29.2
-Release  : 76
+Release  : 77
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 Summary  : fdisk library
@@ -37,9 +37,12 @@ BuildRequires : libcap-ng-dev32
 BuildRequires : libtool
 BuildRequires : libtool-dev
 BuildRequires : m4
+BuildRequires : ncurses-dev
+BuildRequires : ncurses-dev32
 BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(tinfo)
+BuildRequires : pkgconfig(tinfow)
 BuildRequires : procps-ng
 BuildRequires : python-dev
 BuildRequires : readline-dev
@@ -185,7 +188,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1496510146
+export SOURCE_DATE_EPOCH=1496511747
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -232,7 +235,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1496510146
+export SOURCE_DATE_EPOCH=1496511747
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
