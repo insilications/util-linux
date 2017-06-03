@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.29.2
-Release  : 77
+Release  : 78
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 Summary  : fdisk library
@@ -188,14 +188,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1496511747
+export SOURCE_DATE_EPOCH=1496528604
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -Os -Wl,--gc-sections -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -Os -Wl,--gc-sections -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -Os -Wl,--gc-sections -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -Os -Wl,--gc-sections -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
 %reconfigure --disable-static --disable-use-tty-group \
 --enable-makeinstall-chown \
 --enable-makeinstall-setuid \
@@ -235,7 +235,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1496511747
+export SOURCE_DATE_EPOCH=1496528604
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -376,7 +376,149 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 
 %files data
 %defattr(-,root,root,-)
+%exclude /usr/share/bash-completion/completions/addpart
+%exclude /usr/share/bash-completion/completions/blkdiscard
+%exclude /usr/share/bash-completion/completions/blkid
+%exclude /usr/share/bash-completion/completions/blockdev
+%exclude /usr/share/bash-completion/completions/cal
+%exclude /usr/share/bash-completion/completions/cfdisk
+%exclude /usr/share/bash-completion/completions/chcpu
+%exclude /usr/share/bash-completion/completions/chrt
+%exclude /usr/share/bash-completion/completions/col
+%exclude /usr/share/bash-completion/completions/colcrt
+%exclude /usr/share/bash-completion/completions/colrm
+%exclude /usr/share/bash-completion/completions/column
+%exclude /usr/share/bash-completion/completions/ctrlaltdel
+%exclude /usr/share/bash-completion/completions/delpart
+%exclude /usr/share/bash-completion/completions/dmesg
+%exclude /usr/share/bash-completion/completions/eject
+%exclude /usr/share/bash-completion/completions/fallocate
+%exclude /usr/share/bash-completion/completions/fdformat
+%exclude /usr/share/bash-completion/completions/fdisk
+%exclude /usr/share/bash-completion/completions/findmnt
+%exclude /usr/share/bash-completion/completions/flock
+%exclude /usr/share/bash-completion/completions/fsck
+%exclude /usr/share/bash-completion/completions/fsck.cramfs
 %exclude /usr/share/bash-completion/completions/fsck.minix
+%exclude /usr/share/bash-completion/completions/fsfreeze
+%exclude /usr/share/bash-completion/completions/fstrim
+%exclude /usr/share/bash-completion/completions/getopt
+%exclude /usr/share/bash-completion/completions/hexdump
+%exclude /usr/share/bash-completion/completions/hwclock
+%exclude /usr/share/bash-completion/completions/ionice
+%exclude /usr/share/bash-completion/completions/ipcmk
+%exclude /usr/share/bash-completion/completions/ipcrm
+%exclude /usr/share/bash-completion/completions/ipcs
+%exclude /usr/share/bash-completion/completions/isosize
+%exclude /usr/share/bash-completion/completions/last
+%exclude /usr/share/bash-completion/completions/ldattach
+%exclude /usr/share/bash-completion/completions/logger
+%exclude /usr/share/bash-completion/completions/look
+%exclude /usr/share/bash-completion/completions/losetup
+%exclude /usr/share/bash-completion/completions/lsblk
+%exclude /usr/share/bash-completion/completions/lscpu
+%exclude /usr/share/bash-completion/completions/lsipc
+%exclude /usr/share/bash-completion/completions/lslocks
+%exclude /usr/share/bash-completion/completions/lslogins
+%exclude /usr/share/bash-completion/completions/lsns
+%exclude /usr/share/bash-completion/completions/mcookie
+%exclude /usr/share/bash-completion/completions/mesg
+%exclude /usr/share/bash-completion/completions/mkfs
+%exclude /usr/share/bash-completion/completions/mkfs.bfs
+%exclude /usr/share/bash-completion/completions/mkfs.cramfs
+%exclude /usr/share/bash-completion/completions/mkfs.minix
+%exclude /usr/share/bash-completion/completions/mkswap
+%exclude /usr/share/bash-completion/completions/more
+%exclude /usr/share/bash-completion/completions/mount
+%exclude /usr/share/bash-completion/completions/mountpoint
+%exclude /usr/share/bash-completion/completions/namei
+%exclude /usr/share/bash-completion/completions/nsenter
+%exclude /usr/share/bash-completion/completions/partx
+%exclude /usr/share/bash-completion/completions/pivot_root
+%exclude /usr/share/bash-completion/completions/prlimit
+%exclude /usr/share/bash-completion/completions/raw
+%exclude /usr/share/bash-completion/completions/readprofile
+%exclude /usr/share/bash-completion/completions/rename
+%exclude /usr/share/bash-completion/completions/renice
+%exclude /usr/share/bash-completion/completions/resizepart
+%exclude /usr/share/bash-completion/completions/rev
+%exclude /usr/share/bash-completion/completions/rtcwake
+%exclude /usr/share/bash-completion/completions/runuser
+%exclude /usr/share/bash-completion/completions/script
+%exclude /usr/share/bash-completion/completions/scriptreplay
+%exclude /usr/share/bash-completion/completions/setarch
+%exclude /usr/share/bash-completion/completions/setpriv
+%exclude /usr/share/bash-completion/completions/setsid
+%exclude /usr/share/bash-completion/completions/setterm
+%exclude /usr/share/bash-completion/completions/sfdisk
+%exclude /usr/share/bash-completion/completions/su
+%exclude /usr/share/bash-completion/completions/swaplabel
+%exclude /usr/share/bash-completion/completions/swapoff
+%exclude /usr/share/bash-completion/completions/swapon
+%exclude /usr/share/bash-completion/completions/tailf
+%exclude /usr/share/bash-completion/completions/taskset
+%exclude /usr/share/bash-completion/completions/ul
+%exclude /usr/share/bash-completion/completions/umount
+%exclude /usr/share/bash-completion/completions/unshare
+%exclude /usr/share/bash-completion/completions/utmpdump
+%exclude /usr/share/bash-completion/completions/uuidd
+%exclude /usr/share/bash-completion/completions/uuidgen
+%exclude /usr/share/bash-completion/completions/wall
+%exclude /usr/share/bash-completion/completions/wdctl
+%exclude /usr/share/bash-completion/completions/whereis
+%exclude /usr/share/bash-completion/completions/wipefs
+%exclude /usr/share/bash-completion/completions/zramctl
+
+%files dev
+%defattr(-,root,root,-)
+/usr/include/blkid/blkid.h
+/usr/include/libfdisk/libfdisk.h
+/usr/include/libmount/libmount.h
+/usr/include/libsmartcols/libsmartcols.h
+/usr/include/uuid/uuid.h
+/usr/lib64/libblkid.so
+/usr/lib64/libfdisk.so
+/usr/lib64/libmount.so
+/usr/lib64/libsmartcols.so
+/usr/lib64/libuuid.so
+/usr/lib64/pkgconfig/blkid.pc
+/usr/lib64/pkgconfig/fdisk.pc
+/usr/lib64/pkgconfig/mount.pc
+/usr/lib64/pkgconfig/smartcols.pc
+/usr/lib64/pkgconfig/uuid.pc
+
+%files dev32
+%defattr(-,root,root,-)
+/usr/lib32/libblkid.so
+/usr/lib32/libfdisk.so
+/usr/lib32/libmount.so
+/usr/lib32/libsmartcols.so
+/usr/lib32/libuuid.so
+/usr/lib32/pkgconfig/32blkid.pc
+/usr/lib32/pkgconfig/32fdisk.pc
+/usr/lib32/pkgconfig/32mount.pc
+/usr/lib32/pkgconfig/32smartcols.pc
+/usr/lib32/pkgconfig/32uuid.pc
+/usr/lib32/pkgconfig/blkid.pc
+/usr/lib32/pkgconfig/fdisk.pc
+/usr/lib32/pkgconfig/mount.pc
+/usr/lib32/pkgconfig/smartcols.pc
+/usr/lib32/pkgconfig/uuid.pc
+
+%files doc
+%defattr(-,root,root,-)
+%doc /usr/share/doc/util\-linux/*
+%doc /usr/share/man/man1/*
+%doc /usr/share/man/man3/*
+%doc /usr/share/man/man5/*
+%doc /usr/share/man/man8/*
+%exclude /usr/share/doc/util-linux/getopt/getopt-parse.tcsh
+%exclude /usr/share/man/man1/login.1
+
+%files extras
+%defattr(-,root,root,-)
+/usr/bin/mkfs.cramfs
+/usr/bin/zramctl
 /usr/share/bash-completion/completions/addpart
 /usr/share/bash-completion/completions/blkdiscard
 /usr/share/bash-completion/completions/blkid
@@ -468,64 +610,6 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/share/bash-completion/completions/whereis
 /usr/share/bash-completion/completions/wipefs
 /usr/share/bash-completion/completions/zramctl
-
-%files dev
-%defattr(-,root,root,-)
-/usr/include/blkid/blkid.h
-/usr/include/libfdisk/libfdisk.h
-/usr/include/libmount/libmount.h
-/usr/include/libsmartcols/libsmartcols.h
-/usr/include/uuid/uuid.h
-/usr/lib64/libblkid.so
-/usr/lib64/libfdisk.so
-/usr/lib64/libmount.so
-/usr/lib64/libsmartcols.so
-/usr/lib64/libuuid.so
-/usr/lib64/pkgconfig/blkid.pc
-/usr/lib64/pkgconfig/fdisk.pc
-/usr/lib64/pkgconfig/mount.pc
-/usr/lib64/pkgconfig/smartcols.pc
-/usr/lib64/pkgconfig/uuid.pc
-
-%files dev32
-%defattr(-,root,root,-)
-/usr/lib32/libblkid.so
-/usr/lib32/libfdisk.so
-/usr/lib32/libmount.so
-/usr/lib32/libsmartcols.so
-/usr/lib32/libuuid.so
-/usr/lib32/pkgconfig/32blkid.pc
-/usr/lib32/pkgconfig/32fdisk.pc
-/usr/lib32/pkgconfig/32mount.pc
-/usr/lib32/pkgconfig/32smartcols.pc
-/usr/lib32/pkgconfig/32uuid.pc
-/usr/lib32/pkgconfig/blkid.pc
-/usr/lib32/pkgconfig/fdisk.pc
-/usr/lib32/pkgconfig/mount.pc
-/usr/lib32/pkgconfig/smartcols.pc
-/usr/lib32/pkgconfig/uuid.pc
-
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/doc/util\-linux/*
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man3/*
-%doc /usr/share/man/man5/*
-%doc /usr/share/man/man8/*
-%exclude /usr/share/doc/util-linux/getopt/getopt-parse.tcsh
-%exclude /usr/share/man/man1/login.1
-
-%files extras
-%defattr(-,root,root,-)
-/usr/bin/fdformat
-/usr/bin/fsck.minix
-/usr/bin/i386
-/usr/bin/linux32
-/usr/bin/mkfs.bfs
-/usr/bin/mkfs.cramfs
-/usr/bin/mkfs.minix
-/usr/bin/zramctl
-/usr/share/bash-completion/completions/fsck.minix
 
 %files lib
 %defattr(-,root,root,-)
