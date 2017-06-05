@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.29.2
-Release  : 78
+Release  : 79
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.29/util-linux-2.29.2.tar.xz
 Summary  : fdisk library
@@ -188,7 +188,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1496528604
+export SOURCE_DATE_EPOCH=1496691896
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -235,7 +235,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1496528604
+export SOURCE_DATE_EPOCH=1496691896
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -264,7 +264,6 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 %defattr(-,root,root,-)
 %exclude /usr/bin/fdformat
 %exclude /usr/bin/fsck.minix
-%exclude /usr/bin/i386
 %exclude /usr/bin/linux32
 %exclude /usr/bin/login
 %exclude /usr/bin/mkfs.bfs
@@ -300,6 +299,7 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/bin/getopt
 /usr/bin/hexdump
 /usr/bin/hwclock
+/usr/bin/i386
 /usr/bin/ionice
 /usr/bin/ipcmk
 /usr/bin/ipcrm

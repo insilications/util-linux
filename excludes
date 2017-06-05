@@ -5,7 +5,6 @@
 /usr/share/bash-completion/completions/fsck.minix
 /usr/bin/mkfs.bfs
 /usr/bin/linux32
-/usr/bin/i386
 /usr/bin/fdformat
 /usr/bin/fsck.minix
 /usr/bin/mkfs.minix
