@@ -91,3 +91,7 @@
 /usr/share/bash-completion/completions/whereis
 /usr/share/bash-completion/completions/wipefs
 /usr/share/bash-completion/completions/zramctl
+/usr/share/bash-completion/completions/chmem
+/usr/share/bash-completion/completions/fincore
+/usr/share/bash-completion/completions/findfs
+/usr/share/bash-completion/completions/lsmem

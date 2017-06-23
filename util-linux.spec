@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.30
-Release  : 80
+Release  : 81
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.30/util-linux-2.30.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.30/util-linux-2.30.tar.xz
 Summary  : fdisk library
@@ -189,7 +189,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1498237373
+export SOURCE_DATE_EPOCH=1498238283
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -236,7 +236,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1498237373
+export SOURCE_DATE_EPOCH=1498238283
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -386,6 +386,7 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 %exclude /usr/share/bash-completion/completions/cal
 %exclude /usr/share/bash-completion/completions/cfdisk
 %exclude /usr/share/bash-completion/completions/chcpu
+%exclude /usr/share/bash-completion/completions/chmem
 %exclude /usr/share/bash-completion/completions/chrt
 %exclude /usr/share/bash-completion/completions/col
 %exclude /usr/share/bash-completion/completions/colcrt
@@ -398,6 +399,8 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 %exclude /usr/share/bash-completion/completions/fallocate
 %exclude /usr/share/bash-completion/completions/fdformat
 %exclude /usr/share/bash-completion/completions/fdisk
+%exclude /usr/share/bash-completion/completions/fincore
+%exclude /usr/share/bash-completion/completions/findfs
 %exclude /usr/share/bash-completion/completions/findmnt
 %exclude /usr/share/bash-completion/completions/flock
 %exclude /usr/share/bash-completion/completions/fsck
@@ -423,6 +426,7 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 %exclude /usr/share/bash-completion/completions/lsipc
 %exclude /usr/share/bash-completion/completions/lslocks
 %exclude /usr/share/bash-completion/completions/lslogins
+%exclude /usr/share/bash-completion/completions/lsmem
 %exclude /usr/share/bash-completion/completions/lsns
 %exclude /usr/share/bash-completion/completions/mcookie
 %exclude /usr/share/bash-completion/completions/mesg
@@ -470,10 +474,6 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 %exclude /usr/share/bash-completion/completions/whereis
 %exclude /usr/share/bash-completion/completions/wipefs
 %exclude /usr/share/bash-completion/completions/zramctl
-/usr/share/bash-completion/completions/chmem
-/usr/share/bash-completion/completions/fincore
-/usr/share/bash-completion/completions/findfs
-/usr/share/bash-completion/completions/lsmem
 
 %files dev
 %defattr(-,root,root,-)
@@ -532,6 +532,7 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/share/bash-completion/completions/cal
 /usr/share/bash-completion/completions/cfdisk
 /usr/share/bash-completion/completions/chcpu
+/usr/share/bash-completion/completions/chmem
 /usr/share/bash-completion/completions/chrt
 /usr/share/bash-completion/completions/col
 /usr/share/bash-completion/completions/colcrt
@@ -544,6 +545,8 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/share/bash-completion/completions/fallocate
 /usr/share/bash-completion/completions/fdformat
 /usr/share/bash-completion/completions/fdisk
+/usr/share/bash-completion/completions/fincore
+/usr/share/bash-completion/completions/findfs
 /usr/share/bash-completion/completions/findmnt
 /usr/share/bash-completion/completions/flock
 /usr/share/bash-completion/completions/fsck
@@ -568,6 +571,7 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/share/bash-completion/completions/lsipc
 /usr/share/bash-completion/completions/lslocks
 /usr/share/bash-completion/completions/lslogins
+/usr/share/bash-completion/completions/lsmem
 /usr/share/bash-completion/completions/lsns
 /usr/share/bash-completion/completions/mcookie
 /usr/share/bash-completion/completions/mesg
