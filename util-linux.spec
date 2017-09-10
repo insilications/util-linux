@@ -4,14 +4,14 @@
 #
 Name     : util-linux
 Version  : 2.30.1
-Release  : 82
+Release  : 83
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.30/util-linux-2.30.1.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.30/util-linux-2.30.1.tar.xz
 Summary  : fdisk library
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 LGPL-2.1
 Requires: util-linux-bin
-Requires: util-linux-python
+Requires: util-linux-legacypython
 Requires: util-linux-config
 Requires: util-linux-autostart
 Requires: util-linux-lib
@@ -20,20 +20,27 @@ Requires: util-linux-doc
 Requires: util-linux-locales
 BuildRequires : Linux-PAM-dev
 BuildRequires : Linux-PAM-dev32
+BuildRequires : automake
+BuildRequires : automake-dev
 BuildRequires : bison
 BuildRequires : docbook-xml
 BuildRequires : e2fsprogs
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
+BuildRequires : gettext-bin
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
 BuildRequires : libcap-ng-dev
 BuildRequires : libcap-ng-dev32
+BuildRequires : libtool
+BuildRequires : libtool-dev
+BuildRequires : m4
 BuildRequires : ncurses-dev
 BuildRequires : ncurses-dev32
+BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(tinfo)
 BuildRequires : pkgconfig(tinfow)
@@ -129,6 +136,14 @@ Group: Default
 extras components for the util-linux package.
 
 
+%package legacypython
+Summary: legacypython components for the util-linux package.
+Group: Default
+
+%description legacypython
+legacypython components for the util-linux package.
+
+
 %package lib
 Summary: lib components for the util-linux package.
 Group: Libraries
@@ -157,14 +172,6 @@ Group: Default
 locales components for the util-linux package.
 
 
-%package python
-Summary: python components for the util-linux package.
-Group: Default
-
-%description python
-python components for the util-linux package.
-
-
 %prep
 %setup -q -n util-linux-2.30.1
 %patch1 -p1
@@ -182,15 +189,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1500565972
+export SOURCE_DATE_EPOCH=1505073137
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
-%configure --disable-static --disable-use-tty-group \
+export CFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition "
+%reconfigure --disable-static --disable-use-tty-group \
 --enable-makeinstall-chown \
 --enable-makeinstall-setuid \
 --enable-socket-activation \
@@ -200,13 +207,12 @@ export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-
 --enable-libmount-force-mountinfo \
 --disable-plymouth_support
 make V=1  %{?_smp_mflags}
-
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 export CFLAGS="$CFLAGS -m32"
 export CXXFLAGS="$CXXFLAGS -m32"
 export LDFLAGS="$LDFLAGS -m32"
-%configure --disable-static --disable-use-tty-group \
+%reconfigure --disable-static --disable-use-tty-group \
 --enable-makeinstall-chown \
 --enable-makeinstall-setuid \
 --enable-socket-activation \
@@ -218,9 +224,10 @@ export LDFLAGS="$LDFLAGS -m32"
 --without-ncursesw \
 --without-systemd \
 --without-python \
---without-tinfo  --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+--without-tinfo --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make V=1  %{?_smp_mflags}
 popd
+
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
@@ -229,7 +236,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1500565972
+export SOURCE_DATE_EPOCH=1505073137
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -613,6 +620,10 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/share/bash-completion/completions/wipefs
 /usr/share/bash-completion/completions/zramctl
 
+%files legacypython
+%defattr(-,root,root,-)
+/usr/lib/python2*/*
+
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libblkid.so.1
@@ -638,10 +649,6 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/lib32/libsmartcols.so.1.1.0
 /usr/lib32/libuuid.so.1
 /usr/lib32/libuuid.so.1.3.0
-
-%files python
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files locales -f util-linux.lang
 %defattr(-,root,root,-)
