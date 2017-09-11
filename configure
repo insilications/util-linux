@@ -7,3 +7,4 @@
 --disable-nologin
 --enable-libmount-force-mountinfo
 --disable-plymouth_support
+PYTHON=/usr/bin/python3

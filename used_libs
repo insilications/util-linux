@@ -6,7 +6,7 @@ libm.so.6
 libncurses.so.6
 libpam.so.0
 libpam_misc.so.0
-libpython2.7.so.1.0
+libpython3.6m.so.1.0
 libreadline.so.7
 librt.so.1
 libsystemd.so.0

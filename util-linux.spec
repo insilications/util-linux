@@ -4,14 +4,14 @@
 #
 Name     : util-linux
 Version  : 2.30.1
-Release  : 83
+Release  : 84
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.30/util-linux-2.30.1.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.30/util-linux-2.30.1.tar.xz
 Summary  : fdisk library
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 LGPL-2.1
 Requires: util-linux-bin
-Requires: util-linux-legacypython
+Requires: util-linux-python
 Requires: util-linux-config
 Requires: util-linux-autostart
 Requires: util-linux-lib
@@ -46,6 +46,7 @@ BuildRequires : pkgconfig(tinfo)
 BuildRequires : pkgconfig(tinfow)
 BuildRequires : procps-ng
 BuildRequires : python-dev
+BuildRequires : python3-dev
 BuildRequires : readline-dev
 BuildRequires : systemd-dev
 BuildRequires : zlib-dev
@@ -136,14 +137,6 @@ Group: Default
 extras components for the util-linux package.
 
 
-%package legacypython
-Summary: legacypython components for the util-linux package.
-Group: Default
-
-%description legacypython
-legacypython components for the util-linux package.
-
-
 %package lib
 Summary: lib components for the util-linux package.
 Group: Libraries
@@ -172,6 +165,14 @@ Group: Default
 locales components for the util-linux package.
 
 
+%package python
+Summary: python components for the util-linux package.
+Group: Default
+
+%description python
+python components for the util-linux package.
+
+
 %prep
 %setup -q -n util-linux-2.30.1
 %patch1 -p1
@@ -189,7 +190,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505073137
+export SOURCE_DATE_EPOCH=1505099140
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -205,7 +206,8 @@ export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-
 --disable-chfn-chsh \
 --disable-nologin \
 --enable-libmount-force-mountinfo \
---disable-plymouth_support
+--disable-plymouth_support \
+PYTHON=/usr/bin/python3
 make V=1  %{?_smp_mflags}
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
@@ -220,7 +222,8 @@ export LDFLAGS="$LDFLAGS -m32"
 --disable-chfn-chsh \
 --disable-nologin \
 --enable-libmount-force-mountinfo \
---disable-plymouth_support --without-ncurses \
+--disable-plymouth_support \
+PYTHON=/usr/bin/python3 --without-ncurses \
 --without-ncursesw \
 --without-systemd \
 --without-python \
@@ -233,10 +236,10 @@ export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1505073137
+export SOURCE_DATE_EPOCH=1505099140
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -620,10 +623,6 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/share/bash-completion/completions/wipefs
 /usr/share/bash-completion/completions/zramctl
 
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libblkid.so.1
@@ -649,6 +648,10 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 /usr/lib32/libsmartcols.so.1.1.0
 /usr/lib32/libuuid.so.1
 /usr/lib32/libuuid.so.1.3.0
+
+%files python
+%defattr(-,root,root,-)
+/usr/lib/python3*/*
 
 %files locales -f util-linux.lang
 %defattr(-,root,root,-)
