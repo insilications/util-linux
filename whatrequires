@@ -16,7 +16,6 @@ autofs
 bigreqsproto
 ceph
 chrome-gnome-shell
-ciao-webui
 dbus
 docker
 edk2
@@ -70,7 +69,6 @@ scala
 scrnsaverproto
 shim
 swig
-tig
 tigervnc
 wayland
 xcmiscproto
