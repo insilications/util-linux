@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.30.2
-Release  : 87
+Release  : 88
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.30/util-linux-2.30.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.30/util-linux-2.30.2.tar.xz
 Summary  : fdisk library
