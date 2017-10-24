@@ -4,7 +4,7 @@
 #
 Name     : util-linux
 Version  : 2.30.2
-Release  : 88
+Release  : 89
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.30/util-linux-2.30.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.30/util-linux-2.30.2.tar.xz
 Summary  : fdisk library
@@ -199,7 +199,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507180549
+export SOURCE_DATE_EPOCH=1508859957
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -248,7 +248,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1507180549
+export SOURCE_DATE_EPOCH=1508859957
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -264,6 +264,8 @@ popd
 ## make_install_append content
 mkdir %{buildroot}/usr/lib/systemd/system/sockets.target.wants
 ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/uuidd.socket
+mkdir -p %{buildroot}/usr/lib/systemd/system/timers.target.wants/
+ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/fstrim.timer
 ## make_install_append end
 
 %files
@@ -272,6 +274,7 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 %files autostart
 %defattr(-,root,root,-)
 /usr/lib/systemd/system/sockets.target.wants/uuidd.socket
+/usr/lib/systemd/system/timers.target.wants/fstrim.timer
 
 %files bin
 %defattr(-,root,root,-)
@@ -384,6 +387,7 @@ ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/u
 %files config
 %defattr(-,root,root,-)
 %exclude /usr/lib/systemd/system/sockets.target.wants/uuidd.socket
+%exclude /usr/lib/systemd/system/timers.target.wants/fstrim.timer
 /usr/lib/systemd/system/fstrim.service
 /usr/lib/systemd/system/fstrim.timer
 /usr/lib/systemd/system/uuidd.service
