@@ -69,7 +69,6 @@
 /usr/share/bash-completion/completions/renice
 /usr/share/bash-completion/completions/resizepart
 /usr/share/bash-completion/completions/rev
-/usr/share/bash-completion/completions/rfkill
 /usr/share/bash-completion/completions/rtcwake
 /usr/share/bash-completion/completions/runuser
 /usr/share/bash-completion/completions/script

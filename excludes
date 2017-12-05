@@ -3,6 +3,7 @@
 /usr/share/man/man1/login.1
 /usr/share/doc/util-linux/getopt/getopt-parse.tcsh
 /usr/share/bash-completion/completions/fsck.minix
+/usr/share/bash-completion/completions/rfkill
 /usr/bin/mkfs.bfs
 /usr/bin/linux32
 /usr/bin/fdformat
