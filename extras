@@ -1,5 +1,5 @@
-/usr/bin/zramctl
 /usr/bin/mkfs.cramfs
+/usr/bin/zramctl
 /usr/share/bash-completion/completions/addpart
 /usr/share/bash-completion/completions/blkdiscard
 /usr/share/bash-completion/completions/blkid
@@ -7,6 +7,7 @@
 /usr/share/bash-completion/completions/cal
 /usr/share/bash-completion/completions/cfdisk
 /usr/share/bash-completion/completions/chcpu
+/usr/share/bash-completion/completions/chmem
 /usr/share/bash-completion/completions/chrt
 /usr/share/bash-completion/completions/col
 /usr/share/bash-completion/completions/colcrt
@@ -19,6 +20,8 @@
 /usr/share/bash-completion/completions/fallocate
 /usr/share/bash-completion/completions/fdformat
 /usr/share/bash-completion/completions/fdisk
+/usr/share/bash-completion/completions/fincore
+/usr/share/bash-completion/completions/findfs
 /usr/share/bash-completion/completions/findmnt
 /usr/share/bash-completion/completions/flock
 /usr/share/bash-completion/completions/fsck
@@ -43,6 +46,7 @@
 /usr/share/bash-completion/completions/lsipc
 /usr/share/bash-completion/completions/lslocks
 /usr/share/bash-completion/completions/lslogins
+/usr/share/bash-completion/completions/lsmem
 /usr/share/bash-completion/completions/lsns
 /usr/share/bash-completion/completions/mcookie
 /usr/share/bash-completion/completions/mesg
@@ -91,7 +95,3 @@
 /usr/share/bash-completion/completions/whereis
 /usr/share/bash-completion/completions/wipefs
 /usr/share/bash-completion/completions/zramctl
-/usr/share/bash-completion/completions/chmem
-/usr/share/bash-completion/completions/fincore
-/usr/share/bash-completion/completions/findfs
-/usr/share/bash-completion/completions/lsmem
