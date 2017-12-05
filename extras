@@ -69,6 +69,7 @@
 /usr/share/bash-completion/completions/renice
 /usr/share/bash-completion/completions/resizepart
 /usr/share/bash-completion/completions/rev
+/usr/share/bash-completion/completions/rfkill
 /usr/share/bash-completion/completions/rtcwake
 /usr/share/bash-completion/completions/runuser
 /usr/share/bash-completion/completions/script
@@ -89,6 +90,7 @@
 /usr/share/bash-completion/completions/unshare
 /usr/share/bash-completion/completions/utmpdump
 /usr/share/bash-completion/completions/uuidd
+/usr/share/bash-completion/completions/uuidparse
 /usr/share/bash-completion/completions/uuidgen
 /usr/share/bash-completion/completions/wall
 /usr/share/bash-completion/completions/wdctl

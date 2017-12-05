@@ -25,6 +25,7 @@ flatpak
 fontsproto
 gcr
 git
+gmime
 gnome-session
 gpgme
 gzip
@@ -48,6 +49,7 @@ libXtst
 libjpeg-turbo
 libnotify
 libvirt
+libvpx
 linux
 linux-aws
 linux-gce
@@ -62,7 +64,9 @@ man-pages
 nasm
 ndctl
 nodejs
+notmuch
 numactl
+ostree
 p7zip
 patchutils
 quilt
@@ -72,6 +76,7 @@ scrnsaverproto
 shim
 swig
 tigervnc
+vlc
 wayland
 xcmiscproto
 xdg-utils

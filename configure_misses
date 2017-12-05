@@ -31,14 +31,7 @@ Configure miss: ncursesw/ncurses.h
 Configure miss: ncursesw/term.h usability
 Configure miss: ncursesw/term.h presence
 Configure miss: ncursesw/term.h
-Configure miss: x86_64-generic-linux-gnu-ncurses6-config
-Configure miss: ncurses/ncurses.h usability
-Configure miss: ncurses/ncurses.h presence
-Configure miss: ncurses/ncurses.h
-Configure miss: ncurses/term.h usability
-Configure miss: ncurses/term.h presence
-Configure miss: ncurses/term.h
-Configure miss: libuser >= 0.58
+Configure miss: LIBUSER
 Configure miss: whether compiler handles -Wextra-semi
 Configure miss: whether compiler handles -Wembedded-directive
 Configure miss: whether compiler handles -Wformat-security
@@ -72,4 +65,4 @@ Configure miss: rtas_get_sysparm in -lrtas
 Configure miss: union semun
 Configure miss: udev_new in -ludev
 Configure miss: readline in -lreadline
-Configure miss: libuser >= 0.58
+Configure miss: LIBUSER
