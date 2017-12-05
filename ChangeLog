@@ -1,11 +1,11 @@
-Changes between v2.30.1 and v2.30.2
+Changes between v2.31-rc2 and v2.31
 --------------------------------------------
 
-commit 8bef60e497f769792af9b756dfb91f8696956db0
+commit 27e66e59a39f63cfbc120bf1d26bc6b63f1b4f6c
 Author: Karel Zak <kzak@redhat.com>
-Date:   Thu Sep 21 11:29:34 2017 +0200
+Date:   Thu Oct 19 13:08:49 2017 +0200
 
-    build-sys: release++ (v2.30.2)
+    build-sys: release++ (v2.31)
     
     Signed-off-by: Karel Zak <kzak@redhat.com>
 
@@ -13,382 +13,444 @@ Date:   Thu Sep 21 11:29:34 2017 +0200
  configure.ac | 2 +-
  2 files changed, 5 insertions(+), 1 deletion(-)
 
-commit ac9bb2ce028807ca416d530dc93b17c40e5732d2
+commit 568624d5779d570da2b1de970e6b268d8d564f6b
 Author: Karel Zak <kzak@redhat.com>
-Date:   Thu Sep 21 11:27:50 2017 +0200
+Date:   Thu Oct 19 13:06:00 2017 +0200
 
-    docs: update v2.30.2-ReleaseNotes
+    docs: update v2.31-ReleaseNotes
     
     Signed-off-by: Karel Zak <kzak@redhat.com>
 
- Documentation/releases/v2.30.2-ReleaseNotes | 42 +++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+ Documentation/releases/v2.31-ReleaseNotes | 36 ++++++++++++++++++++++++++++++-
+ 1 file changed, 35 insertions(+), 1 deletion(-)
 
-commit 1a437733934a15c3210c4290795c3e7276aa7655
+commit 9155d035e49bb3342a62eda36d7dd3f1d7da5080
 Author: Karel Zak <kzak@redhat.com>
-Date:   Thu Sep 21 11:26:13 2017 +0200
+Date:   Thu Oct 19 13:00:06 2017 +0200
 
     docs: update AUTHORS file
     
     Signed-off-by: Karel Zak <kzak@redhat.com>
 
- AUTHORS | 2 ++
- 1 file changed, 2 insertions(+)
+ AUTHORS | 3 +++
+ 1 file changed, 3 insertions(+)
 
-commit 005b1ee997e6523bddbe30391da33123f57847eb
+commit 08b1bd5103db26e94bc0aaed6cb809c55f8ca93f
 Author: Karel Zak <kzak@redhat.com>
-Date:   Thu Sep 21 11:24:57 2017 +0200
+Date:   Thu Oct 19 12:57:57 2017 +0200
 
     po: merge changes
     
     Signed-off-by: Karel Zak <kzak@redhat.com>
 
- po/ca.po          |  456 ++++++++--------
- po/cs.po          | 1448 +++++++++++++++++++++++++-------------------------
- po/da.po          |  456 ++++++++--------
- po/de.po          |  456 ++++++++--------
- po/es.po          | 1448 +++++++++++++++++++++++++-------------------------
- po/et.po          |  456 ++++++++--------
- po/eu.po          |  456 ++++++++--------
- po/fi.po          |  456 ++++++++--------
- po/fr.po          | 1524 +++++++++++++++++++++++++----------------------------
- po/gl.po          |  456 ++++++++--------
- po/hr.po          |  456 ++++++++--------
- po/hu.po          |  456 ++++++++--------
- po/id.po          |  456 ++++++++--------
- po/it.po          |  456 ++++++++--------
- po/ja.po          |  456 ++++++++--------
- po/nl.po          |  456 ++++++++--------
- po/pl.po          |  456 ++++++++--------
- po/pt_BR.po       |  456 ++++++++--------
- po/ru.po          |  456 ++++++++--------
- po/sl.po          |  456 ++++++++--------
- po/sv.po          |  456 ++++++++--------
- po/tr.po          |  456 ++++++++--------
- po/uk.po          |  456 ++++++++--------
- po/util-linux.pot |  458 ++++++++--------
- po/vi.po          |  456 ++++++++--------
- po/zh_CN.po       |  456 ++++++++--------
- po/zh_TW.po       |  456 ++++++++--------
- 27 files changed, 7663 insertions(+), 7703 deletions(-)
+ po/ca.po          | 303 +++++++++++++++++++++++------------------------
+ po/cs.po          | 303 +++++++++++++++++++++++------------------------
+ po/da.po          | 303 +++++++++++++++++++++++------------------------
+ po/de.po          | 303 +++++++++++++++++++++++------------------------
+ po/es.po          | 303 +++++++++++++++++++++++------------------------
+ po/et.po          | 303 +++++++++++++++++++++++------------------------
+ po/eu.po          | 303 +++++++++++++++++++++++------------------------
+ po/fi.po          | 303 +++++++++++++++++++++++------------------------
+ po/fr.po          | 303 +++++++++++++++++++++++------------------------
+ po/gl.po          | 303 +++++++++++++++++++++++------------------------
+ po/hr.po          | 303 +++++++++++++++++++++++------------------------
+ po/hu.po          | 303 +++++++++++++++++++++++------------------------
+ po/id.po          | 303 +++++++++++++++++++++++------------------------
+ po/it.po          | 303 +++++++++++++++++++++++------------------------
+ po/ja.po          | 303 +++++++++++++++++++++++------------------------
+ po/nl.po          | 303 +++++++++++++++++++++++------------------------
+ po/pl.po          | 346 +++++++++++++++++++++++++++---------------------------
+ po/pt_BR.po       | 346 +++++++++++++++++++++++++++---------------------------
+ po/ru.po          | 303 +++++++++++++++++++++++------------------------
+ po/sl.po          | 303 +++++++++++++++++++++++------------------------
+ po/sv.po          | 346 +++++++++++++++++++++++++++---------------------------
+ po/tr.po          | 303 +++++++++++++++++++++++------------------------
+ po/uk.po          | 303 +++++++++++++++++++++++------------------------
+ po/util-linux.pot | 305 +++++++++++++++++++++++------------------------
+ po/vi.po          | 303 +++++++++++++++++++++++------------------------
+ po/zh_CN.po       | 303 +++++++++++++++++++++++------------------------
+ po/zh_TW.po       | 303 +++++++++++++++++++++++------------------------
+ 27 files changed, 4165 insertions(+), 4147 deletions(-)
 
-commit 29519c76d2888eb20a64cfeed1ba21ca4e1abc15
-Author: Karel Zak <kzak@redhat.com>
-Date:   Wed Sep 20 12:14:42 2017 +0200
+commit 20fc15cfec8db7eb539af8fa7c980d28b45ffbb9
+Author: Sebastian Rasmussen <sebras@gmail.com>
+Date:   Thu Oct 19 12:53:09 2017 +0200
 
-    po: fix ipcrm translation error fr.po
-    
-    Addresses: https://github.com/karelzak/util-linux/issues/512
-    Signed-off-by: Karel Zak <kzak@redhat.com>
+    po: update sv.po (from translationproject.org)
 
- po/fr.po | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ po/sv.po | 821 ++++++++++++++++++++++++++-------------------------------------
+ 1 file changed, 335 insertions(+), 486 deletions(-)
 
-commit 9184834b61ec28e09259d78492be5a61e4263cdc
-Author: Stéphane Aulery <lkppo@free.fr>
-Date:   Thu Sep 21 11:12:29 2017 +0200
+commit ddc20b9ebd12dd244331240398de06af74531a08
+Author: Rafael Fontenelle <rffontenelle@gmail.com>
+Date:   Thu Oct 19 12:53:09 2017 +0200
 
-    po: update fr.po (from translationproject.org)
+    po: update pt_BR.po (from translationproject.org)
 
- po/fr.po | 1847 +++++++++++++++++++++++++++++++-------------------------------
- 1 file changed, 913 insertions(+), 934 deletions(-)
+ po/pt_BR.po | 798 ++++++++++++++++++++++++------------------------------------
+ 1 file changed, 323 insertions(+), 475 deletions(-)
 
-commit 02dddc2e759c9216cabc1c3386514f1b98335363
-Author: Antonio Ceballos Roa <aceballos@gmail.com>
-Date:   Thu Sep 21 11:12:29 2017 +0200
+commit cf68f677923daae9fa1746e188f551934a5d96a8
+Author: Jakub Bogusz <qboosh@pld-linux.org>
+Date:   Thu Oct 19 12:53:09 2017 +0200
 
-    po: update es.po (from translationproject.org)
+    po: update pl.po (from translationproject.org)
 
- po/es.po | 2094 +++++++++++++++++++++++++++++---------------------------------
- 1 file changed, 986 insertions(+), 1108 deletions(-)
+ po/pl.po | 1105 ++++++++++++++++++--------------------------------------------
+ 1 file changed, 319 insertions(+), 786 deletions(-)
 
-commit 4fc936fc8e1febd3561917a06363e1bfbbf12f34
-Author: Petr Písař <petr.pisar@atlas.cz>
-Date:   Thu Sep 21 11:12:29 2017 +0200
-
-    po: update cs.po (from translationproject.org)
-
- po/cs.po | 2494 +++++++++++++++++++++++++++++---------------------------------
- 1 file changed, 1173 insertions(+), 1321 deletions(-)
-
-commit 8bd46ac512a81f77f3fbe08b8b849c698e4f6af1
-Author: Karel Zak <kzak@redhat.com>
-Date:   Fri Sep 15 13:30:40 2017 +0200
-
-    swaplabel: fix --disable-libuuid compilation
-    
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- disk-utils/swaplabel.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
-commit ee4ee070a82c73ad4e5c11c6ddc06e0fb57c11e2
-Author: Vaclav Dolezal <vdolezal@redhat.com>
-Date:   Tue Aug 15 10:02:45 2017 +0200
-
-    libfdisk: fix fdisk_reset_partition() leaking *_chs strings.
-    
-    Signed-off-by: Vaclav Dolezal <vdolezal@redhat.com>
-
- libfdisk/src/partition.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-commit 8f4d17baa08dfe574a261be20884d20cd6547ae9
-Author: Vaclav Dolezal <vdolezal@redhat.com>
-Date:   Mon Aug 14 12:57:52 2017 +0200
-
-    libfdisk: fix two potential memory errors.
-    
-    Fixes one leak and one unchecked allocation error.
-    
-    [kzak@redhat.com: - don't call fdisk_ask_menu_get_result()
-                        after failed fdisk_do_ask()]
-    
-    Signed-off-by: Vaclav Dolezal <vdolezal@redhat.com>
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- libfdisk/src/dos.c | 5 +++--
- libfdisk/src/gpt.c | 2 ++
- 2 files changed, 5 insertions(+), 2 deletions(-)
-
-commit 7e99818e51bd25f79b9a676c960073a812854ccb
-Author: Karel Zak <kzak@redhat.com>
-Date:   Tue Aug 22 14:54:27 2017 +0200
-
-    libfdisk: (dos) use size-=1 when alignment not used later
-    
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- libfdisk/src/dos.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-commit a0dae7cf46810f6d0df7768653ed16ce2b3fbdf3
-Author: Karel Zak <kzak@redhat.com>
-Date:   Tue Aug 22 14:48:14 2017 +0200
-
-    libfdisk: (gpt) fix size-1 error
-    
-    If partition does not require alignment, then don't call LBA align
-    function and don't use size-=1 (fdisk_align_lba_in_range() returns
-    unmodified size and we call size=-1 more than once for the same size).
-    
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- libfdisk/src/gpt.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
-commit 4436ff231bc3811920bff54162981c0fa889f26b
-Author: Karel Zak <kzak@redhat.com>
-Date:   Fri Aug 18 10:29:54 2017 +0200
-
-    lslogins: be more explicit with -g in man page
-    
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- login-utils/lslogins.1 | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-commit 9a982a5da99ce6eb8accf515e8d8972ced6e5dfb
-Author: Karel Zak <kzak@redhat.com>
-Date:   Fri Aug 18 10:23:38 2017 +0200
-
-    lslogins: ignore non-existing users
-    
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- login-utils/lslogins.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-commit b9ccf6fe72193f508e2a1f44ecfd369e0689bd84
-Author: Karel Zak <kzak@redhat.com>
-Date:   Wed Aug 16 14:15:56 2017 +0200
-
-    dmesg: fix delimiter calculation
-    
-    Reported-by: Laszlo Varkonyi <vlsoftsystems@gmail.com>
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- sys-utils/dmesg.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-commit c712bf87341b02a1cac5274e57728f9c32133983
-Author: Karel Zak <kzak@redhat.com>
-Date:   Wed Aug 16 11:55:57 2017 +0200
-
-    libblkid: fix compiler warning [-Wformat-truncation=]
-    
-    The MBR partition pseudo-UUID is generated from table ID and partition
-    partno. The final UUID size limit is 37 bytes. The table ID has to be
-    restricted to keep compiler happy (for MBR the table ID is 8 bytes
-    as string).
-    
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- libblkid/src/partitions/partitions.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-commit bb3f968f2fd67207d0997625bd01fe3ea5f43e22
-Author: Karel Zak <kzak@redhat.com>
-Date:   Tue Aug 15 14:03:43 2017 +0200
-
-    cfdisk: add missing 0x7F key mapping
-    
-    Addresses: https://github.com/karelzak/util-linux/issues/499
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- disk-utils/cfdisk.c | 1 +
- 1 file changed, 1 insertion(+)
-
-commit ed8070a14daeb3175ea60b29a872a955ec61dbdd
-Author: Karel Zak <kzak@redhat.com>
-Date:   Mon Aug 14 11:30:37 2017 +0200
-
-    blockdev: document --setro more properly
-    
-    Addresses: https://github.com/karelzak/util-linux/issues/498
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- disk-utils/blockdev.8 | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-commit c73ef5e8ba43b9b7b45a9fd87d65eb641a8343a2
-Author: Karel Zak <kzak@redhat.com>
-Date:   Mon Aug 14 10:56:08 2017 +0200
-
-    lib/randutils: reset lose counter
-    
-    It's probaly good idea to reset lose counter when we fallback from
-    getrandom() to /dev/urandom.
-    
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- lib/randutils.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-commit fa949792072530b49ef5760d7ecd6d250c66e35f
-Author: Karel Zak <kzak@redhat.com>
-Date:   Mon Aug 14 10:33:06 2017 +0200
-
-    lib/randutils: improve getrandom() usage
-    
-    The getrandom() does not have to return all requested bytes (missing
-    entropy or when interrupted by signal). The current implementation in
-    util-linux stupidly asks for all random data again, rather than only
-    for missing bytes.
-    
-    The current code also does not care if we repeat our requests for
-    ever; that's bad.
-    
-    This patch uses the same way as we already use for reading from
-    /dev/urandom. It means:
-    
-     * repeat getrandom() for only missing bytes
-     * limit number of unsuccessful request (16 times)
-     * fallback to /dev/urandom on ENOSYS (old kernel or so...)
-    
-    Addresses: https://github.com/karelzak/util-linux/issues/496
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- lib/randutils.c | 64 +++++++++++++++++++++++++++++++++++++++++----------------
- 1 file changed, 46 insertions(+), 18 deletions(-)
-
-commit 0e10ad091968dd9277274353fb6353f52fffe89e
-Author: Christopher James Halse Rogers <raof@ubuntu.com>
-Date:   Mon Aug 7 16:10:51 2017 +1000
-
-    lib/randutils.c: More paranoia in getrandom() call.
-    
-    If getrandom() is called with nbytes ≥ 256 then it can return with less than the requested
-    bytes filled.
-    
-    In this case we *could* adjust the buffer by the number of bytes actually read, but it's
-    simpler to just redo the call.
-
- lib/randutils.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-commit 861f274862105cd30d4442fb63e24af0d2e57e66
-Author: Christopher James Halse Rogers <raof@ubuntu.com>
-Date:   Mon Aug 7 16:07:54 2017 +1000
-
-    lib/randutils.c: Fall back gracefully when kernel doesn't support getrandom(2).
-    
-    The 3.16 kernel is supported until 2020, and various distros have kernels of the same
-    vintage. It's entirely possible for code built against newer headers to be run against
-    these kernels, so fall-back to the old “read /dev/{u,}random” method if the kernel doesn'
-    support getrandom()
-
- lib/randutils.c | 44 ++++++++++++++++++++++++++------------------
- 1 file changed, 26 insertions(+), 18 deletions(-)
-
-commit 1279d6881d77982a13cb1e9a63c31dd6a37ad545
-Author: Andreas Henriksson <andreas@fatal.se>
-Date:   Thu Jul 27 23:00:15 2017 +0200
-
-    fstab(5): mention how tabs are escaped
-    
-    Someone requested explicitly mentioning how tabs are escaped,
-    in addition to the already existing spaces example.
-    
-    Addresses: https://bugs.debian.org/580047
-    Signed-off-by: Andreas Henriksson <andreas@fatal.se>
-
- sys-utils/fstab.5 | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-commit 0b526bec22c86b2151d7fea955874b6e58b5a647
+commit 9e33cddd948958f07d4c9aa9f019f1c785c7b030
 Author: Sami Kerola <kerolasa@iki.fi>
-Date:   Sun Jul 23 22:20:37 2017 +0100
+Date:   Mon Oct 16 19:15:44 2017 +0100
 
-    wdctl: do not call fsync(2) when closing watchdog device
+    rfkill: fix description name typo
     
-    This removes bogus write failed warning.
+    Commit 7d2a9960ad made gps to look like a GUID Partition Table.
     
-    $ wdctl
-    wdctl: write failed: Invalid argument
-    Device:        /dev/watchdog
-    [...]
-    
+    Reviewed-by: Karel Zak <kzak@redhat.com>
     Signed-off-by: Sami Kerola <kerolasa@iki.fi>
 
- sys-utils/wdctl.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-commit ff70a9c216fe63a2bf318079b3d207c16aa9b575
-Author: Karel Zak <kzak@redhat.com>
-Date:   Tue Jul 11 12:17:40 2017 +0200
-
-    libblkid: don't check for size on UBI (char dev)
-    
-    Signed-off-by: Karel Zak <kzak@redhat.com>
-
- libblkid/src/probe.c | 2 +-
+ sys-utils/rfkill.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-commit f94343b04417c7353fc83162ded66d1f28ef5f0d
+commit beaca64a6c47db927589487c6ad9539fabf11287
 Author: Karel Zak <kzak@redhat.com>
-Date:   Tue Jul 4 12:50:39 2017 +0200
+Date:   Mon Oct 16 23:26:45 2017 +0200
 
-    login: use IPv4 on IPv4-mapping-to-IPv6
+    blkid: improve man page wording
     
-    It seems that on some systems (e.g. RHEL7) the libc function
-    getaddrinfo() is not able to translate ::ffff: address to IPv4. The
-    result is 0.0.0.0 host address in the last(1) and utmpdump(1) output.
-    
-     /sbin/login -h "::ffff:192.168.1.7"
-    
-    utmpdump:
-    
-      [7] [03926] [1   ] [user1   ] [pts/1       ] [::ffff:192.168.1.7  ] [0.0.0.0        ] [Thu May 12 17:49:50 2016    ]
-    
-    Not sure if this is about order of the getaddrinfo() results, system
-    configuration or libc version. It's irrelevant for login(1). We have
-    to be robust enough to write usable address to log files everywhere.
-    
-    The solution is to detect IPv4-mapping-to-IPv6 and use IPv4 for utmp.
-    
-    Addresses: https://bugzilla.redhat.com/show_bug.cgi?id=1296233
     Signed-off-by: Karel Zak <kzak@redhat.com>
 
- login-utils/login.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ misc-utils/blkid.8 | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 27fbfef33c1f23b5448b6cee856bcb3500b33c42
+Author: Karel Zak <kzak@redhat.com>
+Date:   Mon Oct 16 12:01:41 2017 +0200
+
+    blkid: more info about ambivalent results to the man page
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ misc-utils/blkid.8 | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit 12786a901520d7b30ff75ee8727221bf8a3089cb
+Author: Karel Zak <kzak@redhat.com>
+Date:   Mon Oct 16 11:45:41 2017 +0200
+
+    blkid: cleanup man page info about lsblk
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ misc-utils/blkid.8 | 30 +++++++++++++++---------------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
+
+commit e1b1c7b082803446ceb6fbc860d37c916c45c321
+Author: James Sanford <jsanfordgit@froop.com>
+Date:   Sat Oct 14 00:57:20 2017 -0700
+
+    zramctl: fix show all non-zero zram devices
+    
+    Addresses: https://github.com/karelzak/util-linux/issues/521
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ sys-utils/zramctl.c | 37 ++++++++++++++++++++++++-------------
+ 1 file changed, 24 insertions(+), 13 deletions(-)
+
+commit 4847bb5ee966e8798fa6056859c0f46e2d075f15
+Author: James Sanford <jsanfordgit@froop.com>
+Date:   Sat Oct 14 00:57:05 2017 -0700
+
+    zramctl: remove unused ZRAM_EMPTY and blank line
+
+ sys-utils/zramctl.c | 4 ----
+ 1 file changed, 4 deletions(-)
+
+commit dec4fae21b9d0a9ea912c872c13e6be234e58009
+Author: Karel Zak <kzak@redhat.com>
+Date:   Thu Oct 12 14:53:32 2017 +0200
+
+    rfkill: fix typo [coverity scan]
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ sys-utils/rfkill.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e9aa2a14b034dd87d257b45c4dc0f9566b2e7b8b
+Author: Karel Zak <kzak@redhat.com>
+Date:   Thu Oct 12 14:45:11 2017 +0200
+
+    losetup: fix bitwise vs. logical typo [coverity scan]
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ sys-utils/losetup.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9d4f78ef0e6ba8375957a5d5285ca0ee81e3998d
+Author: Karel Zak <kzak@redhat.com>
+Date:   Thu Oct 12 14:39:54 2017 +0200
+
+    ipcs: fix memory leak [coverity scan]
+    
+    It's not important, but let's keep static analyzes happy.
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ sys-utils/ipcutils.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit 2d4c226dfb715bfc8f422ed7da7ef7fe441c1e4e
+Author: Karel Zak <kzak@redhat.com>
+Date:   Thu Oct 12 14:21:27 2017 +0200
+
+    logger: keep header generators independent on connection
+    
+    * avoid memory leaks
+    * don't use incomplete or header after free()
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ misc-utils/logger.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+commit 5794087292d97bb7dd28ae58bcf862c454bd5dcc
+Author: Karel Zak <kzak@redhat.com>
+Date:   Thu Oct 12 12:44:55 2017 +0200
+
+    fincore: make sure mmap(NULL, ...) [coverity scan]
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ misc-utils/fincore.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit f086478af427914e019251548d6457738661d92a
+Author: Karel Zak <kzak@redhat.com>
+Date:   Thu Oct 12 12:01:25 2017 +0200
+
+    libsmartcols: (sample) cleanup line separator usage
+    
+    * add comment to explain when nolinesep flag is necessary
+    * force to print \n before switch to the next line to support
+    
+              ./sample-scols-continuous > file
+    
+    use case.
+    
+    Addresses: https://github.com/ignatenkobrain/python-smartcols/issues/18
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ libsmartcols/samples/continuous.c | 15 ++++++++++++---
+ libsmartcols/src/table_print.c    |  3 ++-
+ 2 files changed, 14 insertions(+), 4 deletions(-)
+
+commit 1e46776263b49bce3a5565f5e0c5f417e0245d14
+Author: Karel Zak <kzak@redhat.com>
+Date:   Thu Oct 12 11:33:49 2017 +0200
+
+    libsmartcols: (docs) add note about line separators
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ libsmartcols/src/table.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit be642826658afc3c5c642b917414121cf6f9290e
+Author: Karel Zak <kzak@redhat.com>
+Date:   Wed Oct 11 15:13:44 2017 +0200
+
+    lslogins: fix possible memory leak [coverity scan]
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ login-utils/lslogins.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit a30f2a9b7a2897077a14520986098ec9b0245234
+Author: Karel Zak <kzak@redhat.com>
+Date:   Wed Oct 11 15:06:41 2017 +0200
+
+    libsmartcols: don't call free_buffer() for uninitialized variable [coverity scan]
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ libsmartcols/src/table_print.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 78c57214ade665eb692c3450b0d6e410e615147a
+Author: Karel Zak <kzak@redhat.com>
+Date:   Wed Oct 11 14:59:16 2017 +0200
+
+    libmount: make sure we call stat() propely [coverity scan]
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ libmount/src/context_mount.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit ee7f1e9e0857fbf6da3e360fe77f0c4c7bcf42eb
+Author: Karel Zak <kzak@redhat.com>
+Date:   Wed Oct 11 14:50:43 2017 +0200
+
+    libfdisk: (sun) make math more robust [coverity scan]
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ libblkid/src/partitions/sun.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1458c5c75013b65c23c024966d9f60aee49679cc
+Author: Karel Zak <kzak@redhat.com>
+Date:   Wed Oct 11 14:42:49 2017 +0200
+
+    lib/pager: check open() return code [coverity scan]
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ lib/pager.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 4bb91e84ffd3c87138b9de57ef2d4e6796d4fc78
+Author: Karel Zak <kzak@redhat.com>
+Date:   Wed Oct 11 14:40:37 2017 +0200
+
+    lib/mbsedit: check wctomb() return code [coverity scan]
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ lib/mbsedit.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit e92d55e6cbffc4ed7b516d2d36525d7ceb8aa7ab
+Author: Karel Zak <kzak@redhat.com>
+Date:   Wed Oct 11 12:35:24 2017 +0200
+
+    logger: allow to reconnect on initial failed connect too
+    
+    The current code sets noact flag if unix socked connection failed. This is ugly.
+    We want to reconnect always in all cases (well, except --socket-error=on).
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ misc-utils/logger.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+commit 87ac63c9fa14a71084711eda8d4ddf6ad9515ce3
+Author: Karel Zak <kzak@redhat.com>
+Date:   Tue Oct 10 14:45:55 2017 +0200
+
+    logger: add dummy fallback for OSX
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ misc-utils/logger.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit caf6ac6e596b09615b5f4bffe588ec1268d8c596
+Author: Karel Zak <kzak@redhat.com>
+Date:   Tue Oct 10 13:56:30 2017 +0200
+
+    logger: reconnect on failed send()
+    
+    The libc syslog() reconnects on failed send(). We need the same thing
+    as logger(1) is expected as long time running tool. For example
+    recommended Apache configuration is:
+    
+            ErrorLog "| /usr/bin/logger -t apache_error -p local6.debug"
+    
+    The issue is that connection endpoint (e.g. syslogd) maybe restarted.
+    The simple way how to test is:
+    
+            for i in $(seq 0 3600); do echo "This is message number $i"; sleep 1; done | logger --tcp --server 127.0.0.1 --port 514
+    
+    and restart your syslog. The current implementation gets SIGPIPE or
+    write warning message, but it never reconnect.
+    
+    Addresses: https://github.com/karelzak/util-linux/issues/363
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ misc-utils/logger.c | 47 ++++++++++++++++++++++++++++++++++++++---------
+ 1 file changed, 38 insertions(+), 9 deletions(-)
+
+commit 55833ba9b2d54f7eac80284cfd7f0ca186a6475c
+Merge: 1f06d754b cf41837f5
+Author: Karel Zak <kzak@redhat.com>
+Date:   Tue Oct 10 12:52:19 2017 +0200
+
+    Merge branch 'mount-typo' of https://github.com/Liam-Ryan/util-linux
+    
+    * 'mount-typo' of https://github.com/Liam-Ryan/util-linux:
+      Fixed typo in mount.8
+
+commit 1f06d754be70b500fd88b0b3b1e0d2c8877f7b09
+Author: Karel Zak <kzak@redhat.com>
+Date:   Tue Oct 10 12:06:09 2017 +0200
+
+    setsid: document fork(2) usage
+    
+    Addresses: https://github.com/karelzak/util-linux/issues/518
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ Documentation/TODO | 5 +++++
+ sys-utils/setsid.1 | 5 ++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+commit cf41837f57207d30e088c33c9450e8854b656df7
+Author: Liam Ryan <liamryandev@gmail.com>
+Date:   Mon Oct 9 17:41:42 2017 +0100
+
+    Fixed typo in mount.8
+    
+    Signed-off-by: Liam Ryan <liamryandev@gmail.com>
+
+ sys-utils/mount.8 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 949e83997906ab8dd8442f28d74c34bb5a2395ee
+Author: Karel Zak <kzak@redhat.com>
+Date:   Thu Oct 5 11:07:41 2017 +0200
+
+    agetty: fix /etc/os-release parsing
+    
+    For example /etc/os-release:
+    
+            VERSION="26 (Twenty Six)"
+            VERSION_ID=26
+    
+    agetty for \S{VERSION} returns
+    
+            _ID=26
+    
+    because the parser does nor check for '=' after variable name.
+    
+    Addresses: https://bugzilla.redhat.com/show_bug.cgi?id=1498462
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ term-utils/agetty.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit a1aba7794e11fd90fc28e947bdf91fc0642da852
+Author: Karel Zak <kzak@redhat.com>
+Date:   Wed Oct 4 11:45:21 2017 +0200
+
+    docs: (TODO) make PMBR boot flag more user-friendly
+    
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ Documentation/TODO | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+commit c4e60bc0807b04ab104594abc83301481d5d5995
+Author: Karel Zak <kzak@redhat.com>
+Date:   Wed Oct 4 10:08:08 2017 +0200
+
+    losetup: fix conflicting types for ‘loopcxt_set_blocksize’
+    
+    Reported-by: Lars Wendler <polynomial-c@gentoo.org>
+    Signed-off-by: Karel Zak <kzak@redhat.com>
+
+ lib/loopdev.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
