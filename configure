@@ -1,6 +1,6 @@
 --disable-use-tty-group
---enable-makeinstall-chown
---enable-makeinstall-setuid
+--disable-makeinstall-chown
+--disable-makeinstall-setuid
 --enable-socket-activation
 --disable-kill
 --disable-chfn-chsh
