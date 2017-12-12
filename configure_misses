@@ -11,13 +11,11 @@ Configure miss: sys/ioccom.h presence
 Configure miss: sys/ioccom.h
 Configure miss: sys/ucred.h usability
 Configure miss: sys/ucred.h presence
-Configure miss: sys/ucred.h
 Configure miss: linux/gsmmux.h
 Configure miss: linux/blkzoned.h usability
 Configure miss: linux/blkzoned.h presence
 Configure miss: linux/blkzoned.h
 Configure miss: security/openpam.h
-Configure miss: getexecname
 Configure miss: setprogname
 Configure miss: sched_setattr
 Configure miss: strnchr
@@ -35,11 +33,6 @@ Configure miss: LIBUSER
 Configure miss: whether compiler handles -Wextra-semi
 Configure miss: whether compiler handles -Wembedded-directive
 Configure miss: whether compiler handles -Wformat-security
-Configure miss: i686-generic-linux-gnu-objdump
-Configure miss: i686-generic-linux-gnu-dlltool
-Configure miss: i686-generic-linux-gnu-strip
-Configure miss: i686-generic-linux-gnu-mt
-Configure miss: i686-generic-linux-gnu-pkg-config
 Configure miss: xsltproc
 Configure miss: linux/compiler.h
 Configure miss: asm/io.h usability
@@ -50,13 +43,11 @@ Configure miss: sys/ioccom.h presence
 Configure miss: sys/ioccom.h
 Configure miss: sys/ucred.h usability
 Configure miss: sys/ucred.h presence
-Configure miss: sys/ucred.h
 Configure miss: linux/gsmmux.h
 Configure miss: linux/blkzoned.h usability
 Configure miss: linux/blkzoned.h presence
 Configure miss: linux/blkzoned.h
 Configure miss: security/openpam.h
-Configure miss: getexecname
 Configure miss: setprogname
 Configure miss: sched_setattr
 Configure miss: strnchr

@@ -47,6 +47,7 @@ libXmu
 libXt
 libXtst
 libjpeg-turbo
+libjpeg-turbo-soname8
 libnotify
 libvirt
 libvpx
