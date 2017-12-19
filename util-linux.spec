@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.31
-Release  : 93
+Release  : 94
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.31/util-linux-2.31.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.31/util-linux-2.31.tar.xz
 Summary  : fdisk library
