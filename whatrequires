@@ -16,6 +16,7 @@ autofs
 bigreqsproto
 ceph
 chrome-gnome-shell
+cockpit
 comedilib
 dbus
 docker
@@ -78,6 +79,7 @@ shim
 swig
 tigervnc
 vlc
+volume_key
 wayland
 xcmiscproto
 xdg-utils

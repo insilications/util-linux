@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : util-linux
-Version  : 2.31
-Release  : 94
-URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.31/util-linux-2.31.tar.xz
-Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.31/util-linux-2.31.tar.xz
+Version  : 2.31.1
+Release  : 95
+URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.31/util-linux-2.31.1.tar.xz
+Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.31/util-linux-2.31.1.tar.xz
 Summary  : fdisk library
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 LGPL-2.1
@@ -184,13 +184,13 @@ setuid components for the util-linux package.
 
 
 %prep
-%setup -q -n util-linux-2.31
+%setup -q -n util-linux-2.31.1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 pushd ..
-cp -a util-linux-2.31 build32
+cp -a util-linux-2.31.1 build32
 popd
 
 %build
@@ -198,7 +198,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1513122981
+export SOURCE_DATE_EPOCH=1513703824
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -247,7 +247,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1513122981
+export SOURCE_DATE_EPOCH=1513703824
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
