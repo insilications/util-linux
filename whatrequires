@@ -9,8 +9,7 @@ R-pbdZMQ
 R-roxygen2
 accountsservice
 alsa-utils
-apache-ant
-apache-zookeeper
+apache-spark
 audit
 autofs
 bigreqsproto
