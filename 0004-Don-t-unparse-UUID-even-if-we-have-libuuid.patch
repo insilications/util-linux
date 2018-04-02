@@ -1,4 +1,4 @@
-From e1e2f71118b3825b77ac87a406e38bee187b8936 Mon Sep 17 00:00:00 2001
+From b9541d80548a74723eec035b8d00bbbddfebe0d5 Mon Sep 17 00:00:00 2001
 From: Auke Kok <auke-jan.h.kok@intel.com>
 Date: Mon, 2 Apr 2018 16:32:34 -0700
 Subject: [PATCH 4/4] Don't unparse UUID, even if we have libuuid.

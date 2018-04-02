@@ -1,4 +1,4 @@
-From c81bf51044cbdba887b1008f3a0a0f5adaddd3c9 Mon Sep 17 00:00:00 2001
+From a5f694a5c76d55f002fd7e0f413015548410c09a Mon Sep 17 00:00:00 2001
 From: Auke Kok <auke-jan.h.kok@intel.com>
 Date: Mon, 2 Apr 2018 16:28:04 -0700
 Subject: [PATCH 2/4] Clear out the pink color.
@@ -8,13 +8,13 @@ Subject: [PATCH 2/4] Clear out the pink color.
  1 file changed, 14 insertions(+), 1 deletion(-)
 
 diff --git a/term-utils/agetty.c b/term-utils/agetty.c
-index 99bb59d..b5a59e1 100644
+index 99bb59d..5f9990b 100644
 --- a/term-utils/agetty.c
 +++ b/term-utils/agetty.c
-@@ -1716,6 +1716,11 @@ static FILE *issuedir_next_file(int dd, struct dirent **namelist, int nfiles, in
- #ifndef ISSUE_SUPPORT
- static void print_issue_file(struct options *op, struct termios *tp __attribute__((__unused__)))
- {
+@@ -1731,6 +1731,11 @@ static void print_issue_file(struct options *op, struct termios *tp)
+ 	int dd = -1, nfiles = 0, i;
+ 	struct dirent **namelist = NULL;
+ #endif
 +	putchar('\033');
 +	putchar('[');
 +	putchar('0');
