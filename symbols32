@@ -120,6 +120,7 @@ libfdisk.so.1:FDISK_2.28
 libfdisk.so.1:FDISK_2.29
 libfdisk.so.1:FDISK_2.30
 libfdisk.so.1:FDISK_2.31
+libfdisk.so.1:FDISK_2.32
 libfdisk.so.1:fdisk_add_partition
 libfdisk.so.1:fdisk_align_lba
 libfdisk.so.1:fdisk_align_lba_in_range
@@ -229,6 +230,9 @@ libfdisk.so.1:fdisk_label_get_field
 libfdisk.so.1:fdisk_label_get_field_by_name
 libfdisk.so.1:fdisk_label_get_fields_ids
 libfdisk.so.1:fdisk_label_get_fields_ids_all
+libfdisk.so.1:fdisk_label_get_geomrange_cylinders
+libfdisk.so.1:fdisk_label_get_geomrange_heads
+libfdisk.so.1:fdisk_label_get_geomrange_sectors
 libfdisk.so.1:fdisk_label_get_name
 libfdisk.so.1:fdisk_label_get_nparttypes
 libfdisk.so.1:fdisk_label_get_parttype

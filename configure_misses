@@ -11,6 +11,7 @@ Configure miss: sys/ioccom.h presence
 Configure miss: sys/ioccom.h
 Configure miss: sys/ucred.h usability
 Configure miss: sys/ucred.h presence
+Configure miss: linux/fs.h
 Configure miss: security/openpam.h
 Configure miss: setprogname
 Configure miss: sched_setattr
@@ -39,6 +40,7 @@ Configure miss: sys/ioccom.h presence
 Configure miss: sys/ioccom.h
 Configure miss: sys/ucred.h usability
 Configure miss: sys/ucred.h presence
+Configure miss: linux/fs.h
 Configure miss: security/openpam.h
 Configure miss: setprogname
 Configure miss: sched_setattr

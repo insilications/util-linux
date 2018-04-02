@@ -4,13 +4,13 @@
 #
 %define keepstatic 1
 Name     : util-linux
-Version  : 2.31.1
-Release  : 98
-URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.31/util-linux-2.31.1.tar.xz
-Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.31/util-linux-2.31.1.tar.xz
-Summary  : fdisk library
+Version  : 2.32
+Release  : 99
+URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.tar.xz
+Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.tar.xz
+Summary  : mount library
 Group    : Development/Tools
-License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 LGPL-2.1
+License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 ISC LGPL-2.1
 Requires: util-linux-bin
 Requires: util-linux-setuid
 Requires: util-linux-python3
@@ -46,10 +46,10 @@ BuildRequires : readline-dev
 BuildRequires : systemd-dev
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
-Patch1: agetty.patch
-Patch2: default-issue.patch
-Patch3: topology.patch
-Patch4: sodeps.patch
+Patch1: 0001-Speed-up-agetty-waits.patch
+Patch2: 0002-Clear-out-the-pink-color.patch
+Patch3: 0003-Recommend-1M-topology-size-if-none-set.patch
+Patch4: 0004-Don-t-unparse-UUID-even-if-we-have-libuuid.patch
 
 %description
 util-linux
@@ -184,13 +184,13 @@ setuid components for the util-linux package.
 
 
 %prep
-%setup -q -n util-linux-2.31.1
+%setup -q -n util-linux-2.32
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 pushd ..
-cp -a util-linux-2.31.1 build32
+cp -a util-linux-2.32 build32
 popd
 
 %build
@@ -198,7 +198,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517682532
+export SOURCE_DATE_EPOCH=1522712332
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -247,7 +247,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1517682532
+export SOURCE_DATE_EPOCH=1522712332
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
