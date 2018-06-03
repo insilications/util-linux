@@ -14,3 +14,4 @@ libcap-ng-dev32
 ncurses-dev32
 ncurses-dev
 python3-dev
+systemd-dev32

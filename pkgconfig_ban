@@ -16,3 +16,4 @@ python-$PYTHON_VERSION
 32libsystemd
 32ncursesw
 32tinfo
+32systemd

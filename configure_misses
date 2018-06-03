@@ -48,6 +48,5 @@ Configure miss: strnchr
 Configure miss: timer_create
 Configure miss: rtas_get_sysparm in -lrtas
 Configure miss: union semun
-Configure miss: udev_new in -ludev
 Configure miss: readline in -lreadline
 Configure miss: LIBUSER

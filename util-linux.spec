@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.32
-Release  : 104
+Release  : 105
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.tar.xz
 Summary  : mount library
@@ -18,8 +18,8 @@ Requires: util-linux-config
 Requires: util-linux-autostart
 Requires: util-linux-lib
 Requires: util-linux-data
-Requires: util-linux-doc
 Requires: util-linux-locales
+Requires: util-linux-man
 Requires: util-linux-python
 BuildRequires : Linux-PAM-dev
 BuildRequires : Linux-PAM-dev32
@@ -38,12 +38,14 @@ BuildRequires : libcap-ng-dev32
 BuildRequires : ncurses-dev
 BuildRequires : ncurses-dev32
 BuildRequires : pkgconfig(libsystemd)
+BuildRequires : pkgconfig(systemd)
 BuildRequires : pkgconfig(tinfow)
 BuildRequires : procps-ng
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : readline-dev
 BuildRequires : systemd-dev
+BuildRequires : systemd-dev32
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
 Patch1: 0001-Speed-up-agetty-waits.patch
@@ -70,6 +72,7 @@ Group: Binaries
 Requires: util-linux-data
 Requires: util-linux-config
 Requires: util-linux-setuid
+Requires: util-linux-man
 
 %description bin
 bin components for the util-linux package.
@@ -118,6 +121,7 @@ dev32 components for the util-linux package.
 %package doc
 Summary: doc components for the util-linux package.
 Group: Documentation
+Requires: util-linux-man
 
 %description doc
 doc components for the util-linux package.
@@ -155,6 +159,14 @@ Group: Default
 
 %description locales
 locales components for the util-linux package.
+
+
+%package man
+Summary: man components for the util-linux package.
+Group: Default
+
+%description man
+man components for the util-linux package.
 
 
 %package python
@@ -198,7 +210,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1526024944
+export SOURCE_DATE_EPOCH=1528014418
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -247,7 +259,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1526024944
+export SOURCE_DATE_EPOCH=1528014418
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -537,17 +549,15 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %files doc
 %defattr(-,root,root,-)
 %doc /usr/share/doc/util\-linux/*
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man3/*
-%doc /usr/share/man/man5/*
-%doc /usr/share/man/man8/*
 %exclude /usr/share/doc/util-linux/getopt/getopt-parse.tcsh
-%exclude /usr/share/man/man1/login.1
 
 %files extras
 %defattr(-,root,root,-)
 /usr/bin/mkfs.cramfs
 /usr/bin/zramctl
+/usr/lib/python3.6/site-packages/libmount/__init__.py
+/usr/lib/python3.6/site-packages/libmount/__pycache__/__init__.cpython-36.pyc
+/usr/lib/python3.6/site-packages/libmount/pylibmount.so
 /usr/share/bash-completion/completions/addpart
 /usr/share/bash-completion/completions/blkdiscard
 /usr/share/bash-completion/completions/blkid
@@ -670,12 +680,140 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/lib32/libuuid.so.1
 /usr/lib32/libuuid.so.1.3.0
 
+%files man
+%defattr(-,root,root,-)
+%exclude /usr/share/man/man1/login.1
+/usr/share/man/man1/cal.1
+/usr/share/man/man1/chrt.1
+/usr/share/man/man1/col.1
+/usr/share/man/man1/colcrt.1
+/usr/share/man/man1/colrm.1
+/usr/share/man/man1/column.1
+/usr/share/man/man1/dmesg.1
+/usr/share/man/man1/eject.1
+/usr/share/man/man1/fallocate.1
+/usr/share/man/man1/fincore.1
+/usr/share/man/man1/flock.1
+/usr/share/man/man1/getopt.1
+/usr/share/man/man1/hexdump.1
+/usr/share/man/man1/ionice.1
+/usr/share/man/man1/ipcmk.1
+/usr/share/man/man1/ipcrm.1
+/usr/share/man/man1/ipcs.1
+/usr/share/man/man1/last.1
+/usr/share/man/man1/lastb.1
+/usr/share/man/man1/logger.1
+/usr/share/man/man1/look.1
+/usr/share/man/man1/lscpu.1
+/usr/share/man/man1/lsipc.1
+/usr/share/man/man1/lslogins.1
+/usr/share/man/man1/lsmem.1
+/usr/share/man/man1/mcookie.1
+/usr/share/man/man1/mesg.1
+/usr/share/man/man1/more.1
+/usr/share/man/man1/mountpoint.1
+/usr/share/man/man1/namei.1
+/usr/share/man/man1/nsenter.1
+/usr/share/man/man1/prlimit.1
+/usr/share/man/man1/rename.1
+/usr/share/man/man1/renice.1
+/usr/share/man/man1/rev.1
+/usr/share/man/man1/runuser.1
+/usr/share/man/man1/script.1
+/usr/share/man/man1/scriptreplay.1
+/usr/share/man/man1/setpriv.1
+/usr/share/man/man1/setsid.1
+/usr/share/man/man1/setterm.1
+/usr/share/man/man1/su.1
+/usr/share/man/man1/taskset.1
+/usr/share/man/man1/ul.1
+/usr/share/man/man1/unshare.1
+/usr/share/man/man1/utmpdump.1
+/usr/share/man/man1/uuidgen.1
+/usr/share/man/man1/uuidparse.1
+/usr/share/man/man1/wall.1
+/usr/share/man/man1/whereis.1
+/usr/share/man/man3/libblkid.3
+/usr/share/man/man3/uuid.3
+/usr/share/man/man3/uuid_clear.3
+/usr/share/man/man3/uuid_compare.3
+/usr/share/man/man3/uuid_copy.3
+/usr/share/man/man3/uuid_generate.3
+/usr/share/man/man3/uuid_generate_random.3
+/usr/share/man/man3/uuid_generate_time.3
+/usr/share/man/man3/uuid_generate_time_safe.3
+/usr/share/man/man3/uuid_is_null.3
+/usr/share/man/man3/uuid_parse.3
+/usr/share/man/man3/uuid_time.3
+/usr/share/man/man3/uuid_unparse.3
+/usr/share/man/man5/fstab.5
+/usr/share/man/man5/terminal-colors.d.5
+/usr/share/man/man8/addpart.8
+/usr/share/man/man8/agetty.8
+/usr/share/man/man8/blkdiscard.8
+/usr/share/man/man8/blkid.8
+/usr/share/man/man8/blkzone.8
+/usr/share/man/man8/blockdev.8
+/usr/share/man/man8/cfdisk.8
+/usr/share/man/man8/chcpu.8
+/usr/share/man/man8/chmem.8
+/usr/share/man/man8/ctrlaltdel.8
+/usr/share/man/man8/delpart.8
+/usr/share/man/man8/fdformat.8
+/usr/share/man/man8/fdisk.8
+/usr/share/man/man8/findfs.8
+/usr/share/man/man8/findmnt.8
+/usr/share/man/man8/fsck.8
+/usr/share/man/man8/fsck.cramfs.8
+/usr/share/man/man8/fsck.minix.8
+/usr/share/man/man8/fsfreeze.8
+/usr/share/man/man8/fstrim.8
+/usr/share/man/man8/hwclock.8
+/usr/share/man/man8/i386.8
+/usr/share/man/man8/isosize.8
+/usr/share/man/man8/ldattach.8
+/usr/share/man/man8/linux32.8
+/usr/share/man/man8/linux64.8
+/usr/share/man/man8/losetup.8
+/usr/share/man/man8/lsblk.8
+/usr/share/man/man8/lslocks.8
+/usr/share/man/man8/lsns.8
+/usr/share/man/man8/mkfs.8
+/usr/share/man/man8/mkfs.bfs.8
+/usr/share/man/man8/mkfs.cramfs.8
+/usr/share/man/man8/mkfs.minix.8
+/usr/share/man/man8/mkswap.8
+/usr/share/man/man8/mount.8
+/usr/share/man/man8/partx.8
+/usr/share/man/man8/pivot_root.8
+/usr/share/man/man8/raw.8
+/usr/share/man/man8/readprofile.8
+/usr/share/man/man8/resizepart.8
+/usr/share/man/man8/rfkill.8
+/usr/share/man/man8/rtcwake.8
+/usr/share/man/man8/setarch.8
+/usr/share/man/man8/sfdisk.8
+/usr/share/man/man8/sulogin.8
+/usr/share/man/man8/swaplabel.8
+/usr/share/man/man8/swapoff.8
+/usr/share/man/man8/swapon.8
+/usr/share/man/man8/switch_root.8
+/usr/share/man/man8/umount.8
+/usr/share/man/man8/uname26.8
+/usr/share/man/man8/uuidd.8
+/usr/share/man/man8/wdctl.8
+/usr/share/man/man8/wipefs.8
+/usr/share/man/man8/x86_64.8
+/usr/share/man/man8/zramctl.8
+
 %files python
 %defattr(-,root,root,-)
 
 %files python3
 %defattr(-,root,root,-)
-/usr/lib/python3*/*
+%exclude /usr/lib/python3.6/site-packages/libmount/__init__.py
+%exclude /usr/lib/python3.6/site-packages/libmount/__pycache__/__init__.cpython-36.pyc
+%exclude /usr/lib/python3.6/site-packages/libmount/pylibmount.so
 
 %files setuid
 %defattr(-,root,root,-)
