@@ -181,7 +181,6 @@ python components for the util-linux package.
 %package python3
 Summary: python3 components for the util-linux package.
 Group: Default
-Requires: python3-core
 
 %description python3
 python3 components for the util-linux package.
