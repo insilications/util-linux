@@ -41,7 +41,7 @@ BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(systemd)
 BuildRequires : pkgconfig(tinfow)
 BuildRequires : procps-ng
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : readline-dev
 BuildRequires : systemd-dev
