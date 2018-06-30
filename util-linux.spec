@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.32
-Release  : 109
+Release  : 110
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.tar.xz
 Summary  : mount library
@@ -18,6 +18,7 @@ Requires: util-linux-config
 Requires: util-linux-autostart
 Requires: util-linux-lib
 Requires: util-linux-data
+Requires: util-linux-license
 Requires: util-linux-locales
 Requires: util-linux-man
 Requires: util-linux-python
@@ -38,13 +39,11 @@ BuildRequires : libcap-ng-dev32
 BuildRequires : ncurses-dev
 BuildRequires : ncurses-dev32
 BuildRequires : pkgconfig(libsystemd)
-BuildRequires : pkgconfig(systemd)
 BuildRequires : pkgconfig(tinfow)
 BuildRequires : procps-ng
-
+BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : readline-dev
-BuildRequires : systemd-dev
 BuildRequires : systemd-dev32
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
@@ -72,6 +71,7 @@ Group: Binaries
 Requires: util-linux-data
 Requires: util-linux-config
 Requires: util-linux-setuid
+Requires: util-linux-license
 Requires: util-linux-man
 
 %description bin
@@ -139,6 +139,7 @@ extras components for the util-linux package.
 Summary: lib components for the util-linux package.
 Group: Libraries
 Requires: util-linux-data
+Requires: util-linux-license
 
 %description lib
 lib components for the util-linux package.
@@ -148,9 +149,18 @@ lib components for the util-linux package.
 Summary: lib32 components for the util-linux package.
 Group: Default
 Requires: util-linux-data
+Requires: util-linux-license
 
 %description lib32
 lib32 components for the util-linux package.
+
+
+%package license
+Summary: license components for the util-linux package.
+Group: Default
+
+%description license
+license components for the util-linux package.
 
 
 %package locales
@@ -181,6 +191,7 @@ python components for the util-linux package.
 %package python3
 Summary: python3 components for the util-linux package.
 Group: Default
+Requires: python3-core
 
 %description python3
 python3 components for the util-linux package.
@@ -209,7 +220,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1528014418
+export SOURCE_DATE_EPOCH=1530369571
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -258,8 +269,20 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1528014418
+export SOURCE_DATE_EPOCH=1530369571
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/util-linux
+cp COPYING %{buildroot}/usr/share/doc/util-linux/COPYING
+cp Documentation/licenses/COPYING.LGPLv2.1 %{buildroot}/usr/share/doc/util-linux/Documentation_licenses_COPYING.LGPLv2.1
+cp Documentation/licenses/COPYING.BSD-3 %{buildroot}/usr/share/doc/util-linux/Documentation_licenses_COPYING.BSD-3
+cp Documentation/licenses/COPYING.UCB %{buildroot}/usr/share/doc/util-linux/Documentation_licenses_COPYING.UCB
+cp Documentation/licenses/COPYING.ISC %{buildroot}/usr/share/doc/util-linux/Documentation_licenses_COPYING.ISC
+cp Documentation/licenses/COPYING.GPLv2 %{buildroot}/usr/share/doc/util-linux/Documentation_licenses_COPYING.GPLv2
+cp libmount/COPYING %{buildroot}/usr/share/doc/util-linux/libmount_COPYING
+cp libfdisk/COPYING %{buildroot}/usr/share/doc/util-linux/libfdisk_COPYING
+cp libsmartcols/COPYING %{buildroot}/usr/share/doc/util-linux/libsmartcols_COPYING
+cp libuuid/COPYING %{buildroot}/usr/share/doc/util-linux/libuuid_COPYING
+cp libblkid/COPYING %{buildroot}/usr/share/doc/util-linux/libblkid_COPYING
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -546,7 +569,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/lib32/pkgconfig/uuid.pc
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/util\-linux/*
 %exclude /usr/share/doc/util-linux/getopt/getopt-parse.tcsh
 
@@ -554,9 +577,9 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %defattr(-,root,root,-)
 /usr/bin/mkfs.cramfs
 /usr/bin/zramctl
-/usr/lib/python3.6/site-packages/libmount/__init__.py
-/usr/lib/python3.6/site-packages/libmount/__pycache__/__init__.cpython-36.pyc
-/usr/lib/python3.6/site-packages/libmount/pylibmount.so
+/usr/lib/python3.7/site-packages/libmount/__init__.py
+/usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
+/usr/lib/python3.7/site-packages/libmount/pylibmount.so
 /usr/share/bash-completion/completions/addpart
 /usr/share/bash-completion/completions/blkdiscard
 /usr/share/bash-completion/completions/blkid
@@ -678,6 +701,20 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/lib32/libsmartcols.so.1.1.0
 /usr/lib32/libuuid.so.1
 /usr/lib32/libuuid.so.1.3.0
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/util-linux/COPYING
+/usr/share/doc/util-linux/Documentation_licenses_COPYING.BSD-3
+/usr/share/doc/util-linux/Documentation_licenses_COPYING.GPLv2
+/usr/share/doc/util-linux/Documentation_licenses_COPYING.ISC
+/usr/share/doc/util-linux/Documentation_licenses_COPYING.LGPLv2.1
+/usr/share/doc/util-linux/Documentation_licenses_COPYING.UCB
+/usr/share/doc/util-linux/libblkid_COPYING
+/usr/share/doc/util-linux/libfdisk_COPYING
+/usr/share/doc/util-linux/libmount_COPYING
+/usr/share/doc/util-linux/libsmartcols_COPYING
+/usr/share/doc/util-linux/libuuid_COPYING
 
 %files man
 %defattr(-,root,root,-)
@@ -810,9 +847,9 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 
 %files python3
 %defattr(-,root,root,-)
-%exclude /usr/lib/python3.6/site-packages/libmount/__init__.py
-%exclude /usr/lib/python3.6/site-packages/libmount/__pycache__/__init__.cpython-36.pyc
-%exclude /usr/lib/python3.6/site-packages/libmount/pylibmount.so
+%exclude /usr/lib/python3.7/site-packages/libmount/__init__.py
+%exclude /usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
+%exclude /usr/lib/python3.7/site-packages/libmount/pylibmount.so
 
 %files setuid
 %defattr(-,root,root,-)
