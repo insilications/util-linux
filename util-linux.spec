@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : util-linux
-Version  : 2.32
-Release  : 114
-URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.tar.xz
-Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.tar.xz
+Version  : 2.32.1
+Release  : 115
+URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.1.tar.xz
+Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.1.tar.xz
 Summary  : mount library
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 ISC LGPL-2.1
@@ -38,6 +38,7 @@ BuildRequires : libcap-ng-dev
 BuildRequires : libcap-ng-dev32
 BuildRequires : ncurses-dev
 BuildRequires : ncurses-dev32
+BuildRequires : pkg-config
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(tinfow)
 BuildRequires : procps-ng
@@ -206,13 +207,13 @@ setuid components for the util-linux package.
 
 
 %prep
-%setup -q -n util-linux-2.32
+%setup -q -n util-linux-2.32.1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 pushd ..
-cp -a util-linux-2.32 build32
+cp -a util-linux-2.32.1 build32
 popd
 
 %build
@@ -220,7 +221,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530852214
+export SOURCE_DATE_EPOCH=1531840547
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -269,7 +270,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1530852214
+export SOURCE_DATE_EPOCH=1531840547
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/util-linux
 cp COPYING %{buildroot}/usr/share/doc/util-linux/COPYING
@@ -578,6 +579,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/bin/mkfs.cramfs
 /usr/bin/zramctl
 /usr/lib/python3.7/site-packages/libmount/__init__.py
+/usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
 /usr/lib/python3.7/site-packages/libmount/pylibmount.so
 /usr/share/bash-completion/completions/addpart
 /usr/share/bash-completion/completions/blkdiscard
@@ -847,6 +849,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %files python3
 %defattr(-,root,root,-)
 %exclude /usr/lib/python3.7/site-packages/libmount/__init__.py
+%exclude /usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
 %exclude /usr/lib/python3.7/site-packages/libmount/pylibmount.so
 
 %files setuid

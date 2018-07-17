@@ -1,4 +1,4 @@
-2.32
-readline-dev
+2.32.1
+pkg-config
 bison
-python3-dev
+readline-dev

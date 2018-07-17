@@ -96,6 +96,7 @@
 /usr/share/bash-completion/completions/whereis
 /usr/share/bash-completion/completions/wipefs
 /usr/share/bash-completion/completions/zramctl
+/usr/share/bash-completion/completions/blkzone
 /usr/lib/python3.7/site-packages
 /usr/lib/python3.7/site-packages/libmount
 /usr/lib/python3.7/site-packages/libmount/__init__.py

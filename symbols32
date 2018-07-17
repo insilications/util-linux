@@ -461,7 +461,9 @@ libfdisk.so.1:fdisk_labelitem_is_string
 libfdisk.so.1:fdisk_lba_is_phy_aligned
 libfdisk.so.1:fdisk_list_disklabel
 libfdisk.so.1:fdisk_locate_disklabel
+libfdisk.so.1:fdisk_new_bsd_label
 libfdisk.so.1:fdisk_new_context
+libfdisk.so.1:fdisk_new_dos_label
 libfdisk.so.1:fdisk_new_gpt_label
 libfdisk.so.1:fdisk_new_iter
 libfdisk.so.1:fdisk_new_labelitem
@@ -616,6 +618,7 @@ libfdisk.so.1:sysfs_read_int
 libfdisk.so.1:sysfs_read_u64
 libfdisk.so.1:sysfs_strdup
 libfdisk.so.1:ul_crc32_exclude_offset
+libfdisk.so.1:unhexmangle_to_buffer
 libmount.so.1:MOUNT_2.19
 libmount.so.1:MOUNT_2.20
 libmount.so.1:MOUNT_2.21
