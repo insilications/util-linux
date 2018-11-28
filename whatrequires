@@ -4,6 +4,8 @@ R
 alsa-utils
 cockpit
 dstat
+expat
+fakeroot
 git
 gzip
 linux-oracle
@@ -13,6 +15,7 @@ man-pages
 nodejs
 numactl
 ocaml
+octave
 ostree
 quilt
 shim

@@ -4,24 +4,24 @@
 #
 %define keepstatic 1
 Name     : util-linux
-Version  : 2.32.1
-Release  : 115
-URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.1.tar.xz
-Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.32/util-linux-2.32.1.tar.xz
+Version  : 2.33
+Release  : 116
+URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
+Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
 Summary  : mount library
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 ISC LGPL-2.1
-Requires: util-linux-bin
-Requires: util-linux-setuid
-Requires: util-linux-python3
-Requires: util-linux-config
-Requires: util-linux-autostart
-Requires: util-linux-lib
-Requires: util-linux-data
-Requires: util-linux-license
-Requires: util-linux-locales
-Requires: util-linux-man
-Requires: util-linux-python
+Requires: util-linux-autostart = %{version}-%{release}
+Requires: util-linux-bin = %{version}-%{release}
+Requires: util-linux-data = %{version}-%{release}
+Requires: util-linux-lib = %{version}-%{release}
+Requires: util-linux-license = %{version}-%{release}
+Requires: util-linux-locales = %{version}-%{release}
+Requires: util-linux-man = %{version}-%{release}
+Requires: util-linux-python = %{version}-%{release}
+Requires: util-linux-python3 = %{version}-%{release}
+Requires: util-linux-services = %{version}-%{release}
+Requires: util-linux-setuid = %{version}-%{release}
 BuildRequires : Linux-PAM-dev
 BuildRequires : Linux-PAM-dev32
 BuildRequires : bison
@@ -49,9 +49,8 @@ BuildRequires : systemd-dev32
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
 Patch1: 0001-Speed-up-agetty-waits.patch
-Patch2: 0002-Clear-out-the-pink-color.patch
-Patch3: 0003-Recommend-1M-topology-size-if-none-set.patch
-Patch4: 0004-Don-t-unparse-UUID-even-if-we-have-libuuid.patch
+Patch2: 0003-Recommend-1M-topology-size-if-none-set.patch
+Patch3: 0004-Don-t-unparse-UUID-even-if-we-have-libuuid.patch
 
 %description
 util-linux
@@ -69,22 +68,14 @@ autostart components for the util-linux package.
 %package bin
 Summary: bin components for the util-linux package.
 Group: Binaries
-Requires: util-linux-data
-Requires: util-linux-config
-Requires: util-linux-setuid
-Requires: util-linux-license
-Requires: util-linux-man
+Requires: util-linux-data = %{version}-%{release}
+Requires: util-linux-setuid = %{version}-%{release}
+Requires: util-linux-license = %{version}-%{release}
+Requires: util-linux-man = %{version}-%{release}
+Requires: util-linux-services = %{version}-%{release}
 
 %description bin
 bin components for the util-linux package.
-
-
-%package config
-Summary: config components for the util-linux package.
-Group: Default
-
-%description config
-config components for the util-linux package.
 
 
 %package data
@@ -98,10 +89,10 @@ data components for the util-linux package.
 %package dev
 Summary: dev components for the util-linux package.
 Group: Development
-Requires: util-linux-lib
-Requires: util-linux-bin
-Requires: util-linux-data
-Provides: util-linux-devel
+Requires: util-linux-lib = %{version}-%{release}
+Requires: util-linux-bin = %{version}-%{release}
+Requires: util-linux-data = %{version}-%{release}
+Provides: util-linux-devel = %{version}-%{release}
 
 %description dev
 dev components for the util-linux package.
@@ -110,10 +101,10 @@ dev components for the util-linux package.
 %package dev32
 Summary: dev32 components for the util-linux package.
 Group: Default
-Requires: util-linux-lib32
-Requires: util-linux-bin
-Requires: util-linux-data
-Requires: util-linux-dev
+Requires: util-linux-lib32 = %{version}-%{release}
+Requires: util-linux-bin = %{version}-%{release}
+Requires: util-linux-data = %{version}-%{release}
+Requires: util-linux-dev = %{version}-%{release}
 
 %description dev32
 dev32 components for the util-linux package.
@@ -122,7 +113,7 @@ dev32 components for the util-linux package.
 %package doc
 Summary: doc components for the util-linux package.
 Group: Documentation
-Requires: util-linux-man
+Requires: util-linux-man = %{version}-%{release}
 
 %description doc
 doc components for the util-linux package.
@@ -139,8 +130,8 @@ extras components for the util-linux package.
 %package lib
 Summary: lib components for the util-linux package.
 Group: Libraries
-Requires: util-linux-data
-Requires: util-linux-license
+Requires: util-linux-data = %{version}-%{release}
+Requires: util-linux-license = %{version}-%{release}
 
 %description lib
 lib components for the util-linux package.
@@ -149,8 +140,8 @@ lib components for the util-linux package.
 %package lib32
 Summary: lib32 components for the util-linux package.
 Group: Default
-Requires: util-linux-data
-Requires: util-linux-license
+Requires: util-linux-data = %{version}-%{release}
+Requires: util-linux-license = %{version}-%{release}
 
 %description lib32
 lib32 components for the util-linux package.
@@ -183,7 +174,7 @@ man components for the util-linux package.
 %package python
 Summary: python components for the util-linux package.
 Group: Default
-Requires: util-linux-python3
+Requires: util-linux-python3 = %{version}-%{release}
 
 %description python
 python components for the util-linux package.
@@ -198,6 +189,14 @@ Requires: python3-core
 python3 components for the util-linux package.
 
 
+%package services
+Summary: services components for the util-linux package.
+Group: Systemd services
+
+%description services
+services components for the util-linux package.
+
+
 %package setuid
 Summary: setuid components for the util-linux package.
 Group: Default
@@ -207,13 +206,12 @@ setuid components for the util-linux package.
 
 
 %prep
-%setup -q -n util-linux-2.32.1
+%setup -q -n util-linux-2.33
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 pushd ..
-cp -a util-linux-2.32.1 build32
+cp -a util-linux-2.33 build32
 popd
 
 %build
@@ -221,7 +219,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1531840547
+export SOURCE_DATE_EPOCH=1543400684
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -243,6 +241,7 @@ make  %{?_smp_mflags}
 
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+export ASFLAGS="$ASFLAGS --32"
 export CFLAGS="$CFLAGS -m32"
 export CXXFLAGS="$CXXFLAGS -m32"
 export LDFLAGS="$LDFLAGS -m32"
@@ -268,22 +267,23 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
+cd ../build32;
+make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1531840547
+export SOURCE_DATE_EPOCH=1543400684
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/util-linux
-cp COPYING %{buildroot}/usr/share/doc/util-linux/COPYING
-cp Documentation/licenses/COPYING.LGPLv2.1 %{buildroot}/usr/share/doc/util-linux/Documentation_licenses_COPYING.LGPLv2.1
-cp Documentation/licenses/COPYING.BSD-3 %{buildroot}/usr/share/doc/util-linux/Documentation_licenses_COPYING.BSD-3
-cp Documentation/licenses/COPYING.UCB %{buildroot}/usr/share/doc/util-linux/Documentation_licenses_COPYING.UCB
-cp Documentation/licenses/COPYING.ISC %{buildroot}/usr/share/doc/util-linux/Documentation_licenses_COPYING.ISC
-cp Documentation/licenses/COPYING.GPLv2 %{buildroot}/usr/share/doc/util-linux/Documentation_licenses_COPYING.GPLv2
-cp libmount/COPYING %{buildroot}/usr/share/doc/util-linux/libmount_COPYING
-cp libfdisk/COPYING %{buildroot}/usr/share/doc/util-linux/libfdisk_COPYING
-cp libsmartcols/COPYING %{buildroot}/usr/share/doc/util-linux/libsmartcols_COPYING
-cp libuuid/COPYING %{buildroot}/usr/share/doc/util-linux/libuuid_COPYING
-cp libblkid/COPYING %{buildroot}/usr/share/doc/util-linux/libblkid_COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
+cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
+cp Documentation/licenses/COPYING.BSD-3-Clause %{buildroot}/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.BSD-3-Clause
+cp Documentation/licenses/COPYING.BSD-4-Clause-UC %{buildroot}/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.BSD-4-Clause-UC
+cp Documentation/licenses/COPYING.GPL-2.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.GPL-2.0-or-later
+cp Documentation/licenses/COPYING.ISC %{buildroot}/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.ISC
+cp Documentation/licenses/COPYING.LGPL-2.1-or-later %{buildroot}/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.LGPL-2.1-or-later
+cp libblkid/COPYING %{buildroot}/usr/share/package-licenses/util-linux/libblkid_COPYING
+cp libfdisk/COPYING %{buildroot}/usr/share/package-licenses/util-linux/libfdisk_COPYING
+cp libmount/COPYING %{buildroot}/usr/share/package-licenses/util-linux/libmount_COPYING
+cp libsmartcols/COPYING %{buildroot}/usr/share/package-licenses/util-linux/libsmartcols_COPYING
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -295,12 +295,12 @@ fi
 popd
 %make_install
 %find_lang util-linux
-## make_install_append content
+## install_append content
 mkdir %{buildroot}/usr/lib/systemd/system/sockets.target.wants
 ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/uuidd.socket
 mkdir -p %{buildroot}/usr/lib/systemd/system/timers.target.wants/
 ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/fstrim.timer
-## make_install_append end
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -331,6 +331,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/bin/cfdisk
 /usr/bin/chcpu
 /usr/bin/chmem
+/usr/bin/choom
 /usr/bin/chrt
 /usr/bin/col
 /usr/bin/colcrt
@@ -421,20 +422,12 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/bin/wipefs
 /usr/bin/x86_64
 
-%files config
-%defattr(-,root,root,-)
-%exclude /usr/lib/systemd/system/sockets.target.wants/uuidd.socket
-%exclude /usr/lib/systemd/system/timers.target.wants/fstrim.timer
-/usr/lib/systemd/system/fstrim.service
-/usr/lib/systemd/system/fstrim.timer
-/usr/lib/systemd/system/uuidd.service
-/usr/lib/systemd/system/uuidd.socket
-
 %files data
 %defattr(-,root,root,-)
 %exclude /usr/share/bash-completion/completions/addpart
 %exclude /usr/share/bash-completion/completions/blkdiscard
 %exclude /usr/share/bash-completion/completions/blkid
+%exclude /usr/share/bash-completion/completions/blkzone
 %exclude /usr/share/bash-completion/completions/blockdev
 %exclude /usr/share/bash-completion/completions/cal
 %exclude /usr/share/bash-completion/completions/cfdisk
@@ -529,7 +522,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %exclude /usr/share/bash-completion/completions/whereis
 %exclude /usr/share/bash-completion/completions/wipefs
 %exclude /usr/share/bash-completion/completions/zramctl
-/usr/share/bash-completion/completions/blkzone
 
 %files dev
 %defattr(-,root,root,-)
@@ -549,6 +541,19 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/lib64/pkgconfig/mount.pc
 /usr/lib64/pkgconfig/smartcols.pc
 /usr/lib64/pkgconfig/uuid.pc
+/usr/share/man/man3/libblkid.3
+/usr/share/man/man3/uuid.3
+/usr/share/man/man3/uuid_clear.3
+/usr/share/man/man3/uuid_compare.3
+/usr/share/man/man3/uuid_copy.3
+/usr/share/man/man3/uuid_generate.3
+/usr/share/man/man3/uuid_generate_random.3
+/usr/share/man/man3/uuid_generate_time.3
+/usr/share/man/man3/uuid_generate_time_safe.3
+/usr/share/man/man3/uuid_is_null.3
+/usr/share/man/man3/uuid_parse.3
+/usr/share/man/man3/uuid_time.3
+/usr/share/man/man3/uuid_unparse.3
 
 %files dev32
 %defattr(-,root,root,-)
@@ -584,6 +589,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/share/bash-completion/completions/addpart
 /usr/share/bash-completion/completions/blkdiscard
 /usr/share/bash-completion/completions/blkid
+/usr/share/bash-completion/completions/blkzone
 /usr/share/bash-completion/completions/blockdev
 /usr/share/bash-completion/completions/cal
 /usr/share/bash-completion/completions/cfdisk
@@ -704,23 +710,23 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/lib32/libuuid.so.1.3.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/util-linux/COPYING
-/usr/share/doc/util-linux/Documentation_licenses_COPYING.BSD-3
-/usr/share/doc/util-linux/Documentation_licenses_COPYING.GPLv2
-/usr/share/doc/util-linux/Documentation_licenses_COPYING.ISC
-/usr/share/doc/util-linux/Documentation_licenses_COPYING.LGPLv2.1
-/usr/share/doc/util-linux/Documentation_licenses_COPYING.UCB
-/usr/share/doc/util-linux/libblkid_COPYING
-/usr/share/doc/util-linux/libfdisk_COPYING
-/usr/share/doc/util-linux/libmount_COPYING
-/usr/share/doc/util-linux/libsmartcols_COPYING
-/usr/share/doc/util-linux/libuuid_COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/util-linux/COPYING
+/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.BSD-3-Clause
+/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.BSD-4-Clause-UC
+/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.GPL-2.0-or-later
+/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.ISC
+/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.LGPL-2.1-or-later
+/usr/share/package-licenses/util-linux/libblkid_COPYING
+/usr/share/package-licenses/util-linux/libfdisk_COPYING
+/usr/share/package-licenses/util-linux/libmount_COPYING
+/usr/share/package-licenses/util-linux/libsmartcols_COPYING
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %exclude /usr/share/man/man1/login.1
 /usr/share/man/man1/cal.1
+/usr/share/man/man1/choom.1
 /usr/share/man/man1/chrt.1
 /usr/share/man/man1/col.1
 /usr/share/man/man1/colcrt.1
@@ -770,19 +776,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/share/man/man1/uuidparse.1
 /usr/share/man/man1/wall.1
 /usr/share/man/man1/whereis.1
-/usr/share/man/man3/libblkid.3
-/usr/share/man/man3/uuid.3
-/usr/share/man/man3/uuid_clear.3
-/usr/share/man/man3/uuid_compare.3
-/usr/share/man/man3/uuid_copy.3
-/usr/share/man/man3/uuid_generate.3
-/usr/share/man/man3/uuid_generate_random.3
-/usr/share/man/man3/uuid_generate_time.3
-/usr/share/man/man3/uuid_generate_time_safe.3
-/usr/share/man/man3/uuid_is_null.3
-/usr/share/man/man3/uuid_parse.3
-/usr/share/man/man3/uuid_time.3
-/usr/share/man/man3/uuid_unparse.3
+/usr/share/man/man5/adjtime_config.5
 /usr/share/man/man5/fstab.5
 /usr/share/man/man5/terminal-colors.d.5
 /usr/share/man/man8/addpart.8
@@ -851,6 +845,15 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %exclude /usr/lib/python3.7/site-packages/libmount/__init__.py
 %exclude /usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
 %exclude /usr/lib/python3.7/site-packages/libmount/pylibmount.so
+
+%files services
+%defattr(-,root,root,-)
+%exclude /usr/lib/systemd/system/sockets.target.wants/uuidd.socket
+%exclude /usr/lib/systemd/system/timers.target.wants/fstrim.timer
+/usr/lib/systemd/system/fstrim.service
+/usr/lib/systemd/system/fstrim.timer
+/usr/lib/systemd/system/uuidd.service
+/usr/lib/systemd/system/uuidd.socket
 
 %files setuid
 %defattr(-,root,root,-)

@@ -13,6 +13,8 @@ Configure miss: sys/ucred.h usability
 Configure miss: sys/ucred.h presence
 Configure miss: linux/fs.h
 Configure miss: security/openpam.h
+Configure miss: fpurge
+Configure miss: llseek
 Configure miss: setprogname
 Configure miss: sched_setattr
 Configure miss: strnchr
@@ -42,6 +44,8 @@ Configure miss: sys/ucred.h usability
 Configure miss: sys/ucred.h presence
 Configure miss: linux/fs.h
 Configure miss: security/openpam.h
+Configure miss: fpurge
+Configure miss: llseek
 Configure miss: setprogname
 Configure miss: sched_setattr
 Configure miss: strnchr
