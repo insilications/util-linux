@@ -18,8 +18,6 @@ Requires: util-linux-lib = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 Requires: util-linux-locales = %{version}-%{release}
 Requires: util-linux-man = %{version}-%{release}
-Requires: util-linux-python = %{version}-%{release}
-Requires: util-linux-python3 = %{version}-%{release}
 Requires: util-linux-services = %{version}-%{release}
 Requires: util-linux-setuid = %{version}-%{release}
 BuildRequires : Linux-PAM-dev
