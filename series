@@ -2,3 +2,4 @@
 #0002-Clear-out-the-pink-color.patch
 0003-Recommend-1M-topology-size-if-none-set.patch
 0004-Don-t-unparse-UUID-even-if-we-have-libuuid.patch
+trim.patch

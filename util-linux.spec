@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.33
-Release  : 118
+Release  : 119
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
 Summary  : mount library
@@ -49,6 +49,7 @@ BuildRequires : zlib-dev32
 Patch1: 0001-Speed-up-agetty-waits.patch
 Patch2: 0003-Recommend-1M-topology-size-if-none-set.patch
 Patch3: 0004-Don-t-unparse-UUID-even-if-we-have-libuuid.patch
+Patch4: trim.patch
 
 %description
 util-linux
@@ -208,6 +209,7 @@ setuid components for the util-linux package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 pushd ..
 cp -a util-linux-2.33 build32
 popd
@@ -217,7 +219,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1543400684
+export SOURCE_DATE_EPOCH=1546098689
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -269,7 +271,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1543400684
+export SOURCE_DATE_EPOCH=1546098689
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
