@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.33
-Release  : 122
+Release  : 123
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
 Summary  : mount library
@@ -18,6 +18,8 @@ Requires: util-linux-lib = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 Requires: util-linux-locales = %{version}-%{release}
 Requires: util-linux-man = %{version}-%{release}
+Requires: util-linux-python = %{version}-%{release}
+Requires: util-linux-python3 = %{version}-%{release}
 Requires: util-linux-services = %{version}-%{release}
 Requires: util-linux-setuid = %{version}-%{release}
 BuildRequires : Linux-PAM-dev
@@ -50,6 +52,7 @@ Patch1: 0001-Speed-up-agetty-waits.patch
 Patch2: 0003-Recommend-1M-topology-size-if-none-set.patch
 Patch3: 0004-Don-t-unparse-UUID-even-if-we-have-libuuid.patch
 Patch4: trim.patch
+Patch5: blkid-does-not-need-uuid.patch
 
 %description
 util-linux
@@ -210,6 +213,7 @@ setuid components for the util-linux package.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 pushd ..
 cp -a util-linux-2.33 build32
 popd
@@ -219,7 +223,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546538713
+export SOURCE_DATE_EPOCH=1546548682
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -227,7 +231,7 @@ export CFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sect
 export FCFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
-%configure  --disable-use-tty-group \
+%reconfigure  --disable-use-tty-group \
 --disable-makeinstall-chown \
 --disable-makeinstall-setuid \
 --enable-socket-activation \
@@ -238,14 +242,13 @@ export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-
 --disable-plymouth_support \
 PYTHON=/usr/bin/python3
 make  %{?_smp_mflags}
-
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 export ASFLAGS="$ASFLAGS --32"
 export CFLAGS="$CFLAGS -m32"
 export CXXFLAGS="$CXXFLAGS -m32"
 export LDFLAGS="$LDFLAGS -m32"
-%configure  --disable-use-tty-group \
+%reconfigure  --disable-use-tty-group \
 --disable-makeinstall-chown \
 --disable-makeinstall-setuid \
 --enable-socket-activation \
@@ -258,9 +261,10 @@ PYTHON=/usr/bin/python3 --without-ncurses \
 --without-ncursesw \
 --without-systemd \
 --without-python \
---without-tinfo  --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+--without-tinfo --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}
 popd
+
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
@@ -271,7 +275,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1546538713
+export SOURCE_DATE_EPOCH=1546548682
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
@@ -525,17 +529,17 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 
 %files dev
 %defattr(-,root,root,-)
-%exclude /usr/lib64/libblkid.so
-%exclude /usr/lib64/libmount.so
-%exclude /usr/lib64/libuuid.so
 /usr/include/blkid/blkid.h
 /usr/include/libfdisk/libfdisk.h
 /usr/include/libmount/libmount.h
 /usr/include/libsmartcols/libsmartcols.h
 /usr/include/uuid/uuid.h
 /usr/lib64/*.a
+/usr/lib64/libblkid.so
 /usr/lib64/libfdisk.so
+/usr/lib64/libmount.so
 /usr/lib64/libsmartcols.so
+/usr/lib64/libuuid.so
 /usr/lib64/pkgconfig/blkid.pc
 /usr/lib64/pkgconfig/fdisk.pc
 /usr/lib64/pkgconfig/mount.pc

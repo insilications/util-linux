@@ -28,7 +28,7 @@ Configure miss: ncursesw/ncurses.h
 Configure miss: ncursesw/term.h usability
 Configure miss: ncursesw/term.h presence
 Configure miss: ncursesw/term.h
-Configure miss: LIBUSER
+Configure miss: libuser >= 0.58
 Configure miss: whether compiler handles -Wextra-semi
 Configure miss: whether compiler handles -Wembedded-directive
 Configure miss: whether compiler handles -Wformat-security
@@ -53,4 +53,4 @@ Configure miss: timer_create
 Configure miss: rtas_get_sysparm in -lrtas
 Configure miss: union semun
 Configure miss: readline in -lreadline
-Configure miss: LIBUSER
+Configure miss: libuser >= 0.58

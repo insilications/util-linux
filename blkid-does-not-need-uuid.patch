@@ -1,0 +1,14 @@
+--- util-linux-2.33/libblkid/src/Makemodule.am~	2018-09-20 12:38:55.000000000 +0000
++++ util-linux-2.33/libblkid/src/Makemodule.am	2019-01-03 20:41:42.759376692 +0000
+@@ -157,11 +157,6 @@
+ blkid_tests_ldflags =
+ blkid_tests_ldadd   = libblkid.la
+ 
+-if BUILD_LIBUUID
+-blkid_tests_ldflags += libuuid.la
+-blkid_tests_ldadd   += $(LDADD)
+-endif
+-
+ blkid_tests_ldflags += -static
+ 
+ test_blkid_cache_SOURCES = libblkid/src/cache.c
