@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.33
-Release  : 119
+Release  : 120
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
 Summary  : mount library
@@ -50,6 +50,7 @@ Patch1: 0001-Speed-up-agetty-waits.patch
 Patch2: 0003-Recommend-1M-topology-size-if-none-set.patch
 Patch3: 0004-Don-t-unparse-UUID-even-if-we-have-libuuid.patch
 Patch4: trim.patch
+Patch5: static.patch
 
 %description
 util-linux
@@ -210,6 +211,7 @@ setuid components for the util-linux package.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 pushd ..
 cp -a util-linux-2.33 build32
 popd
@@ -219,7 +221,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546098689
+export SOURCE_DATE_EPOCH=1546537668
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -271,7 +273,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1546098689
+export SOURCE_DATE_EPOCH=1546537668
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
@@ -320,7 +322,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %exclude /usr/bin/mkfs.cramfs
 %exclude /usr/bin/mkfs.minix
 %exclude /usr/bin/su
-%exclude /usr/bin/zramctl
 /usr/bin/addpart
 /usr/bin/agetty
 /usr/bin/blkdiscard
@@ -421,6 +422,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/bin/whereis
 /usr/bin/wipefs
 /usr/bin/x86_64
+/usr/bin/zramctl
 
 %files data
 %defattr(-,root,root,-)
@@ -582,7 +584,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %files extras
 %defattr(-,root,root,-)
 /usr/bin/mkfs.cramfs
-/usr/bin/zramctl
 /usr/lib/python3.7/site-packages/libmount/__init__.py
 /usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
 /usr/lib/python3.7/site-packages/libmount/pylibmount.so

@@ -1,5 +1,4 @@
 /usr/bin/mkfs.cramfs
-/usr/bin/zramctl
 /usr/share/bash-completion/completions/addpart
 /usr/share/bash-completion/completions/blkdiscard
 /usr/share/bash-completion/completions/blkid
