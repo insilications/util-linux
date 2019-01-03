@@ -102,6 +102,3 @@
 /usr/lib/python3.7/site-packages/libmount/__pycache__
 /usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
 /usr/lib/python3.7/site-packages/libmount/pylibmount.so
-/usr/lib64/libblkid.so
-/usr/lib64/libmount.so
-/usr/lib64/libuuid.so

@@ -9,3 +9,6 @@
 /usr/bin/fdformat
 /usr/bin/fsck.minix
 /usr/bin/mkfs.minix
+/usr/lib64/libblkid.so
+/usr/lib64/libmount.so
+/usr/lib64/libuuid.so

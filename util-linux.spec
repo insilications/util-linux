@@ -585,9 +585,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/lib/python3.7/site-packages/libmount/__init__.py
 /usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
 /usr/lib/python3.7/site-packages/libmount/pylibmount.so
-/usr/lib64/libblkid.so
-/usr/lib64/libmount.so
-/usr/lib64/libuuid.so
 /usr/share/bash-completion/completions/addpart
 /usr/share/bash-completion/completions/blkdiscard
 /usr/share/bash-completion/completions/blkid
