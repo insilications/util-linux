@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.33
-Release  : 120
+Release  : 121
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
 Summary  : mount library
@@ -50,7 +50,6 @@ Patch1: 0001-Speed-up-agetty-waits.patch
 Patch2: 0003-Recommend-1M-topology-size-if-none-set.patch
 Patch3: 0004-Don-t-unparse-UUID-even-if-we-have-libuuid.patch
 Patch4: trim.patch
-Patch5: static.patch
 
 %description
 util-linux
@@ -211,7 +210,6 @@ setuid components for the util-linux package.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 pushd ..
 cp -a util-linux-2.33 build32
 popd
@@ -221,7 +219,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546537668
+export SOURCE_DATE_EPOCH=1546538713
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -273,7 +271,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1546537668
+export SOURCE_DATE_EPOCH=1546538713
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
@@ -527,17 +525,17 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 
 %files dev
 %defattr(-,root,root,-)
+%exclude /usr/lib64/libblkid.so
+%exclude /usr/lib64/libmount.so
+%exclude /usr/lib64/libuuid.so
 /usr/include/blkid/blkid.h
 /usr/include/libfdisk/libfdisk.h
 /usr/include/libmount/libmount.h
 /usr/include/libsmartcols/libsmartcols.h
 /usr/include/uuid/uuid.h
 /usr/lib64/*.a
-/usr/lib64/libblkid.so
 /usr/lib64/libfdisk.so
-/usr/lib64/libmount.so
 /usr/lib64/libsmartcols.so
-/usr/lib64/libuuid.so
 /usr/lib64/pkgconfig/blkid.pc
 /usr/lib64/pkgconfig/fdisk.pc
 /usr/lib64/pkgconfig/mount.pc
@@ -587,6 +585,9 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/lib/python3.7/site-packages/libmount/__init__.py
 /usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
 /usr/lib/python3.7/site-packages/libmount/pylibmount.so
+/usr/lib64/libblkid.so
+/usr/lib64/libmount.so
+/usr/lib64/libuuid.so
 /usr/share/bash-completion/completions/addpart
 /usr/share/bash-completion/completions/blkdiscard
 /usr/share/bash-completion/completions/blkid
