@@ -11,6 +11,7 @@ Signed-off-by: Ming Chen <ming.a.chen@intel.com>
  [Unit]
 -Description=Discard unused blocks on filesystems from /etc/fstab
 +Description=Discard unused blocks on filesystems
+ Documentation=man:fstrim(8)
  
  [Service]
  Type=oneshot

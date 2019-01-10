@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : util-linux
-Version  : 2.33
-Release  : 125
-URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
-Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.tar.xz
+Version  : 2.33.1
+Release  : 126
+URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.1.tar.xz
+Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.1.tar.xz
 Summary  : mount library
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 ISC LGPL-2.1
@@ -18,6 +18,8 @@ Requires: util-linux-lib = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 Requires: util-linux-locales = %{version}-%{release}
 Requires: util-linux-man = %{version}-%{release}
+Requires: util-linux-python = %{version}-%{release}
+Requires: util-linux-python3 = %{version}-%{release}
 Requires: util-linux-services = %{version}-%{release}
 Requires: util-linux-setuid = %{version}-%{release}
 BuildRequires : Linux-PAM-dev
@@ -206,14 +208,14 @@ setuid components for the util-linux package.
 
 
 %prep
-%setup -q -n util-linux-2.33
+%setup -q -n util-linux-2.33.1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
 pushd ..
-cp -a util-linux-2.33 build32
+cp -a util-linux-2.33.1 build32
 popd
 
 %build
@@ -221,7 +223,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546549840
+export SOURCE_DATE_EPOCH=1547150507
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -242,10 +244,10 @@ PYTHON=/usr/bin/python3
 make  %{?_smp_mflags}
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-export ASFLAGS="$ASFLAGS --32"
-export CFLAGS="$CFLAGS -m32"
-export CXXFLAGS="$CXXFLAGS -m32"
-export LDFLAGS="$LDFLAGS -m32"
+export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
+export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32"
+export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32"
+export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32"
 %reconfigure  --disable-use-tty-group \
 --disable-makeinstall-chown \
 --disable-makeinstall-setuid \
@@ -273,7 +275,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1546549840
+export SOURCE_DATE_EPOCH=1547150507
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
