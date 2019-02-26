@@ -1,12 +1,14 @@
 # This file contains recursive sources that require this package
 OpenSP
 R
+adcli
 alsa-utils
 cockpit
 dstat
 expat
 fakeroot
 git
+git-gui
 gnutls
 gzip
 linux-oracle
@@ -16,9 +18,10 @@ man-pages
 nodejs
 numactl
 ocaml
-octave
+ocamlbuild
 ostree
 quilt
+rsyslog
 shim
 xdg-utils
 xmlto
