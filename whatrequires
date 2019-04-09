@@ -3,6 +3,7 @@ OpenSP
 R
 adcli
 alsa-utils
+calc
 cockpit
 dstat
 expat
@@ -11,6 +12,7 @@ git
 git-gui
 gnutls
 gzip
+libkcapi
 linux-oracle
 linux-tools
 man-db

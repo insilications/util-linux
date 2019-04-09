@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.33.1
-Release  : 132
+Release  : 133
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.1.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.1.tar.xz
 Summary  : mount library
@@ -91,7 +91,6 @@ Group: Development
 Requires: util-linux-lib = %{version}-%{release}
 Requires: util-linux-bin = %{version}-%{release}
 Requires: util-linux-data = %{version}-%{release}
-Requires: util-linux-man = %{version}-%{release}
 Provides: util-linux-devel = %{version}-%{release}
 Requires: util-linux = %{version}-%{release}
 
@@ -206,6 +205,23 @@ Group: Default
 setuid components for the util-linux package.
 
 
+%package staticdev
+Summary: staticdev components for the util-linux package.
+Group: Default
+Requires: util-linux-dev = %{version}-%{release}
+
+%description staticdev
+staticdev components for the util-linux package.
+
+
+%package staticdev32
+Summary: staticdev32 components for the util-linux package.
+Group: Default
+
+%description staticdev32
+staticdev32 components for the util-linux package.
+
+
 %prep
 %setup -q -n util-linux-2.33.1
 %patch1 -p1
@@ -222,7 +238,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551147007
+export SOURCE_DATE_EPOCH=1554836476
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -243,10 +259,10 @@ PYTHON=/usr/bin/python3
 make  %{?_smp_mflags}
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-export ASFLAGS="$ASFLAGS --32"
-export CFLAGS="$CFLAGS -m32"
-export CXXFLAGS="$CXXFLAGS -m32"
-export LDFLAGS="$LDFLAGS -m32"
+export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
+export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32"
+export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32"
+export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32"
 %reconfigure  --disable-use-tty-group \
 --disable-makeinstall-chown \
 --disable-makeinstall-setuid \
@@ -274,7 +290,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1551147007
+export SOURCE_DATE_EPOCH=1554836476
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
@@ -533,7 +549,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/include/libmount/libmount.h
 /usr/include/libsmartcols/libsmartcols.h
 /usr/include/uuid/uuid.h
-/usr/lib64/*.a
 /usr/lib64/libblkid.so
 /usr/lib64/libfdisk.so
 /usr/lib64/libmount.so
@@ -560,7 +575,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 
 %files dev32
 %defattr(-,root,root,-)
-/usr/lib32/*.a
 /usr/lib32/libblkid.so
 /usr/lib32/libfdisk.so
 /usr/lib32/libmount.so
@@ -860,6 +874,22 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %files setuid
 %defattr(-,root,root,-)
 %attr(4755, root, root) /usr/bin/su
+
+%files staticdev
+%defattr(-,root,root,-)
+/usr/lib64/libblkid.a
+/usr/lib64/libfdisk.a
+/usr/lib64/libmount.a
+/usr/lib64/libsmartcols.a
+/usr/lib64/libuuid.a
+
+%files staticdev32
+%defattr(-,root,root,-)
+/usr/lib32/libblkid.a
+/usr/lib32/libfdisk.a
+/usr/lib32/libmount.a
+/usr/lib32/libsmartcols.a
+/usr/lib32/libuuid.a
 
 %files locales -f util-linux.lang
 %defattr(-,root,root,-)
