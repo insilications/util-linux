@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : util-linux
-Version  : 2.33.1
-Release  : 133
-URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.1.tar.xz
-Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.1.tar.xz
+Version  : 2.33.2
+Release  : 134
+URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.2.tar.xz
+Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.2.tar.xz
 Summary  : mount library
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 ISC LGPL-2.1
@@ -20,6 +20,7 @@ Requires: util-linux-locales = %{version}-%{release}
 Requires: util-linux-man = %{version}-%{release}
 Requires: util-linux-services = %{version}-%{release}
 Requires: util-linux-setuid = %{version}-%{release}
+Requires: util-linux-staticdev32 = %{version}-%{release}
 BuildRequires : Linux-PAM-dev
 BuildRequires : Linux-PAM-dev32
 BuildRequires : bison
@@ -223,14 +224,14 @@ staticdev32 components for the util-linux package.
 
 
 %prep
-%setup -q -n util-linux-2.33.1
+%setup -q -n util-linux-2.33.2
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
 pushd ..
-cp -a util-linux-2.33.1 build32
+cp -a util-linux-2.33.2 build32
 popd
 
 %build
@@ -238,7 +239,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554836476
+export SOURCE_DATE_EPOCH=1555007766
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -290,7 +291,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1554836476
+export SOURCE_DATE_EPOCH=1555007766
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
