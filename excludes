@@ -1,6 +1,5 @@
 /usr/share/getopt/getopt-parse.tcsh
 /usr/bin/login
-/usr/share/man/man1/login.1
 /usr/share/doc/util-linux/getopt/getopt-parse.tcsh
 /usr/share/bash-completion/completions/fsck.minix
 /usr/share/bash-completion/completions/rfkill

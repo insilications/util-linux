@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.33.2
-Release  : 136
+Release  : 137
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.2.tar.xz
 Summary  : mount library
@@ -20,7 +20,6 @@ Requires: util-linux-locales = %{version}-%{release}
 Requires: util-linux-man = %{version}-%{release}
 Requires: util-linux-services = %{version}-%{release}
 Requires: util-linux-setuid = %{version}-%{release}
-Requires: util-linux-staticdev32 = %{version}-%{release}
 BuildRequires : Linux-PAM-dev
 BuildRequires : Linux-PAM-dev32
 BuildRequires : bison
@@ -218,6 +217,7 @@ staticdev components for the util-linux package.
 %package staticdev32
 Summary: staticdev32 components for the util-linux package.
 Group: Default
+Requires: util-linux-dev = %{version}-%{release}
 
 %description staticdev32
 staticdev32 components for the util-linux package.
@@ -239,7 +239,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557776789
+export SOURCE_DATE_EPOCH=1559843416
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -291,7 +292,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1557776789
+export SOURCE_DATE_EPOCH=1559843416
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
@@ -741,7 +742,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 
 %files man
 %defattr(0644,root,root,0755)
-%exclude /usr/share/man/man1/login.1
 /usr/share/man/man1/cal.1
 /usr/share/man/man1/choom.1
 /usr/share/man/man1/chrt.1
@@ -763,6 +763,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/share/man/man1/last.1
 /usr/share/man/man1/lastb.1
 /usr/share/man/man1/logger.1
+/usr/share/man/man1/login.1
 /usr/share/man/man1/look.1
 /usr/share/man/man1/lscpu.1
 /usr/share/man/man1/lsipc.1

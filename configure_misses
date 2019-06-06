@@ -1,7 +1,6 @@
 Configure miss: whether compiler handles -Wextra-semi
 Configure miss: whether compiler handles -Wembedded-directive
 Configure miss: whether compiler handles -Wformat-security
-Configure miss: xsltproc
 Configure miss: linux/compiler.h
 Configure miss: asm/io.h usability
 Configure miss: asm/io.h presence
@@ -32,7 +31,6 @@ Configure miss: libuser >= 0.58
 Configure miss: whether compiler handles -Wextra-semi
 Configure miss: whether compiler handles -Wembedded-directive
 Configure miss: whether compiler handles -Wformat-security
-Configure miss: xsltproc
 Configure miss: linux/compiler.h
 Configure miss: asm/io.h usability
 Configure miss: asm/io.h presence
