@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.33.2
-Release  : 137
+Release  : 138
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.2.tar.xz
 Summary  : mount library
@@ -239,7 +239,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1559843416
+export SOURCE_DATE_EPOCH=1559939105
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -292,7 +292,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1559843416
+export SOURCE_DATE_EPOCH=1559939105
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
@@ -336,7 +336,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %exclude /usr/bin/fdformat
 %exclude /usr/bin/fsck.minix
 %exclude /usr/bin/linux32
-%exclude /usr/bin/login
 %exclude /usr/bin/mkfs.bfs
 %exclude /usr/bin/mkfs.cramfs
 %exclude /usr/bin/mkfs.minix
@@ -385,6 +384,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/bin/ldattach
 /usr/bin/linux64
 /usr/bin/logger
+/usr/bin/login
 /usr/bin/look
 /usr/bin/losetup
 /usr/bin/lsblk
