@@ -5,7 +5,6 @@ adcli
 calc
 cockpit
 dstat
-expat
 fakeroot
 git
 git-gui
@@ -21,6 +20,8 @@ numactl
 ocaml
 ocamlbuild
 ostree
+perl-Gtk3-WebKit
+perl-Test-NeedsDisplay
 quilt
 rsyslog
 shim

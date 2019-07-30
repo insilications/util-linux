@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.33.2
-Release  : 139
+Release  : 140
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.2.tar.xz
 Summary  : mount library
@@ -13,7 +13,6 @@ Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 ISC LGPL-2.1
 Requires: util-linux-autostart = %{version}-%{release}
 Requires: util-linux-bin = %{version}-%{release}
-Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-lib = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 Requires: util-linux-locales = %{version}-%{release}
@@ -68,7 +67,6 @@ autostart components for the util-linux package.
 %package bin
 Summary: bin components for the util-linux package.
 Group: Binaries
-Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-setuid = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 Requires: util-linux-services = %{version}-%{release}
@@ -77,20 +75,11 @@ Requires: util-linux-services = %{version}-%{release}
 bin components for the util-linux package.
 
 
-%package data
-Summary: data components for the util-linux package.
-Group: Data
-
-%description data
-data components for the util-linux package.
-
-
 %package dev
 Summary: dev components for the util-linux package.
 Group: Development
 Requires: util-linux-lib = %{version}-%{release}
 Requires: util-linux-bin = %{version}-%{release}
-Requires: util-linux-data = %{version}-%{release}
 Provides: util-linux-devel = %{version}-%{release}
 Requires: util-linux = %{version}-%{release}
 
@@ -103,7 +92,6 @@ Summary: dev32 components for the util-linux package.
 Group: Default
 Requires: util-linux-lib32 = %{version}-%{release}
 Requires: util-linux-bin = %{version}-%{release}
-Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-dev = %{version}-%{release}
 
 %description dev32
@@ -130,7 +118,6 @@ extras components for the util-linux package.
 %package lib
 Summary: lib components for the util-linux package.
 Group: Libraries
-Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 
 %description lib
@@ -140,7 +127,6 @@ lib components for the util-linux package.
 %package lib32
 Summary: lib32 components for the util-linux package.
 Group: Default
-Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 
 %description lib32
@@ -169,24 +155,6 @@ Group: Default
 
 %description man
 man components for the util-linux package.
-
-
-%package python
-Summary: python components for the util-linux package.
-Group: Default
-Requires: util-linux-python3 = %{version}-%{release}
-
-%description python
-python components for the util-linux package.
-
-
-%package python3
-Summary: python3 components for the util-linux package.
-Group: Default
-Requires: python3-core
-
-%description python3
-python3 components for the util-linux package.
 
 
 %package services
@@ -238,8 +206,8 @@ popd
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1559939105
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1564461445
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -283,7 +251,7 @@ make  %{?_smp_mflags}
 popd
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -292,7 +260,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1559939105
+export SOURCE_DATE_EPOCH=1564461445
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
@@ -316,6 +284,16 @@ fi
 popd
 %make_install
 %find_lang util-linux
+## Remove excluded files
+rm -f %{buildroot}/usr/share/getopt/getopt-parse.tcsh
+rm -f %{buildroot}/usr/share/doc/util-linux/getopt/getopt-parse.tcsh
+rm -f %{buildroot}/usr/share/bash-completion/completions/fsck.minix
+rm -f %{buildroot}/usr/share/bash-completion/completions/rfkill
+rm -f %{buildroot}/usr/bin/mkfs.bfs
+rm -f %{buildroot}/usr/bin/linux32
+rm -f %{buildroot}/usr/bin/fdformat
+rm -f %{buildroot}/usr/bin/fsck.minix
+rm -f %{buildroot}/usr/bin/mkfs.minix
 ## install_append content
 mkdir %{buildroot}/usr/lib/systemd/system/sockets.target.wants
 ln -s ../uuidd.socket %{buildroot}/usr/lib/systemd/system/sockets.target.wants/uuidd.socket
@@ -333,13 +311,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/fdformat
-%exclude /usr/bin/fsck.minix
-%exclude /usr/bin/linux32
-%exclude /usr/bin/mkfs.bfs
-%exclude /usr/bin/mkfs.cramfs
-%exclude /usr/bin/mkfs.minix
-%exclude /usr/bin/su
 /usr/bin/addpart
 /usr/bin/agetty
 /usr/bin/blkdiscard
@@ -443,107 +414,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/bin/x86_64
 /usr/bin/zramctl
 
-%files data
-%defattr(-,root,root,-)
-%exclude /usr/share/bash-completion/completions/addpart
-%exclude /usr/share/bash-completion/completions/blkdiscard
-%exclude /usr/share/bash-completion/completions/blkid
-%exclude /usr/share/bash-completion/completions/blkzone
-%exclude /usr/share/bash-completion/completions/blockdev
-%exclude /usr/share/bash-completion/completions/cal
-%exclude /usr/share/bash-completion/completions/cfdisk
-%exclude /usr/share/bash-completion/completions/chcpu
-%exclude /usr/share/bash-completion/completions/chmem
-%exclude /usr/share/bash-completion/completions/chrt
-%exclude /usr/share/bash-completion/completions/col
-%exclude /usr/share/bash-completion/completions/colcrt
-%exclude /usr/share/bash-completion/completions/colrm
-%exclude /usr/share/bash-completion/completions/column
-%exclude /usr/share/bash-completion/completions/ctrlaltdel
-%exclude /usr/share/bash-completion/completions/delpart
-%exclude /usr/share/bash-completion/completions/dmesg
-%exclude /usr/share/bash-completion/completions/eject
-%exclude /usr/share/bash-completion/completions/fallocate
-%exclude /usr/share/bash-completion/completions/fdformat
-%exclude /usr/share/bash-completion/completions/fdisk
-%exclude /usr/share/bash-completion/completions/fincore
-%exclude /usr/share/bash-completion/completions/findfs
-%exclude /usr/share/bash-completion/completions/findmnt
-%exclude /usr/share/bash-completion/completions/flock
-%exclude /usr/share/bash-completion/completions/fsck
-%exclude /usr/share/bash-completion/completions/fsck.cramfs
-%exclude /usr/share/bash-completion/completions/fsck.minix
-%exclude /usr/share/bash-completion/completions/fsfreeze
-%exclude /usr/share/bash-completion/completions/fstrim
-%exclude /usr/share/bash-completion/completions/getopt
-%exclude /usr/share/bash-completion/completions/hexdump
-%exclude /usr/share/bash-completion/completions/hwclock
-%exclude /usr/share/bash-completion/completions/ionice
-%exclude /usr/share/bash-completion/completions/ipcmk
-%exclude /usr/share/bash-completion/completions/ipcrm
-%exclude /usr/share/bash-completion/completions/ipcs
-%exclude /usr/share/bash-completion/completions/isosize
-%exclude /usr/share/bash-completion/completions/last
-%exclude /usr/share/bash-completion/completions/ldattach
-%exclude /usr/share/bash-completion/completions/logger
-%exclude /usr/share/bash-completion/completions/look
-%exclude /usr/share/bash-completion/completions/losetup
-%exclude /usr/share/bash-completion/completions/lsblk
-%exclude /usr/share/bash-completion/completions/lscpu
-%exclude /usr/share/bash-completion/completions/lsipc
-%exclude /usr/share/bash-completion/completions/lslocks
-%exclude /usr/share/bash-completion/completions/lslogins
-%exclude /usr/share/bash-completion/completions/lsmem
-%exclude /usr/share/bash-completion/completions/lsns
-%exclude /usr/share/bash-completion/completions/mcookie
-%exclude /usr/share/bash-completion/completions/mesg
-%exclude /usr/share/bash-completion/completions/mkfs
-%exclude /usr/share/bash-completion/completions/mkfs.bfs
-%exclude /usr/share/bash-completion/completions/mkfs.cramfs
-%exclude /usr/share/bash-completion/completions/mkfs.minix
-%exclude /usr/share/bash-completion/completions/mkswap
-%exclude /usr/share/bash-completion/completions/more
-%exclude /usr/share/bash-completion/completions/mount
-%exclude /usr/share/bash-completion/completions/mountpoint
-%exclude /usr/share/bash-completion/completions/namei
-%exclude /usr/share/bash-completion/completions/nsenter
-%exclude /usr/share/bash-completion/completions/partx
-%exclude /usr/share/bash-completion/completions/pivot_root
-%exclude /usr/share/bash-completion/completions/prlimit
-%exclude /usr/share/bash-completion/completions/raw
-%exclude /usr/share/bash-completion/completions/readprofile
-%exclude /usr/share/bash-completion/completions/rename
-%exclude /usr/share/bash-completion/completions/renice
-%exclude /usr/share/bash-completion/completions/resizepart
-%exclude /usr/share/bash-completion/completions/rev
-%exclude /usr/share/bash-completion/completions/rfkill
-%exclude /usr/share/bash-completion/completions/rtcwake
-%exclude /usr/share/bash-completion/completions/runuser
-%exclude /usr/share/bash-completion/completions/script
-%exclude /usr/share/bash-completion/completions/scriptreplay
-%exclude /usr/share/bash-completion/completions/setarch
-%exclude /usr/share/bash-completion/completions/setpriv
-%exclude /usr/share/bash-completion/completions/setsid
-%exclude /usr/share/bash-completion/completions/setterm
-%exclude /usr/share/bash-completion/completions/sfdisk
-%exclude /usr/share/bash-completion/completions/su
-%exclude /usr/share/bash-completion/completions/swaplabel
-%exclude /usr/share/bash-completion/completions/swapoff
-%exclude /usr/share/bash-completion/completions/swapon
-%exclude /usr/share/bash-completion/completions/taskset
-%exclude /usr/share/bash-completion/completions/ul
-%exclude /usr/share/bash-completion/completions/umount
-%exclude /usr/share/bash-completion/completions/unshare
-%exclude /usr/share/bash-completion/completions/utmpdump
-%exclude /usr/share/bash-completion/completions/uuidd
-%exclude /usr/share/bash-completion/completions/uuidgen
-%exclude /usr/share/bash-completion/completions/uuidparse
-%exclude /usr/share/bash-completion/completions/wall
-%exclude /usr/share/bash-completion/completions/wdctl
-%exclude /usr/share/bash-completion/completions/whereis
-%exclude /usr/share/bash-completion/completions/wipefs
-%exclude /usr/share/bash-completion/completions/zramctl
-
 %files dev
 %defattr(-,root,root,-)
 /usr/include/blkid/blkid.h
@@ -596,7 +466,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %files doc
 %defattr(0644,root,root,0755)
 %doc /usr/share/doc/util\-linux/*
-%exclude /usr/share/doc/util-linux/getopt/getopt-parse.tcsh
 
 %files extras
 %defattr(-,root,root,-)
@@ -854,15 +723,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/share/man/man8/wipefs.8
 /usr/share/man/man8/x86_64.8
 /usr/share/man/man8/zramctl.8
-
-%files python
-%defattr(-,root,root,-)
-
-%files python3
-%defattr(-,root,root,-)
-%exclude /usr/lib/python3.7/site-packages/libmount/__init__.py
-%exclude /usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
-%exclude /usr/lib/python3.7/site-packages/libmount/pylibmount.so
 
 %files services
 %defattr(-,root,root,-)
