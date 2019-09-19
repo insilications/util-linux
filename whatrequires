@@ -2,14 +2,17 @@
 OpenSP
 R
 adcli
+binutils
 calc
 cockpit
 dstat
+elfutils
 fakeroot
 git
 git-gui
 gnutls
 gzip
+hyperscan
 libkcapi
 linux-oracle
 linux-tools
@@ -19,6 +22,8 @@ nodejs
 numactl
 ocaml
 ocamlbuild
+octave
+openvswitch
 ostree
 perl-Gtk3-WebKit
 perl-Test-NeedsDisplay
