@@ -8,6 +8,7 @@ cockpit
 dstat
 elfutils
 fakeroot
+gcc
 git
 git-gui
 gnutls

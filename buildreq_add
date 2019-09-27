@@ -3,7 +3,6 @@
 # desirable. One name per line, no whitespace.
 #
 Linux-PAM-dev
-python-dev
 libcap-ng-dev
 zlib-dev
 e2fsprogs
