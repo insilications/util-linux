@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.33.2
-Release  : 142
+Release  : 143
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.33/util-linux-2.33.2.tar.xz
 Summary  : mount library
@@ -206,7 +206,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569618712
+export SOURCE_DATE_EPOCH=1571206407
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -259,19 +259,19 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1569618712
+export SOURCE_DATE_EPOCH=1571206407
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
-cp COPYING %{buildroot}/usr/share/package-licenses/util-linux/COPYING
-cp Documentation/licenses/COPYING.BSD-3-Clause %{buildroot}/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.BSD-3-Clause
-cp Documentation/licenses/COPYING.BSD-4-Clause-UC %{buildroot}/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.BSD-4-Clause-UC
-cp Documentation/licenses/COPYING.GPL-2.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.GPL-2.0-or-later
-cp Documentation/licenses/COPYING.ISC %{buildroot}/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.ISC
-cp Documentation/licenses/COPYING.LGPL-2.1-or-later %{buildroot}/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.LGPL-2.1-or-later
-cp libblkid/COPYING %{buildroot}/usr/share/package-licenses/util-linux/libblkid_COPYING
-cp libfdisk/COPYING %{buildroot}/usr/share/package-licenses/util-linux/libfdisk_COPYING
-cp libmount/COPYING %{buildroot}/usr/share/package-licenses/util-linux/libmount_COPYING
-cp libsmartcols/COPYING %{buildroot}/usr/share/package-licenses/util-linux/libsmartcols_COPYING
+cp %{_builddir}/util-linux-2.33.2/COPYING %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/util-linux-2.33.2/Documentation/licenses/COPYING.BSD-3-Clause %{buildroot}/usr/share/package-licenses/util-linux/e5c9f3867b9251dcd2d97a4d1dffaa38afe6625d
+cp %{_builddir}/util-linux-2.33.2/Documentation/licenses/COPYING.BSD-4-Clause-UC %{buildroot}/usr/share/package-licenses/util-linux/8afe522e7c956a6c19914cd5ffea17a0aa2e4bc7
+cp %{_builddir}/util-linux-2.33.2/Documentation/licenses/COPYING.GPL-2.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/util-linux-2.33.2/Documentation/licenses/COPYING.ISC %{buildroot}/usr/share/package-licenses/util-linux/fca052e126f39e97d69d000644b7a462f215c125
+cp %{_builddir}/util-linux-2.33.2/Documentation/licenses/COPYING.LGPL-2.1-or-later %{buildroot}/usr/share/package-licenses/util-linux/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/util-linux-2.33.2/libblkid/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
+cp %{_builddir}/util-linux-2.33.2/libfdisk/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
+cp %{_builddir}/util-linux-2.33.2/libmount/COPYING %{buildroot}/usr/share/package-licenses/util-linux/66319e97eda8747087e9c5292f31c8bc5153c3c8
+cp %{_builddir}/util-linux-2.33.2/libsmartcols/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -597,16 +597,13 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/util-linux/COPYING
-/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.BSD-3-Clause
-/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.BSD-4-Clause-UC
-/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.GPL-2.0-or-later
-/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.ISC
-/usr/share/package-licenses/util-linux/Documentation_licenses_COPYING.LGPL-2.1-or-later
-/usr/share/package-licenses/util-linux/libblkid_COPYING
-/usr/share/package-licenses/util-linux/libfdisk_COPYING
-/usr/share/package-licenses/util-linux/libmount_COPYING
-/usr/share/package-licenses/util-linux/libsmartcols_COPYING
+/usr/share/package-licenses/util-linux/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/util-linux/66319e97eda8747087e9c5292f31c8bc5153c3c8
+/usr/share/package-licenses/util-linux/8afe522e7c956a6c19914cd5ffea17a0aa2e4bc7
+/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
+/usr/share/package-licenses/util-linux/e5c9f3867b9251dcd2d97a4d1dffaa38afe6625d
+/usr/share/package-licenses/util-linux/fca052e126f39e97d69d000644b7a462f215c125
 
 %files man
 %defattr(0644,root,root,0755)
