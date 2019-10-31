@@ -17,3 +17,4 @@ python-$PYTHON_VERSION
 32ncursesw
 32tinfo
 32systemd
+32libpcre2-8

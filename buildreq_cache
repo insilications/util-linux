@@ -1,4 +1,5 @@
-2.33.2
+2.34
 bison
 pkg-config
 readline-dev
+util-linux

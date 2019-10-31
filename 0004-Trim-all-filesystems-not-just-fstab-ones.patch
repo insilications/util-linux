@@ -1,0 +1,29 @@
+From ec8b9db34a67842bf5eb7195b4b2fcf6243ed1c5 Mon Sep 17 00:00:00 2001
+From: Auke Kok <auke-jan.h.kok@intel.com>
+Date: Thu, 31 Oct 2019 13:50:33 -0700
+Subject: [PATCH] Trim all filesystems, not just fstab ones.
+
+---
+ sys-utils/fstrim.service.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sys-utils/fstrim.service.in b/sys-utils/fstrim.service.in
+index 516023e..b006557 100644
+--- a/sys-utils/fstrim.service.in
++++ b/sys-utils/fstrim.service.in
+@@ -1,10 +1,10 @@
+ [Unit]
+-Description=Discard unused blocks on filesystems from /etc/fstab
++Description=Discard unused blocks on filesystems
+ Documentation=man:fstrim(8)
+ 
+ [Service]
+ Type=oneshot
+-ExecStart=@sbindir@/fstrim --fstab --verbose --quiet
++ExecStart=@sbindir@/fstrim --all --verbose --quiet
+ ProtectSystem=strict
+ ProtectHome=yes
+ PrivateDevices=no
+-- 
+2.23.0
+

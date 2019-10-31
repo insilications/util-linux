@@ -1,10 +1,8 @@
 --disable-use-tty-group
 --disable-makeinstall-chown
 --disable-makeinstall-setuid
---enable-socket-activation
 --disable-kill
 --disable-chfn-chsh
 --disable-nologin
---enable-libmount-force-mountinfo
 --disable-plymouth_support
 PYTHON=/usr/bin/python3

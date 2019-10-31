@@ -3,3 +3,4 @@
 --without-systemd
 --without-python
 --without-tinfo
+--disable-hardlink
