@@ -96,9 +96,9 @@
 /usr/share/bash-completion/completions/wipefs
 /usr/share/bash-completion/completions/zramctl
 /usr/share/bash-completion/completions/blkzone
-/usr/lib/python3.7/site-packages
-/usr/lib/python3.7/site-packages/libmount
-/usr/lib/python3.7/site-packages/libmount/__init__.py
-/usr/lib/python3.7/site-packages/libmount/__pycache__
-/usr/lib/python3.7/site-packages/libmount/__pycache__/__init__.cpython-37.pyc
-/usr/lib/python3.7/site-packages/libmount/pylibmount.so
+/usr/lib/python3.8/site-packages
+/usr/lib/python3.8/site-packages/libmount
+/usr/lib/python3.8/site-packages/libmount/__init__.py
+/usr/lib/python3.8/site-packages/libmount/__pycache__
+/usr/lib/python3.8/site-packages/libmount/__pycache__/__init__.cpython-38.pyc
+/usr/lib/python3.8/site-packages/libmount/pylibmount.so
