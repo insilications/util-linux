@@ -14,9 +14,12 @@ Configure miss: linux/fs.h
 Configure miss: security/openpam.h
 Configure miss: fpurge
 Configure miss: llseek
+Configure miss: pidfd_open
+Configure miss: pidfd_send_signal
 Configure miss: setprogname
 Configure miss: sched_setattr
 Configure miss: strnchr
+Configure miss: syscall pidfd_open
 Configure miss: timer_create
 Configure miss: rtas_get_sysparm in -lrtas
 Configure miss: union semun
@@ -44,9 +47,12 @@ Configure miss: linux/fs.h
 Configure miss: security/openpam.h
 Configure miss: fpurge
 Configure miss: llseek
+Configure miss: pidfd_open
+Configure miss: pidfd_send_signal
 Configure miss: setprogname
 Configure miss: sched_setattr
 Configure miss: strnchr
+Configure miss: syscall pidfd_open
 Configure miss: timer_create
 Configure miss: rtas_get_sysparm in -lrtas
 Configure miss: union semun

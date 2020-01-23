@@ -122,6 +122,7 @@ libfdisk.so.1:FDISK_2.30
 libfdisk.so.1:FDISK_2.31
 libfdisk.so.1:FDISK_2.32
 libfdisk.so.1:FDISK_2.33
+libfdisk.so.1:FDISK_2.35
 libfdisk.so.1:fdisk_add_partition
 libfdisk.so.1:fdisk_align_lba
 libfdisk.so.1:fdisk_align_lba_in_range
@@ -157,6 +158,7 @@ libfdisk.so.1:fdisk_ask_yesno
 libfdisk.so.1:fdisk_ask_yesno_get_result
 libfdisk.so.1:fdisk_ask_yesno_set_result
 libfdisk.so.1:fdisk_assign_device
+libfdisk.so.1:fdisk_assign_device_by_fd
 libfdisk.so.1:fdisk_bsd_edit_disklabel
 libfdisk.so.1:fdisk_bsd_link_partition
 libfdisk.so.1:fdisk_bsd_write_bootstrap
@@ -351,6 +353,7 @@ libfdisk.so.1:fdisk_script_read_file
 libfdisk.so.1:fdisk_script_read_line
 libfdisk.so.1:fdisk_script_set_fgets
 libfdisk.so.1:fdisk_script_set_header
+libfdisk.so.1:fdisk_script_set_table
 libfdisk.so.1:fdisk_script_set_userdata
 libfdisk.so.1:fdisk_script_write_file
 libfdisk.so.1:fdisk_set_ask
@@ -404,6 +407,7 @@ libmount.so.1:MOUNT_2.28
 libmount.so.1:MOUNT_2.30
 libmount.so.1:MOUNT_2.33
 libmount.so.1:MOUNT_2.34
+libmount.so.1:MOUNT_2_35
 libmount.so.1:mnt_cache_device_has_tag
 libmount.so.1:mnt_cache_find_tag_value
 libmount.so.1:mnt_cache_read_tags
@@ -428,6 +432,7 @@ libmount.so.1:mnt_context_enable_verbose
 libmount.so.1:mnt_context_finalize_mount
 libmount.so.1:mnt_context_finalize_umount
 libmount.so.1:mnt_context_find_umount_fs
+libmount.so.1:mnt_context_force_unrestricted
 libmount.so.1:mnt_context_forced_rdonly
 libmount.so.1:mnt_context_get_cache
 libmount.so.1:mnt_context_get_excode
@@ -450,6 +455,7 @@ libmount.so.1:mnt_context_get_syscall_errno
 libmount.so.1:mnt_context_get_table
 libmount.so.1:mnt_context_get_target
 libmount.so.1:mnt_context_get_target_ns
+libmount.so.1:mnt_context_get_target_prefix
 libmount.so.1:mnt_context_get_user_mflags
 libmount.so.1:mnt_context_helper_executed
 libmount.so.1:mnt_context_helper_setopt
@@ -494,6 +500,7 @@ libmount.so.1:mnt_context_set_syscall_status
 libmount.so.1:mnt_context_set_tables_errcb
 libmount.so.1:mnt_context_set_target
 libmount.so.1:mnt_context_set_target_ns
+libmount.so.1:mnt_context_set_target_prefix
 libmount.so.1:mnt_context_set_user_mflags
 libmount.so.1:mnt_context_strerror
 libmount.so.1:mnt_context_switch_ns
@@ -703,6 +710,7 @@ libsmartcols.so.1:SMARTCOLS_2.30
 libsmartcols.so.1:SMARTCOLS_2.31
 libsmartcols.so.1:SMARTCOLS_2.33
 libsmartcols.so.1:SMARTCOLS_2.34
+libsmartcols.so.1:SMARTCOLS_2.35
 libsmartcols.so.1:scols_cell_copy_content
 libsmartcols.so.1:scols_cell_get_alignment
 libsmartcols.so.1:scols_cell_get_color
@@ -803,6 +811,7 @@ libsmartcols.so.1:scols_table_enable_export
 libsmartcols.so.1:scols_table_enable_header_repeat
 libsmartcols.so.1:scols_table_enable_json
 libsmartcols.so.1:scols_table_enable_maxout
+libsmartcols.so.1:scols_table_enable_minout
 libsmartcols.so.1:scols_table_enable_noencoding
 libsmartcols.so.1:scols_table_enable_noheadings
 libsmartcols.so.1:scols_table_enable_nolinesep
@@ -828,6 +837,7 @@ libsmartcols.so.1:scols_table_is_export
 libsmartcols.so.1:scols_table_is_header_repeat
 libsmartcols.so.1:scols_table_is_json
 libsmartcols.so.1:scols_table_is_maxout
+libsmartcols.so.1:scols_table_is_minout
 libsmartcols.so.1:scols_table_is_noencoding
 libsmartcols.so.1:scols_table_is_noheadings
 libsmartcols.so.1:scols_table_is_nolinesep
@@ -847,6 +857,7 @@ libsmartcols.so.1:scols_table_remove_columns
 libsmartcols.so.1:scols_table_remove_line
 libsmartcols.so.1:scols_table_remove_lines
 libsmartcols.so.1:scols_table_set_column_separator
+libsmartcols.so.1:scols_table_set_columns_iter
 libsmartcols.so.1:scols_table_set_default_symbols
 libsmartcols.so.1:scols_table_set_line_separator
 libsmartcols.so.1:scols_table_set_name

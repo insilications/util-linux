@@ -18,3 +18,4 @@ python-$PYTHON_VERSION
 32tinfo
 32systemd
 32libpcre2-8
+32libcryptsetup

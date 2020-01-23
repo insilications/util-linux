@@ -8,22 +8,20 @@ Subject: [PATCH] Trim all filesystems, not just fstab ones.
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/sys-utils/fstrim.service.in b/sys-utils/fstrim.service.in
-index 516023e..b006557 100644
+index a8b6317..6e17ac7 100644
 --- a/sys-utils/fstrim.service.in
 +++ b/sys-utils/fstrim.service.in
-@@ -1,10 +1,10 @@
+@@ -1,11 +1,11 @@
  [Unit]
 -Description=Discard unused blocks on filesystems from /etc/fstab
 +Description=Discard unused blocks on filesystems
  Documentation=man:fstrim(8)
+ ConditionVirtualization=!container
  
  [Service]
  Type=oneshot
 -ExecStart=@sbindir@/fstrim --fstab --verbose --quiet
 +ExecStart=@sbindir@/fstrim --all --verbose --quiet
  ProtectSystem=strict
- ProtectHome=yes
+ ProtectHome=read-only
  PrivateDevices=no
--- 
-2.23.0
-

@@ -4,15 +4,16 @@
 #
 %define keepstatic 1
 Name     : util-linux
-Version  : 2.34
-Release  : 147
-URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.34/util-linux-2.34.tar.xz
-Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.34/util-linux-2.34.tar.xz
+Version  : 2.35
+Release  : 149
+URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.35/util-linux-2.35.tar.xz
+Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.35/util-linux-2.35.tar.xz
 Summary  : mount library
 Group    : Development/Tools
-License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 ISC LGPL-2.1
+License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 GPL-3.0 ISC LGPL-2.1
 Requires: util-linux-autostart = %{version}-%{release}
 Requires: util-linux-bin = %{version}-%{release}
+Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-lib = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 Requires: util-linux-locales = %{version}-%{release}
@@ -36,6 +37,7 @@ BuildRequires : libcap-ng-dev32
 BuildRequires : ncurses-dev
 BuildRequires : ncurses-dev32
 BuildRequires : pkg-config
+BuildRequires : pkgconfig(libcryptsetup)
 BuildRequires : pkgconfig(libpcre2-8)
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(tinfow)
@@ -43,7 +45,6 @@ BuildRequires : procps-ng
 BuildRequires : python3-dev
 BuildRequires : readline-dev
 BuildRequires : systemd-dev32
-BuildRequires : util-linux
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
 Patch1: 0001-Speed-up-agetty-waits.patch
@@ -66,6 +67,7 @@ autostart components for the util-linux package.
 %package bin
 Summary: bin components for the util-linux package.
 Group: Binaries
+Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-setuid = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 Requires: util-linux-services = %{version}-%{release}
@@ -74,11 +76,20 @@ Requires: util-linux-services = %{version}-%{release}
 bin components for the util-linux package.
 
 
+%package data
+Summary: data components for the util-linux package.
+Group: Data
+
+%description data
+data components for the util-linux package.
+
+
 %package dev
 Summary: dev components for the util-linux package.
 Group: Development
 Requires: util-linux-lib = %{version}-%{release}
 Requires: util-linux-bin = %{version}-%{release}
+Requires: util-linux-data = %{version}-%{release}
 Provides: util-linux-devel = %{version}-%{release}
 Requires: util-linux = %{version}-%{release}
 
@@ -91,6 +102,7 @@ Summary: dev32 components for the util-linux package.
 Group: Default
 Requires: util-linux-lib32 = %{version}-%{release}
 Requires: util-linux-bin = %{version}-%{release}
+Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-dev = %{version}-%{release}
 
 %description dev32
@@ -117,6 +129,7 @@ extras components for the util-linux package.
 %package lib
 Summary: lib components for the util-linux package.
 Group: Libraries
+Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 
 %description lib
@@ -126,6 +139,7 @@ lib components for the util-linux package.
 %package lib32
 Summary: lib32 components for the util-linux package.
 Group: Default
+Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-license = %{version}-%{release}
 
 %description lib32
@@ -191,13 +205,13 @@ staticdev32 components for the util-linux package.
 
 
 %prep
-%setup -q -n util-linux-2.34
-cd %{_builddir}/util-linux-2.34
+%setup -q -n util-linux-2.35
+cd %{_builddir}/util-linux-2.35
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 pushd ..
-cp -a util-linux-2.34 build32
+cp -a util-linux-2.35 build32
 popd
 
 %build
@@ -205,7 +219,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574292540
+export SOURCE_DATE_EPOCH=1579820155
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -255,19 +269,20 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1574292540
+export SOURCE_DATE_EPOCH=1579820155
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
-cp %{_builddir}/util-linux-2.34/COPYING %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/util-linux-2.34/Documentation/licenses/COPYING.BSD-3-Clause %{buildroot}/usr/share/package-licenses/util-linux/e5c9f3867b9251dcd2d97a4d1dffaa38afe6625d
-cp %{_builddir}/util-linux-2.34/Documentation/licenses/COPYING.BSD-4-Clause-UC %{buildroot}/usr/share/package-licenses/util-linux/8afe522e7c956a6c19914cd5ffea17a0aa2e4bc7
-cp %{_builddir}/util-linux-2.34/Documentation/licenses/COPYING.GPL-2.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/util-linux-2.34/Documentation/licenses/COPYING.ISC %{buildroot}/usr/share/package-licenses/util-linux/fca052e126f39e97d69d000644b7a462f215c125
-cp %{_builddir}/util-linux-2.34/Documentation/licenses/COPYING.LGPL-2.1-or-later %{buildroot}/usr/share/package-licenses/util-linux/01a6b4bf79aca9b556822601186afab86e8c4fbf
-cp %{_builddir}/util-linux-2.34/libblkid/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
-cp %{_builddir}/util-linux-2.34/libfdisk/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
-cp %{_builddir}/util-linux-2.34/libmount/COPYING %{buildroot}/usr/share/package-licenses/util-linux/66319e97eda8747087e9c5292f31c8bc5153c3c8
-cp %{_builddir}/util-linux-2.34/libsmartcols/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
+cp %{_builddir}/util-linux-2.35/COPYING %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/util-linux-2.35/Documentation/licenses/COPYING.BSD-3-Clause %{buildroot}/usr/share/package-licenses/util-linux/e5c9f3867b9251dcd2d97a4d1dffaa38afe6625d
+cp %{_builddir}/util-linux-2.35/Documentation/licenses/COPYING.BSD-4-Clause-UC %{buildroot}/usr/share/package-licenses/util-linux/8afe522e7c956a6c19914cd5ffea17a0aa2e4bc7
+cp %{_builddir}/util-linux-2.35/Documentation/licenses/COPYING.GPL-2.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/util-linux-2.35/Documentation/licenses/COPYING.GPL-3.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/31a3d460bb3c7d98845187c716a30db81c44b615
+cp %{_builddir}/util-linux-2.35/Documentation/licenses/COPYING.ISC %{buildroot}/usr/share/package-licenses/util-linux/fca052e126f39e97d69d000644b7a462f215c125
+cp %{_builddir}/util-linux-2.35/Documentation/licenses/COPYING.LGPL-2.1-or-later %{buildroot}/usr/share/package-licenses/util-linux/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/util-linux-2.35/libblkid/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
+cp %{_builddir}/util-linux-2.35/libfdisk/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
+cp %{_builddir}/util-linux-2.35/libmount/COPYING %{buildroot}/usr/share/package-licenses/util-linux/66319e97eda8747087e9c5292f31c8bc5153c3c8
+cp %{_builddir}/util-linux-2.35/libsmartcols/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -383,6 +398,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/bin/rtcwake
 /usr/bin/runuser
 /usr/bin/script
+/usr/bin/scriptlive
 /usr/bin/scriptreplay
 /usr/bin/setarch
 /usr/bin/setpriv
@@ -409,6 +425,10 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/bin/wipefs
 /usr/bin/x86_64
 /usr/bin/zramctl
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/bash-completion/completions/scriptlive
 
 %files dev
 %defattr(-,root,root,-)
@@ -595,6 +615,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/util-linux/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/util-linux/31a3d460bb3c7d98845187c716a30db81c44b615
 /usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
 /usr/share/package-licenses/util-linux/66319e97eda8747087e9c5292f31c8bc5153c3c8
 /usr/share/package-licenses/util-linux/8afe522e7c956a6c19914cd5ffea17a0aa2e4bc7
@@ -644,6 +665,7 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/share/man/man1/rev.1
 /usr/share/man/man1/runuser.1
 /usr/share/man/man1/script.1
+/usr/share/man/man1/scriptlive.1
 /usr/share/man/man1/scriptreplay.1
 /usr/share/man/man1/setpriv.1
 /usr/share/man/man1/setsid.1
