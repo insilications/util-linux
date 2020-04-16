@@ -2,3 +2,4 @@
 #0002-Clear-out-the-pink-color.patch
 0003-Recommend-1M-topology-size-if-none-set.patch
 0004-Trim-all-filesystems-not-just-fstab-ones.patch
+cd781c405be82540484da3bfe3d3f17a39b8eb5c.patch
