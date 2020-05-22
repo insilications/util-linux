@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.35.1
-Release  : 151
+Release  : 152
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.35/util-linux-2.35.1.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.35/util-linux-2.35.1.tar.xz
 Summary  : mount library
