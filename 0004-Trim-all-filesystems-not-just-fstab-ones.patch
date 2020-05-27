@@ -22,6 +22,6 @@ index a8b6317..6e17ac7 100644
  Type=oneshot
 -ExecStart=@sbindir@/fstrim --fstab --verbose --quiet
 +ExecStart=@sbindir@/fstrim --all --verbose --quiet
- ProtectSystem=strict
- ProtectHome=read-only
  PrivateDevices=no
+ PrivateNetwork=yes
+ PrivateUsers=no
