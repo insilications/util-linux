@@ -1,16 +1,17 @@
-#
-# This file contains extra pkgconfig build requirements that don't get picked up but are 
-# desirable. One name per line, no whitespace.
-#
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
 Linux-PAM-dev
-libcap-ng-dev
-zlib-dev
-e2fsprogs
-procps-ng
 Linux-PAM-dev32
-zlib-dev32
+bison
+e2fsprogs
+libcap-ng-dev
 libcap-ng-dev32
-ncurses-dev32
 ncurses-dev
+ncurses-dev32
+pkg-config
+procps-ng
 python3-dev
+readline-dev
 systemd-dev32
+zlib-dev
+zlib-dev32

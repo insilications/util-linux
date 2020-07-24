@@ -1,10 +1,14 @@
-util-linux 2.35.2: May 20 2020
-* see Documentation/releases/v2.35.2-ReleaseNotes or the complete changelog at
-  https://www.kernel.org/pub/linux/utils/util-linux/v2.35/v2.35.2-ChangeLog
+util-linux 2.36: Jul 23 2020
+* see Documentation/releases/v2.36-ReleaseNotes or the complete changelog at
+  https://www.kernel.org/pub/linux/utils/util-linux/v2.36/v2.36-ChangeLog
 
-util-linux 2.35.1: Jan 31 2020
-* see Documentation/releases/v2.35.1-ReleaseNotes or the complete changelog at
-  https://www.kernel.org/pub/linux/utils/util-linux/v2.35/v2.35.1-ChangeLog
+util-linux 2.36-rc2: Jul 09 2020
+* see Documentation/releases/v2.36-ReleaseNotes or the complete changelog at
+  https://www.kernel.org/pub/linux/utils/util-linux/v2.36/v2.36-rc2-ChangeLog
+
+util-linux 2.36-rc1: Jun 09 2020
+* see Documentation/releases/v2.36-ReleaseNotes or the complete changelog at
+  https://www.kernel.org/pub/linux/utils/util-linux/v2.36/v2.36-rc1-ChangeLog
 
 util-linux 2.35: Jan 21 2020
 * see Documentation/releases/v2.35-ReleaseNotes or the complete changelog at

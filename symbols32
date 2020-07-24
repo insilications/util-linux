@@ -8,6 +8,7 @@ libblkid.so.1:BLKID_2.23
 libblkid.so.1:BLKID_2.25
 libblkid.so.1:BLKID_2.30
 libblkid.so.1:BLKID_2_31
+libblkid.so.1:BLKID_2_36
 libblkid.so.1:blkid_dev_devname
 libblkid.so.1:blkid_dev_has_tag
 libblkid.so.1:blkid_dev_iterate_begin
@@ -109,6 +110,7 @@ libblkid.so.1:blkid_tag_iterate_begin
 libblkid.so.1:blkid_tag_iterate_end
 libblkid.so.1:blkid_tag_next
 libblkid.so.1:blkid_topology_get_alignment_offset
+libblkid.so.1:blkid_topology_get_dax
 libblkid.so.1:blkid_topology_get_logical_sector_size
 libblkid.so.1:blkid_topology_get_minimum_io_size
 libblkid.so.1:blkid_topology_get_optimal_io_size
@@ -123,6 +125,7 @@ libfdisk.so.1:FDISK_2.31
 libfdisk.so.1:FDISK_2.32
 libfdisk.so.1:FDISK_2.33
 libfdisk.so.1:FDISK_2.35
+libfdisk.so.1:FDISK_2.36
 libfdisk.so.1:fdisk_add_partition
 libfdisk.so.1:fdisk_align_lba
 libfdisk.so.1:fdisk_align_lba_in_range
@@ -213,6 +216,8 @@ libfdisk.so.1:fdisk_get_sector_size
 libfdisk.so.1:fdisk_get_size_unit
 libfdisk.so.1:fdisk_get_unit
 libfdisk.so.1:fdisk_get_units_per_sector
+libfdisk.so.1:fdisk_gpt_disable_relocation
+libfdisk.so.1:fdisk_gpt_enable_minimize
 libfdisk.so.1:fdisk_gpt_get_partition_attrs
 libfdisk.so.1:fdisk_gpt_is_hybrid
 libfdisk.so.1:fdisk_gpt_set_npartitions
@@ -232,6 +237,7 @@ libfdisk.so.1:fdisk_is_ptcollision
 libfdisk.so.1:fdisk_is_readonly
 libfdisk.so.1:fdisk_is_regfile
 libfdisk.so.1:fdisk_iter_get_direction
+libfdisk.so.1:fdisk_label_advparse_parttype
 libfdisk.so.1:fdisk_label_get_field
 libfdisk.so.1:fdisk_label_get_field_by_name
 libfdisk.so.1:fdisk_label_get_fields_ids
@@ -244,8 +250,10 @@ libfdisk.so.1:fdisk_label_get_nparttypes
 libfdisk.so.1:fdisk_label_get_parttype
 libfdisk.so.1:fdisk_label_get_parttype_from_code
 libfdisk.so.1:fdisk_label_get_parttype_from_string
+libfdisk.so.1:fdisk_label_get_parttype_shortcut
 libfdisk.so.1:fdisk_label_get_type
 libfdisk.so.1:fdisk_label_has_code_parttypes
+libfdisk.so.1:fdisk_label_has_parttypes_shortcuts
 libfdisk.so.1:fdisk_label_is_changed
 libfdisk.so.1:fdisk_label_is_disabled
 libfdisk.so.1:fdisk_label_parse_parttype
@@ -358,6 +366,7 @@ libfdisk.so.1:fdisk_script_set_userdata
 libfdisk.so.1:fdisk_script_write_file
 libfdisk.so.1:fdisk_set_ask
 libfdisk.so.1:fdisk_set_disklabel_id
+libfdisk.so.1:fdisk_set_disklabel_id_from_string
 libfdisk.so.1:fdisk_set_first_lba
 libfdisk.so.1:fdisk_set_last_lba
 libfdisk.so.1:fdisk_set_partition
@@ -876,6 +885,7 @@ libuuid.so.1:UUIDD_PRIVATE
 libuuid.so.1:UUID_1.0
 libuuid.so.1:UUID_2.20
 libuuid.so.1:UUID_2.31
+libuuid.so.1:UUID_2.36
 libuuid.so.1:__uuid_generate_random
 libuuid.so.1:__uuid_generate_time
 libuuid.so.1:uuid_clear
@@ -890,6 +900,7 @@ libuuid.so.1:uuid_generate_time_safe
 libuuid.so.1:uuid_get_template
 libuuid.so.1:uuid_is_null
 libuuid.so.1:uuid_parse
+libuuid.so.1:uuid_parse_range
 libuuid.so.1:uuid_time
 libuuid.so.1:uuid_type
 libuuid.so.1:uuid_unparse

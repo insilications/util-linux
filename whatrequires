@@ -3,7 +3,6 @@ FreeCAD
 Linux-PAM
 ModemManager
 NetworkManager-l2tp
-OpenIPMI
 OpenSP
 R
 Solaar
@@ -23,7 +22,6 @@ fakeroot
 flatten_json
 gcc
 gcc9
-geoclue
 git
 git-gui
 gnutls
@@ -33,7 +31,6 @@ hyperscan
 ibus-skk
 krb5
 krest
-lazy-object-proxy
 lcms2
 libarchive-c
 libbsd
@@ -55,7 +52,6 @@ man-pages
 metis
 munch
 nbconvert
-ndctl
 nethogs
 nodejs
 not-ffmpeg
@@ -68,12 +64,10 @@ openvpn
 openvswitch
 orc
 ostree
-perl-Compress-Raw-Lzma
 perl-Data-Compare
 perl-Gtk3-WebKit
 perl-IO-CaptureOutput
 perl-List-SomeUtils
-perl-Log-Dispatch
 perl-Role-Tiny
 perl-Test-NeedsDisplay
 php-APCu
@@ -85,12 +79,8 @@ poppler
 portend
 pycairo
 pyroma
-pytest-forked
 pytest-runner
-python-keystoneclient
 python-ldap
-python-novaclient
-python-slugify
 pytorch
 quilt
 rsyslog
@@ -99,6 +89,7 @@ shim
 speexdsp
 sqlalchemy-migrate
 sshfs
+supertuxkart
 svg.path
 thrift
 tinyrpc

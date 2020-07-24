@@ -5,4 +5,6 @@
 --disable-chfn-chsh
 --disable-nologin
 --disable-plymouth_support
+--without-econf
+--without-libmagic
 PYTHON=/usr/bin/python3
