@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.36
-Release  : 154
+Release  : 155
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.tar.xz
 Summary  : mount library
