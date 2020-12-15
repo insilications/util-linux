@@ -1,15 +1,10 @@
 Configure miss: whether compiler handles -Wextra-semi
 Configure miss: whether compiler handles -Wembedded-directive
 Configure miss: whether compiler handles -Wformat-security
+Configure miss: glib-2.0 >= 2.10.0 gobject-2.0  >= 2.10.0
 Configure miss: linux/compiler.h
-Configure miss: asm/io.h usability
-Configure miss: asm/io.h presence
 Configure miss: asm/io.h
-Configure miss: sys/ioccom.h usability
-Configure miss: sys/ioccom.h presence
 Configure miss: sys/ioccom.h
-Configure miss: sys/ucred.h usability
-Configure miss: sys/ucred.h presence
 Configure miss: linux/fs.h
 Configure miss: security/openpam.h
 Configure miss: fpurge
@@ -23,25 +18,16 @@ Configure miss: timer_create
 Configure miss: rtas_get_sysparm in -lrtas
 Configure miss: union semun
 Configure miss: x86_64-generic-linux-gnu-ncursesw6-config
-Configure miss: ncursesw/ncurses.h usability
-Configure miss: ncursesw/ncurses.h presence
 Configure miss: ncursesw/ncurses.h
-Configure miss: ncursesw/term.h usability
-Configure miss: ncursesw/term.h presence
 Configure miss: ncursesw/term.h
 Configure miss: libuser >= 0.58
 Configure miss: whether compiler handles -Wextra-semi
 Configure miss: whether compiler handles -Wembedded-directive
 Configure miss: whether compiler handles -Wformat-security
+Configure miss: glib-2.0 >= 2.10.0 gobject-2.0  >= 2.10.0
 Configure miss: linux/compiler.h
-Configure miss: asm/io.h usability
-Configure miss: asm/io.h presence
 Configure miss: asm/io.h
-Configure miss: sys/ioccom.h usability
-Configure miss: sys/ioccom.h presence
 Configure miss: sys/ioccom.h
-Configure miss: sys/ucred.h usability
-Configure miss: sys/ucred.h presence
 Configure miss: linux/fs.h
 Configure miss: security/openpam.h
 Configure miss: fpurge

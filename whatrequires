@@ -7,7 +7,7 @@ R
 Solaar
 asunder
 autossh
-bash
+binutils
 calc
 cockpit
 dstat
@@ -22,7 +22,6 @@ gnutls
 gzip
 hyperscan
 ibus-skk
-krb5
 lcms2
 libarchive-c
 libburn
@@ -57,7 +56,6 @@ php-dbase
 php-raphf
 pidgin-sipe
 poppler
-portend
 pycairo
 pyroma
 pytest-runner

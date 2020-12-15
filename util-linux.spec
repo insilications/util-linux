@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.36.1
-Release  : 158
+Release  : 159
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.1.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.1.tar.xz
 Summary  : mount library
@@ -219,7 +219,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1605553223
+export SOURCE_DATE_EPOCH=1607990820
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -273,7 +273,7 @@ cd ../build32;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1605553223
+export SOURCE_DATE_EPOCH=1607990820
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp %{_builddir}/util-linux-2.36.1/COPYING %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
@@ -494,9 +494,9 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 %files extras
 %defattr(-,root,root,-)
 /usr/bin/mkfs.cramfs
-/usr/lib/python3.8/site-packages/libmount/__init__.py
-/usr/lib/python3.8/site-packages/libmount/__pycache__/__init__.cpython-38.pyc
-/usr/lib/python3.8/site-packages/libmount/pylibmount.so
+/usr/lib/python3.9/site-packages/libmount/__init__.py
+/usr/lib/python3.9/site-packages/libmount/__pycache__/__init__.cpython-39.pyc
+/usr/lib/python3.9/site-packages/libmount/pylibmount.so
 /usr/share/bash-completion/completions/addpart
 /usr/share/bash-completion/completions/blkdiscard
 /usr/share/bash-completion/completions/blkid
