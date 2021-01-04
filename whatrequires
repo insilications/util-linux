@@ -1,5 +1,4 @@
 # This file contains recursive sources that require this package
-FreeCAD
 Linux-PAM
 NetworkManager-l2tp
 OpenSP
@@ -40,7 +39,6 @@ nethogs
 nodejs
 not-ffmpeg
 numactl
-obs-studio
 ocaml
 ocamlbuild
 opa-fm
@@ -68,8 +66,5 @@ svg.path
 vifm
 vkd3d
 xdg-utils
-xfce4-screenshooter
-xfce4-whiskermenu-plugin
-xkeyboard-config
 xmlto
 xorriso

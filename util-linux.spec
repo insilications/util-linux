@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.36.1
-Release  : 160
+Release  : 161
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.1.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.1.tar.xz
 Summary  : mount library
@@ -50,6 +50,7 @@ BuildRequires : zlib-dev32
 Patch1: 0001-Speed-up-agetty-waits.patch
 Patch2: 0002-Recommend-1M-topology-size-if-none-set.patch
 Patch3: 0003-Trim-all-filesystems-not-just-fstab-ones.patch
+Patch4: 0004-libmount-don-t-use-symfollow-for-helpers-on-user-mou.patch
 
 %description
 util-linux
@@ -210,6 +211,7 @@ cd %{_builddir}/util-linux-2.36.1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 pushd ..
 cp -a util-linux-2.36.1 build32
 popd
@@ -219,7 +221,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1607990820
+export SOURCE_DATE_EPOCH=1609791227
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -273,7 +275,7 @@ cd ../build32;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1607990820
+export SOURCE_DATE_EPOCH=1609791227
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
 cp %{_builddir}/util-linux-2.36.1/COPYING %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
