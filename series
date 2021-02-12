@@ -1,4 +1,3 @@
 0001-Speed-up-agetty-waits.patch
 0002-Recommend-1M-topology-size-if-none-set.patch
 0003-Trim-all-filesystems-not-just-fstab-ones.patch
-0004-libmount-don-t-use-symfollow-for-helpers-on-user-mou.patch

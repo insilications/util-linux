@@ -23,7 +23,6 @@ hyperscan
 ibus-skk
 lcms2
 libarchive-c
-libburn
 libkcapi
 libsamplerate
 libskk
@@ -34,7 +33,6 @@ linux-oracle
 linux-tools
 man-db
 man-pages
-nbconvert
 nethogs
 nodejs
 not-ffmpeg
@@ -48,7 +46,6 @@ perl-Data-Compare
 perl-Gtk3-WebKit
 perl-IO-CaptureOutput
 perl-List-SomeUtils
-perl-Role-Tiny
 perl-Test-NeedsDisplay
 php-dbase
 php-raphf
@@ -56,7 +53,6 @@ pidgin-sipe
 poppler
 pycairo
 pyroma
-pytest-runner
 quilt
 rsyslog
 shadow
@@ -67,4 +63,3 @@ vifm
 vkd3d
 xdg-utils
 xmlto
-xorriso

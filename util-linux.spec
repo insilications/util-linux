@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : util-linux
-Version  : 2.36.1
-Release  : 161
-URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.1.tar.xz
-Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.1.tar.xz
+Version  : 2.36.2
+Release  : 162
+URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.2.tar.xz
+Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.2.tar.xz
 Summary  : mount library
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 GPL-3.0 ISC LGPL-2.1
@@ -50,7 +50,6 @@ BuildRequires : zlib-dev32
 Patch1: 0001-Speed-up-agetty-waits.patch
 Patch2: 0002-Recommend-1M-topology-size-if-none-set.patch
 Patch3: 0003-Trim-all-filesystems-not-just-fstab-ones.patch
-Patch4: 0004-libmount-don-t-use-symfollow-for-helpers-on-user-mou.patch
 
 %description
 util-linux
@@ -206,14 +205,13 @@ staticdev32 components for the util-linux package.
 
 
 %prep
-%setup -q -n util-linux-2.36.1
-cd %{_builddir}/util-linux-2.36.1
+%setup -q -n util-linux-2.36.2
+cd %{_builddir}/util-linux-2.36.2
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 pushd ..
-cp -a util-linux-2.36.1 build32
+cp -a util-linux-2.36.2 build32
 popd
 
 %build
@@ -221,7 +219,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1609791227
+export SOURCE_DATE_EPOCH=1613151864
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -275,20 +273,20 @@ cd ../build32;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1609791227
+export SOURCE_DATE_EPOCH=1613151864
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
-cp %{_builddir}/util-linux-2.36.1/COPYING %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/util-linux-2.36.1/Documentation/licenses/COPYING.BSD-3-Clause %{buildroot}/usr/share/package-licenses/util-linux/e5c9f3867b9251dcd2d97a4d1dffaa38afe6625d
-cp %{_builddir}/util-linux-2.36.1/Documentation/licenses/COPYING.BSD-4-Clause-UC %{buildroot}/usr/share/package-licenses/util-linux/8afe522e7c956a6c19914cd5ffea17a0aa2e4bc7
-cp %{_builddir}/util-linux-2.36.1/Documentation/licenses/COPYING.GPL-2.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/util-linux-2.36.1/Documentation/licenses/COPYING.GPL-3.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/31a3d460bb3c7d98845187c716a30db81c44b615
-cp %{_builddir}/util-linux-2.36.1/Documentation/licenses/COPYING.ISC %{buildroot}/usr/share/package-licenses/util-linux/fca052e126f39e97d69d000644b7a462f215c125
-cp %{_builddir}/util-linux-2.36.1/Documentation/licenses/COPYING.LGPL-2.1-or-later %{buildroot}/usr/share/package-licenses/util-linux/01a6b4bf79aca9b556822601186afab86e8c4fbf
-cp %{_builddir}/util-linux-2.36.1/libblkid/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
-cp %{_builddir}/util-linux-2.36.1/libfdisk/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
-cp %{_builddir}/util-linux-2.36.1/libmount/COPYING %{buildroot}/usr/share/package-licenses/util-linux/66319e97eda8747087e9c5292f31c8bc5153c3c8
-cp %{_builddir}/util-linux-2.36.1/libsmartcols/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
+cp %{_builddir}/util-linux-2.36.2/COPYING %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.BSD-3-Clause %{buildroot}/usr/share/package-licenses/util-linux/e5c9f3867b9251dcd2d97a4d1dffaa38afe6625d
+cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.BSD-4-Clause-UC %{buildroot}/usr/share/package-licenses/util-linux/8afe522e7c956a6c19914cd5ffea17a0aa2e4bc7
+cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.GPL-2.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.GPL-3.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/31a3d460bb3c7d98845187c716a30db81c44b615
+cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.ISC %{buildroot}/usr/share/package-licenses/util-linux/fca052e126f39e97d69d000644b7a462f215c125
+cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.LGPL-2.1-or-later %{buildroot}/usr/share/package-licenses/util-linux/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/util-linux-2.36.2/libblkid/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
+cp %{_builddir}/util-linux-2.36.2/libfdisk/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
+cp %{_builddir}/util-linux-2.36.2/libmount/COPYING %{buildroot}/usr/share/package-licenses/util-linux/66319e97eda8747087e9c5292f31c8bc5153c3c8
+cp %{_builddir}/util-linux-2.36.2/libsmartcols/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]

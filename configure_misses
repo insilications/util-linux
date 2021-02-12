@@ -2,6 +2,7 @@ Configure miss: whether compiler handles -Wextra-semi
 Configure miss: whether compiler handles -Wembedded-directive
 Configure miss: whether compiler handles -Wformat-security
 Configure miss: glib-2.0 >= 2.10.0 gobject-2.0  >= 2.10.0
+Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: linux/compiler.h
 Configure miss: asm/io.h
 Configure miss: sys/ioccom.h
@@ -25,6 +26,7 @@ Configure miss: whether compiler handles -Wextra-semi
 Configure miss: whether compiler handles -Wembedded-directive
 Configure miss: whether compiler handles -Wformat-security
 Configure miss: glib-2.0 >= 2.10.0 gobject-2.0  >= 2.10.0
+Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: linux/compiler.h
 Configure miss: asm/io.h
 Configure miss: sys/ioccom.h
