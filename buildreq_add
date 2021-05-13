@@ -1,17 +1,28 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-Linux-PAM-dev
-Linux-PAM-dev32
 bison
+docbook-xml
 e2fsprogs
+gcc-dev32
+gcc-libgcc32
+gcc-libstdc++32
+glibc-dev32
+glibc-libc32
+gtk-doc
+gtk-doc-dev
 libcap-ng-dev
 libcap-ng-dev32
+Linux-PAM-dev
+Linux-PAM-dev32
 ncurses-dev
 ncurses-dev32
 pkg-config
 procps-ng
 python3-dev
+python3-staticdev
 readline-dev
 systemd-dev32
 zlib-dev
 zlib-dev32
+zlib-staticdev
+zlib-staticdev32

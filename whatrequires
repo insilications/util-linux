@@ -6,7 +6,6 @@ R
 Solaar
 asunder
 autossh
-binutils
 calc
 cockpit
 dstat
@@ -17,6 +16,7 @@ gcc
 gcc9
 git
 git-gui
+glibc
 gnutls
 gzip
 hyperscan
@@ -27,7 +27,6 @@ libkcapi
 libsamplerate
 libskk
 libssh2
-libvirt-python
 libxslt
 linux-oracle
 linux-tools
@@ -52,14 +51,11 @@ php-raphf
 pidgin-sipe
 poppler
 pycairo
-pyroma
 quilt
 rsyslog
 shadow
 shim
 speexdsp
-svg.path
 vifm
-vkd3d
 xdg-utils
 xmlto

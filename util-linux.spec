@@ -5,17 +5,16 @@
 %define keepstatic 1
 Name     : util-linux
 Version  : 2.36.2
-Release  : 163
+Release  : 164
 URL      : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.2.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/util-linux/v2.36/util-linux-2.36.2.tar.xz
 Summary  : mount library
 Group    : Development/Tools
-License  : BSD-3-Clause BSD-4-Clause-UC GPL-2.0 GPL-3.0 ISC LGPL-2.1
+License  : GPL-2.0 LGPL-2.1
 Requires: util-linux-autostart = %{version}-%{release}
 Requires: util-linux-bin = %{version}-%{release}
 Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-lib = %{version}-%{release}
-Requires: util-linux-license = %{version}-%{release}
 Requires: util-linux-locales = %{version}-%{release}
 Requires: util-linux-man = %{version}-%{release}
 Requires: util-linux-services = %{version}-%{release}
@@ -25,15 +24,24 @@ BuildRequires : Linux-PAM-dev32
 BuildRequires : bison
 BuildRequires : docbook-xml
 BuildRequires : e2fsprogs
+BuildRequires : gcc
+BuildRequires : gcc-abi
+BuildRequires : gcc-dev
 BuildRequires : gcc-dev32
+BuildRequires : gcc-doc
 BuildRequires : gcc-libgcc32
+BuildRequires : gcc-libs-math
 BuildRequires : gcc-libstdc++32
+BuildRequires : gcc-libubsan
+BuildRequires : gcc-locale
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
 BuildRequires : libcap-ng-dev
 BuildRequires : libcap-ng-dev32
+BuildRequires : libgcc1
+BuildRequires : libstdc++
 BuildRequires : ncurses-dev
 BuildRequires : ncurses-dev32
 BuildRequires : pkg-config
@@ -43,10 +51,13 @@ BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(tinfow)
 BuildRequires : procps-ng
 BuildRequires : python3-dev
+BuildRequires : python3-staticdev
 BuildRequires : readline-dev
 BuildRequires : systemd-dev32
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
+BuildRequires : zlib-staticdev
+BuildRequires : zlib-staticdev32
 Patch1: 0001-Speed-up-agetty-waits.patch
 Patch2: 0002-Recommend-1M-topology-size-if-none-set.patch
 Patch3: 0003-Trim-all-filesystems-not-just-fstab-ones.patch
@@ -69,7 +80,6 @@ Summary: bin components for the util-linux package.
 Group: Binaries
 Requires: util-linux-data = %{version}-%{release}
 Requires: util-linux-setuid = %{version}-%{release}
-Requires: util-linux-license = %{version}-%{release}
 Requires: util-linux-services = %{version}-%{release}
 
 %description bin
@@ -130,7 +140,6 @@ extras components for the util-linux package.
 Summary: lib components for the util-linux package.
 Group: Libraries
 Requires: util-linux-data = %{version}-%{release}
-Requires: util-linux-license = %{version}-%{release}
 
 %description lib
 lib components for the util-linux package.
@@ -140,18 +149,9 @@ lib components for the util-linux package.
 Summary: lib32 components for the util-linux package.
 Group: Default
 Requires: util-linux-data = %{version}-%{release}
-Requires: util-linux-license = %{version}-%{release}
 
 %description lib32
 lib32 components for the util-linux package.
-
-
-%package license
-Summary: license components for the util-linux package.
-Group: Default
-
-%description license
-license components for the util-linux package.
 
 
 %package locales
@@ -168,6 +168,24 @@ Group: Default
 
 %description man
 man components for the util-linux package.
+
+
+%package python
+Summary: python components for the util-linux package.
+Group: Default
+Requires: util-linux-python3 = %{version}-%{release}
+
+%description python
+python components for the util-linux package.
+
+
+%package python3
+Summary: python3 components for the util-linux package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the util-linux package.
 
 
 %package services
@@ -198,7 +216,7 @@ staticdev components for the util-linux package.
 %package staticdev32
 Summary: staticdev32 components for the util-linux package.
 Group: Default
-Requires: util-linux-dev = %{version}-%{release}
+Requires: util-linux-dev32 = %{version}-%{release}
 
 %description staticdev32
 staticdev32 components for the util-linux package.
@@ -215,20 +233,66 @@ cp -a util-linux-2.36.2 build32
 popd
 
 %build
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
+unset http_proxy
+unset https_proxy
+unset no_proxy
+export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1613151864
+export SOURCE_DATE_EPOCH=1620932870
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
-export FCFLAGS="$FFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
-export FFLAGS="$FFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
-%reconfigure  --disable-use-tty-group \
+## altflags_pgo content
+## pgo generate
+export PGO_GEN="-fprofile-generate=/var/tmp/pgo -fprofile-dir=/var/tmp/pgo -fprofile-abs-path -fprofile-update=atomic -fprofile-arcs -ftest-coverage --coverage -fprofile-partial-training"
+export CFLAGS_GENERATE="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -falign-functions=32 -flimit-function-alignment -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe -ffat-lto-objects -flto=16 -fPIC -Wl,-z,max-page-size=0x1000 -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc -Wl,--build-id=sha1 -fdevirtualize-at-ltrans -Wl,-z,now -Wl,-z,relro -Wl,-sort-common -fasynchronous-unwind-tables $PGO_GEN"
+export FCFLAGS_GENERATE="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -falign-functions=32 -flimit-function-alignment -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe -ffat-lto-objects -flto=16 -fPIC -Wl,-z,max-page-size=0x1000 -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc -Wl,--build-id=sha1 -fdevirtualize-at-ltrans -Wl,-z,now -Wl,-z,relro -Wl,-sort-common -fasynchronous-unwind-tables $PGO_GEN"
+export FFLAGS_GENERATE="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -falign-functions=32 -flimit-function-alignment -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe -ffat-lto-objects -flto=16 -fPIC -Wl,-z,max-page-size=0x1000 -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc -Wl,--build-id=sha1 -fdevirtualize-at-ltrans -Wl,-z,now -Wl,-z,relro -Wl,-sort-common -fasynchronous-unwind-tables $PGO_GEN"
+export CXXFLAGS_GENERATE="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -falign-functions=32 -flimit-function-alignment -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -fvisibility-inlines-hidden -pipe -ffat-lto-objects -flto=16 -fPIC -Wl,-z,max-page-size=0x1000 -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc -Wl,--build-id=sha1 -fdevirtualize-at-ltrans -Wl,-z,now -Wl,-z,relro -Wl,-sort-common -fasynchronous-unwind-tables $PGO_GEN"
+export LDFLAGS_GENERATE="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -falign-functions=32 -flimit-function-alignment -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe -ffat-lto-objects -flto=16 -fPIC -Wl,-z,max-page-size=0x1000 -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc -lpthread -Wl,--build-id=sha1 -fdevirtualize-at-ltrans -Wl,-z,now -Wl,-z,relro -Wl,-sort-common -fasynchronous-unwind-tables $PGO_GEN"
+## pgo use
+## -ffat-lto-objects -fno-PIE -fno-PIE -m64 -no-pie -fPIC -Wl,-z,max-page-size=0x1000 -fvisibility=hidden -flto-partition=none
+## gcc: -feliminate-unused-debug-types -fipa-pta -flto=16 -Wno-error -Wp,-D_REENTRANT -fno-common
+export PGO_USE="-fprofile-use=/var/tmp/pgo -fprofile-dir=/var/tmp/pgo -fprofile-abs-path -fprofile-correction -fprofile-partial-training"
+export CFLAGS_USE="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -Wl,-z,max-page-size=0x1000 -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_USE"
+export FCFLAGS_USE="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -Wl,-z,max-page-size=0x1000 -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_USE"
+export FFLAGS_USE="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -Wl,-z,max-page-size=0x1000 -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_USE"
+export CXXFLAGS_USE="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -fvisibility-inlines-hidden -pipe -ffat-lto-objects -fPIC -Wl,-z,max-page-size=0x1000 -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_USE"
+export LDFLAGS_USE="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -Wl,-z,max-page-size=0x1000 -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc -lpthread $PGO_USE"
+#
+export AR=/usr/bin/gcc-ar
+export RANLIB=/usr/bin/gcc-ranlib
+export NM=/usr/bin/gcc-nm
+#
+export MAKEFLAGS=%{?_smp_mflags}
+#
+%global _lto_cflags 1
+#global _lto_cflags %{nil}
+%global _disable_maintainer_mode 1
+#%global _disable_maintainer_mode %{nil}
+#
+export CCACHE_DISABLE=true
+export PATH="/usr/lib64/ccache/bin:$PATH"
+export CCACHE_NOHASHDIR=true
+export CCACHE_CPP2=true
+export CCACHE_SLOPPINESS=pch_defines,time_macros,locale,file_stat_matches,file_stat_matches_ctime,include_file_ctime,include_file_mtime,modules,system_headers,clang_index_store,file_macro
+#export CCACHE_SLOPPINESS=modules,include_file_mtime,include_file_ctime,time_macros,pch_defines,file_stat_matches,clang_index_store,system_headers,locale
+#export CCACHE_SLOPPINESS=pch_defines,time_macros,locale,clang_index_store,file_macro
+export CCACHE_DIR=/var/tmp/ccache
+export CCACHE_BASEDIR=/builddir/build/BUILD
+#export CCACHE_LOGFILE=/var/tmp/ccache/cache.debug
+#export CCACHE_DEBUG=true
+#export CCACHE_NODIRECT=true
+## altflags_pgo end
+sd -r '\s--dirty\s' ' ' .
+sd -r 'git describe' 'git describe --abbrev=0' .
+export CFLAGS="${CFLAGS_GENERATE}"
+export CXXFLAGS="${CXXFLAGS_GENERATE}"
+export FFLAGS="${FFLAGS_GENERATE}"
+export FCFLAGS="${FCFLAGS_GENERATE}"
+export LDFLAGS="${LDFLAGS_GENERATE}"
+%reconfigure --disable-use-tty-group \
 --disable-makeinstall-chown \
 --disable-makeinstall-setuid \
 --disable-kill \
@@ -237,15 +301,44 @@ export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-
 --disable-plymouth_support \
 --without-econf \
 --without-libmagic \
+--with-python \
 PYTHON=/usr/bin/python3
-make  %{?_smp_mflags}
+make  %{?_smp_mflags}  VERBOSE=1 V=1
+
+make %{?_smp_mflags} check VERBOSE=1 V=1 || :
+make clean
+export CFLAGS="${CFLAGS_USE}"
+export CXXFLAGS="${CXXFLAGS_USE}"
+export FFLAGS="${FFLAGS_USE}"
+export FCFLAGS="${FCFLAGS_USE}"
+export LDFLAGS="${LDFLAGS_USE}"
+%reconfigure --disable-use-tty-group \
+--disable-makeinstall-chown \
+--disable-makeinstall-setuid \
+--disable-kill \
+--disable-chfn-chsh \
+--disable-nologin \
+--disable-plymouth_support \
+--without-econf \
+--without-libmagic \
+--with-python \
+PYTHON=/usr/bin/python3
+make  %{?_smp_mflags}  VERBOSE=1 V=1
+
 pushd ../build32/
+export CFLAGS="-O2 -ffat-lto-objects -fuse-linker-plugin -pipe -fPIC -m32 -mstackrealign -march=native -mtune=native"
+export CXXFLAGS="-O2 -ffat-lto-objects -fuse-linker-plugin -fvisibility-inlines-hidden -pipe -fPIC -m32 -mstackrealign -march=native -mtune=native"
+export LDFLAGS="-O2 -ffat-lto-objects -fuse-linker-plugin -pipe -fPIC -m32 -mstackrealign -march=native -mtune=native"
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+unset LD_LIBRARY_PATH
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
 export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
 export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
 export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
-%reconfigure  --disable-use-tty-group \
+%reconfigure --disable-use-tty-group \
 --disable-makeinstall-chown \
 --disable-makeinstall-setuid \
 --disable-kill \
@@ -254,46 +347,26 @@ export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
 --disable-plymouth_support \
 --without-econf \
 --without-libmagic \
+--with-python \
 PYTHON=/usr/bin/python3 --without-ncurses \
 --without-ncursesw \
 --without-systemd \
 --without-python \
 --without-tinfo \
 --disable-hardlink --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
-make  %{?_smp_mflags}
+make  %{?_smp_mflags}  VERBOSE=1 V=1
 popd
 
-%check
-export LANG=C.UTF-8
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-make %{?_smp_mflags} check || :
-cd ../build32;
-make %{?_smp_mflags} check || : || :
-
 %install
-export SOURCE_DATE_EPOCH=1613151864
+export SOURCE_DATE_EPOCH=1620932870
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/util-linux
-cp %{_builddir}/util-linux-2.36.2/COPYING %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.BSD-3-Clause %{buildroot}/usr/share/package-licenses/util-linux/e5c9f3867b9251dcd2d97a4d1dffaa38afe6625d
-cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.BSD-4-Clause-UC %{buildroot}/usr/share/package-licenses/util-linux/8afe522e7c956a6c19914cd5ffea17a0aa2e4bc7
-cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.GPL-2.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.GPL-3.0-or-later %{buildroot}/usr/share/package-licenses/util-linux/31a3d460bb3c7d98845187c716a30db81c44b615
-cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.ISC %{buildroot}/usr/share/package-licenses/util-linux/fca052e126f39e97d69d000644b7a462f215c125
-cp %{_builddir}/util-linux-2.36.2/Documentation/licenses/COPYING.LGPL-2.1-or-later %{buildroot}/usr/share/package-licenses/util-linux/01a6b4bf79aca9b556822601186afab86e8c4fbf
-cp %{_builddir}/util-linux-2.36.2/libblkid/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
-cp %{_builddir}/util-linux-2.36.2/libfdisk/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
-cp %{_builddir}/util-linux-2.36.2/libmount/COPYING %{buildroot}/usr/share/package-licenses/util-linux/66319e97eda8747087e9c5292f31c8bc5153c3c8
-cp %{_builddir}/util-linux-2.36.2/libsmartcols/COPYING %{buildroot}/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
 then
-pushd %{buildroot}/usr/lib32/pkgconfig
-for i in *.pc ; do ln -s $i 32$i ; done
-popd
+    pushd %{buildroot}/usr/lib32/pkgconfig
+    for i in *.pc ; do ln -s $i 32$i ; done
+    popd
 fi
 popd
 %make_install
@@ -455,19 +528,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/lib64/pkgconfig/mount.pc
 /usr/lib64/pkgconfig/smartcols.pc
 /usr/lib64/pkgconfig/uuid.pc
-/usr/share/man/man3/libblkid.3
-/usr/share/man/man3/uuid.3
-/usr/share/man/man3/uuid_clear.3
-/usr/share/man/man3/uuid_compare.3
-/usr/share/man/man3/uuid_copy.3
-/usr/share/man/man3/uuid_generate.3
-/usr/share/man/man3/uuid_generate_random.3
-/usr/share/man/man3/uuid_generate_time.3
-/usr/share/man/man3/uuid_generate_time_safe.3
-/usr/share/man/man3/uuid_is_null.3
-/usr/share/man/man3/uuid_parse.3
-/usr/share/man/man3/uuid_time.3
-/usr/share/man/man3/uuid_unparse.3
 
 %files dev32
 %defattr(-,root,root,-)
@@ -620,17 +680,6 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/lib32/libuuid.so.1
 /usr/lib32/libuuid.so.1.3.0
 
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/util-linux/01a6b4bf79aca9b556822601186afab86e8c4fbf
-/usr/share/package-licenses/util-linux/31a3d460bb3c7d98845187c716a30db81c44b615
-/usr/share/package-licenses/util-linux/4cc77b90af91e615a64ae04893fdffa7939db84c
-/usr/share/package-licenses/util-linux/66319e97eda8747087e9c5292f31c8bc5153c3c8
-/usr/share/package-licenses/util-linux/8afe522e7c956a6c19914cd5ffea17a0aa2e4bc7
-/usr/share/package-licenses/util-linux/93e45afdb0d7c3fdd6dfcc951b8a3421660f2811
-/usr/share/package-licenses/util-linux/e5c9f3867b9251dcd2d97a4d1dffaa38afe6625d
-/usr/share/package-licenses/util-linux/fca052e126f39e97d69d000644b7a462f215c125
-
 %files man
 %defattr(0644,root,root,0755)
 /usr/share/man/man1/cal.1
@@ -689,6 +738,19 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/share/man/man1/uuidparse.1
 /usr/share/man/man1/wall.1
 /usr/share/man/man1/whereis.1
+/usr/share/man/man3/libblkid.3
+/usr/share/man/man3/uuid.3
+/usr/share/man/man3/uuid_clear.3
+/usr/share/man/man3/uuid_compare.3
+/usr/share/man/man3/uuid_copy.3
+/usr/share/man/man3/uuid_generate.3
+/usr/share/man/man3/uuid_generate_random.3
+/usr/share/man/man3/uuid_generate_time.3
+/usr/share/man/man3/uuid_generate_time_safe.3
+/usr/share/man/man3/uuid_is_null.3
+/usr/share/man/man3/uuid_parse.3
+/usr/share/man/man3/uuid_time.3
+/usr/share/man/man3/uuid_unparse.3
 /usr/share/man/man5/adjtime_config.5
 /usr/share/man/man5/fstab.5
 /usr/share/man/man5/terminal-colors.d.5
@@ -750,6 +812,13 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 /usr/share/man/man8/x86_64.8
 /usr/share/man/man8/zramctl.8
 
+%files python
+%defattr(-,root,root,-)
+
+%files python3
+%defattr(-,root,root,-)
+/usr/lib/python3*/*
+
 %files services
 %defattr(-,root,root,-)
 %exclude /usr/lib/systemd/system/sockets.target.wants/uuidd.socket
@@ -781,4 +850,3 @@ ln -sf ../fstrim.timer %{buildroot}/usr/lib/systemd/system/timers.target.wants/f
 
 %files locales -f util-linux.lang
 %defattr(-,root,root,-)
-

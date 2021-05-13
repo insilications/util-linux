@@ -7,4 +7,5 @@
 --disable-plymouth_support
 --without-econf
 --without-libmagic
+--with-python
 PYTHON=/usr/bin/python3
