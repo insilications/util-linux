@@ -9,6 +9,7 @@ libblkid.so.1:BLKID_2.25
 libblkid.so.1:BLKID_2.30
 libblkid.so.1:BLKID_2_31
 libblkid.so.1:BLKID_2_36
+libblkid.so.1:BLKID_2_37
 libblkid.so.1:blkid_dev_devname
 libblkid.so.1:blkid_dev_has_tag
 libblkid.so.1:blkid_dev_iterate_begin
@@ -93,9 +94,11 @@ libblkid.so.1:blkid_probe_lookup_value
 libblkid.so.1:blkid_probe_numof_values
 libblkid.so.1:blkid_probe_reset_buffers
 libblkid.so.1:blkid_probe_reset_filter
+libblkid.so.1:blkid_probe_reset_hints
 libblkid.so.1:blkid_probe_reset_partitions_filter
 libblkid.so.1:blkid_probe_reset_superblocks_filter
 libblkid.so.1:blkid_probe_set_device
+libblkid.so.1:blkid_probe_set_hint
 libblkid.so.1:blkid_probe_set_partitions_flags
 libblkid.so.1:blkid_probe_set_request
 libblkid.so.1:blkid_probe_set_sectorsize
@@ -417,6 +420,7 @@ libmount.so.1:MOUNT_2.30
 libmount.so.1:MOUNT_2.33
 libmount.so.1:MOUNT_2.34
 libmount.so.1:MOUNT_2_35
+libmount.so.1:MOUNT_2_37
 libmount.so.1:mnt_cache_device_has_tag
 libmount.so.1:mnt_cache_find_tag_value
 libmount.so.1:mnt_cache_read_tags
@@ -562,6 +566,7 @@ libmount.so.1:mnt_fs_get_usedsize
 libmount.so.1:mnt_fs_get_user_options
 libmount.so.1:mnt_fs_get_userdata
 libmount.so.1:mnt_fs_get_vfs_options
+libmount.so.1:mnt_fs_get_vfs_options_all
 libmount.so.1:mnt_fs_is_kernel
 libmount.so.1:mnt_fs_is_netfs
 libmount.so.1:mnt_fs_is_pseudofs
@@ -680,6 +685,7 @@ libmount.so.1:mnt_table_last_fs
 libmount.so.1:mnt_table_move_fs
 libmount.so.1:mnt_table_next_child_fs
 libmount.so.1:mnt_table_next_fs
+libmount.so.1:mnt_table_over_fs
 libmount.so.1:mnt_table_parse_dir
 libmount.so.1:mnt_table_parse_file
 libmount.so.1:mnt_table_parse_fstab

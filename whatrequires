@@ -8,6 +8,7 @@ asunder
 autossh
 calc
 cockpit
+compat-gcc-10
 dstat
 eid-mw
 elfutils
