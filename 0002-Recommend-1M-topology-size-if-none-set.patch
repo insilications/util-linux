@@ -19,4 +19,3 @@ index 53007d1..df7295a 100644
 +		return 1024 * 1024;
  	return tp->optimal_io_size;
  }
- 
