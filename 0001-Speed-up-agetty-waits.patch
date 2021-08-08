@@ -34,7 +34,7 @@ index 191fa29..b7a8e89 100644
  	}
 +	malloc_trim(0);
  }
-
+ 
  /* Select next baud rate. */
 @@ -2153,7 +2155,7 @@ static char *get_logname(struct issue *ie, struct options *op, struct termios *t
  	 * the baud rate).
@@ -43,5 +43,5 @@ index 191fa29..b7a8e89 100644
 -		sleep(1);
 +		usleep(1000);
  	tcflush(STDIN_FILENO, TCIFLUSH);
-
+ 
  	eightbit = (op->flags & (F_EIGHTBITS|F_UTF8));
