@@ -160,6 +160,7 @@ libarchive-c
 libass-dev
 libass-staticdev
 libblockdev-dev
+libblockdev-staticdev
 libbluray-dev
 libbluray-staticdev
 libcacard-dev
@@ -281,6 +282,7 @@ totem-pl-parser-dev
 tpm2-abrmd-dev
 tracker-dev
 udisks2-dev
+udisks2-staticdev
 uhttpmock-dev
 upower-dev
 util-linux-dev
